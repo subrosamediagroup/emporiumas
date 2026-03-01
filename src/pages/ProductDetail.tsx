@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Heart, Star, Shield, ArrowLeft, MessageSquare, Share2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Heart, Star, Shield, ArrowLeft, MessageSquare, Share2, ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -28,6 +30,20 @@ const ProductDetail = () => {
   const product = allProducts.find((p) => p.id === Number(id));
   const [selectedImage, setSelectedImage] = useState(0);
   const [offerOpen, setOfferOpen] = useState(false);
+  const { addItem } = useCart();
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      condition: product.condition,
+      image: product.images[0],
+      seller: product.seller,
+    });
+    toast.success(`${product.title} added to cart`);
+  };
 
   if (!product) {
     return (
@@ -157,9 +173,13 @@ const ProductDetail = () => {
 
             {/* Actions */}
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Button size="lg" className="flex-1 gap-2 text-base" onClick={() => setOfferOpen(true)}>
+              <Button size="lg" className="flex-1 gap-2 text-base" onClick={handleAddToCart}>
+                <ShoppingCart className="h-5 w-5" />
+                Add to Cart
+              </Button>
+              <Button variant="outline" size="lg" className="gap-2" onClick={() => setOfferOpen(true)}>
                 <MessageSquare className="h-5 w-5" />
-                Make an Offer
+                Make Offer
               </Button>
               <Button variant="outline" size="lg" className="gap-2">
                 <Heart className="h-5 w-5" />
