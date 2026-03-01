@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Heart, Star, Shield, SlidersHorizontal, X, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -223,8 +224,8 @@ const Shop = () => {
             ) : (
               <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {filtered.map((item, i) => (
+                  <Link to={`/product/${item.id}`} key={item.id}>
                   <motion.div
-                    key={item.id}
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: i * 0.04 }}
@@ -265,6 +266,7 @@ const Shop = () => {
                       </div>
                     </div>
                   </motion.div>
+                  </Link>
                 ))}
               </div>
             )}
