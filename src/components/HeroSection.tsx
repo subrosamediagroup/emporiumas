@@ -64,9 +64,11 @@ const HeroSection = () => {
                 className="w-full rounded-xl border border-border bg-card/80 px-12 py-4 text-foreground backdrop-blur-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
             </div>
-            <Button size="lg" className="gap-2 rounded-xl px-8 py-4 font-display font-semibold">
-              Browse Gear <ArrowRight className="h-4 w-4" />
-            </Button>
+            <a href="/shop">
+              <Button size="lg" className="gap-2 rounded-xl px-8 py-4 font-display font-semibold">
+                Browse Gear <ArrowRight className="h-4 w-4" />
+              </Button>
+            </a>
           </motion.div>
 
           <motion.div

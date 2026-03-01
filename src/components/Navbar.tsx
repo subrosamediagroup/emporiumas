@@ -13,13 +13,18 @@ const Navbar = () => {
             Emporium
           </a>
           <div className="hidden items-center gap-6 md:flex">
-            {["Shop", "Sell", "Deals", "Community"].map((item) => (
+            {[
+              { label: "Shop", href: "/shop" },
+              { label: "Sell", href: "#" },
+              { label: "Deals", href: "#" },
+              { label: "Community", href: "#" },
+            ].map((item) => (
               <a
-                key={item}
-                href="#"
+                key={item.label}
+                href={item.href}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
