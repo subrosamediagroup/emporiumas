@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Heart, Star, Shield } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const listings = [
   {
@@ -101,38 +102,40 @@ const FeaturedListings = () => {
               whileHover={{ y: -4 }}
               className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/30"
             >
-              <div className="relative aspect-square overflow-hidden bg-secondary">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                <button className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-background/70 text-muted-foreground backdrop-blur-sm transition-colors hover:text-primary">
-                  <Heart className="h-4 w-4" />
-                </button>
-                <Badge className="absolute left-3 top-3 border-none bg-background/70 text-foreground backdrop-blur-sm">
-                  {item.condition}
-                </Badge>
-              </div>
+              <Link to={`/product/${item.id}`}>
+                <div className="relative aspect-square overflow-hidden bg-secondary">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <Badge className="absolute left-3 top-3 border-none bg-background/70 text-foreground backdrop-blur-sm">
+                    {item.condition}
+                  </Badge>
+                </div>
 
-              <div className="p-4">
-                <h3 className="mb-1 font-display text-sm font-semibold text-foreground line-clamp-1">
-                  {item.title}
-                </h3>
-                <p className="mb-3 font-display text-xl font-bold text-primary">{item.price}</p>
+                <div className="p-4">
+                  <h3 className="mb-1 font-display text-sm font-semibold text-foreground line-clamp-1">
+                    {item.title}
+                  </h3>
+                  <p className="mb-3 font-display text-xl font-bold text-primary">{item.price}</p>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    {item.verified && <Shield className="h-3.5 w-3.5 text-primary" />}
-                    <span>{item.seller}</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Star className="h-3.5 w-3.5 fill-primary text-primary" />
-                    <span>{item.rating}</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                      {item.verified && <Shield className="h-3.5 w-3.5 text-primary" />}
+                      <span>{item.seller}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <Star className="h-3.5 w-3.5 fill-primary text-primary" />
+                      <span>{item.rating}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
+              <button className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-background/70 text-muted-foreground backdrop-blur-sm transition-colors hover:text-primary">
+                <Heart className="h-4 w-4" />
+              </button>
             </motion.div>
           ))}
         </div>
