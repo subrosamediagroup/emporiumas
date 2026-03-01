@@ -15,7 +15,7 @@ const Navbar = () => {
           <div className="hidden items-center gap-6 md:flex">
             {[
               { label: "Shop", href: "/shop" },
-              { label: "Sell", href: "#" },
+              { label: "Sell", href: "/sell" },
               { label: "Deals", href: "#" },
               { label: "Community", href: "#" },
             ].map((item) => (
@@ -48,8 +48,8 @@ const Navbar = () => {
           <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
             <User className="h-5 w-5" />
           </Button>
-          <Button variant="default" className="hidden text-sm sm:inline-flex">
-            List an Item
+          <Button variant="default" className="hidden text-sm sm:inline-flex" asChild>
+            <a href="/sell">List an Item</a>
           </Button>
           <Button
             variant="ghost"
