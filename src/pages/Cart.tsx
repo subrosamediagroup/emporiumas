@@ -138,8 +138,8 @@ const Cart = () => {
                 {shippingEstimate === 0 && (
                   <p className="mt-2 text-xs text-primary">🎉 You qualify for free shipping!</p>
                 )}
-                <Button size="lg" className="mt-6 w-full text-base">
-                  Proceed to Checkout
+                <Button size="lg" className="mt-6 w-full text-base" asChild>
+                  <Link to="/checkout">Proceed to Checkout</Link>
                 </Button>
                 <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
                   <ShieldCheck className="h-4 w-4" />
