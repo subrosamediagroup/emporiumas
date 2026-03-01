@@ -2,6 +2,7 @@ import { Search, ShoppingCart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -11,23 +12,23 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
-          <a href="/" className="font-display text-xl font-bold tracking-tight text-primary">
+          <Link to="/" className="font-display text-xl font-bold tracking-tight text-primary">
             Emporium
-          </a>
+          </Link>
           <div className="hidden items-center gap-6 md:flex">
             {[
-              { label: "Shop", href: "/shop" },
-              { label: "Sell", href: "/sell" },
-              { label: "Deals", href: "#" },
-              { label: "Community", href: "#" },
+              { label: "Shop", to: "/shop" },
+              { label: "Sell", to: "/sell" },
+              { label: "Deals", to: "#" },
+              { label: "Community", to: "#" },
             ].map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.to}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -45,20 +46,20 @@ const Navbar = () => {
 
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground" asChild>
-            <a href="/cart">
+            <Link to="/cart">
               <ShoppingCart className="h-5 w-5" />
               {totalItems > 0 && (
                 <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
                   {totalItems}
                 </span>
               )}
-            </a>
+            </Link>
           </Button>
           <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
             <User className="h-5 w-5" />
           </Button>
           <Button variant="default" className="hidden text-sm sm:inline-flex" asChild>
-            <a href="/sell">List an Item</a>
+            <Link to="/sell">List an Item</Link>
           </Button>
           <Button
             variant="ghost"
@@ -81,14 +82,19 @@ const Navbar = () => {
               className="w-full rounded-lg border border-border bg-secondary px-10 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
             />
           </div>
-          {["Shop", "Sell", "Deals", "Community"].map((item) => (
-            <a
-              key={item}
-              href="#"
+          {[
+            { label: "Shop", to: "/shop" },
+            { label: "Sell", to: "/sell" },
+            { label: "Deals", to: "#" },
+            { label: "Community", to: "#" },
+          ].map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               className="block py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
       )}
