@@ -102,7 +102,7 @@ const FeaturedListings = () => {
               whileHover={{ y: -4 }}
               className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/30"
             >
-              <Link to={`/product/${item.id}`}>
+              <Link to={`/product/sample-${item.id}`}>
                 <div className="relative aspect-square overflow-hidden bg-secondary">
                   <img
                     src={item.image}
