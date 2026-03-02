@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Heart, Star, Shield, ArrowLeft, MessageSquare, Share2, ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Heart, Star, Shield, ArrowLeft, MessageSquare, Share2, ChevronLeft, ChevronRight, ShoppingCart, Trash2 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -39,11 +40,17 @@ interface ProductData {
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [product, setProduct] = useState<ProductData | null>(null);
+  const [sellerId, setSellerId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const [offerOpen, setOfferOpen] = useState(false);
   const { addItem } = useCart();
+
+  const isOwner = user && sellerId && user.id === sellerId;
 
   useEffect(() => {
     const loadProduct = async () => {
@@ -63,6 +70,7 @@ const ProductDetail = () => {
         .single();
 
       if (!error && data) {
+        setSellerId(data.seller_id);
         const { data: profile } = await supabase
           .from("profiles")
           .select("display_name")
@@ -94,6 +102,19 @@ const ProductDetail = () => {
 
     loadProduct();
   }, [id]);
+
+  const handleDelete = async () => {
+    if (!product || !confirm("Are you sure you want to delete this listing?")) return;
+    setDeleting(true);
+    const { error } = await supabase.from("listings").delete().eq("id", product.id);
+    if (error) {
+      toast.error("Failed to delete listing");
+      setDeleting(false);
+    } else {
+      toast.success("Listing deleted");
+      navigate("/shop");
+    }
+  };
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -263,6 +284,21 @@ const ProductDetail = () => {
                 Share
               </Button>
             </div>
+
+            {isOwner && (
+              <div className="mt-4">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full gap-2 border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                  onClick={handleDelete}
+                  disabled={deleting}
+                >
+                  <Trash2 className="h-5 w-5" />
+                  {deleting ? "Deleting..." : "Delete Listing"}
+                </Button>
+              </div>
+            )}
           </div>
         </div>
 
