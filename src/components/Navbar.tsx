@@ -28,7 +28,7 @@ const Navbar = () => {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="M.Poriums" className="h-8" />
+            <img src={logo} alt="M.Poriums" className="h-8 dark:mix-blend-screen mix-blend-multiply dark:invert-0 invert" />
           </Link>
           <div className="hidden items-center gap-6 md:flex">
             {[
