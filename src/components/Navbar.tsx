@@ -1,4 +1,4 @@
-import { Search, ShoppingCart, Menu, LogOut } from "lucide-react";
+import { Search, ShoppingCart, Menu, LogOut, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
@@ -76,6 +76,11 @@ const Navbar = () => {
 
           {user ? (
             <>
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" asChild>
+                <Link to="/account">
+                  <UserCircle className="h-5 w-5" />
+                </Link>
+              </Button>
               <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={signOut}>
                 <LogOut className="h-5 w-5" />
               </Button>
