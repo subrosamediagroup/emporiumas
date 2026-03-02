@@ -1,9 +1,10 @@
-import { Search, ShoppingCart, User, Menu, LogOut } from "lucide-react";
+import { Search, ShoppingCart, Menu, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -59,7 +60,8 @@ const Navbar = () => {
           </div>
         </form>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
           <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground" asChild>
             <Link to="/cart">
               <ShoppingCart className="h-5 w-5" />
