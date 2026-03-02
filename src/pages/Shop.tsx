@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Heart, Star, Shield, SlidersHorizontal, X, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -35,6 +35,8 @@ const priceRanges = [
 const sortOptions = ["Newest", "Price: Low to High", "Price: High to Low", "Rating"];
 
 const Shop = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("q") || "";
   const [category, setCategory] = useState("All");
   const [condition, setCondition] = useState("All");
   const [priceRange, setPriceRange] = useState(priceRanges[0]);
@@ -46,6 +48,10 @@ const Shop = () => {
       if (category !== "All" && p.category !== category) return false;
       if (condition !== "All" && p.condition !== condition) return false;
       if (p.price < priceRange.min || p.price > priceRange.max) return false;
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        if (!p.title.toLowerCase().includes(q) && !p.category.toLowerCase().includes(q) && !p.seller.toLowerCase().includes(q)) return false;
+      }
       return true;
     });
     switch (sortBy) {
@@ -54,7 +60,7 @@ const Shop = () => {
       case "Rating": results.sort((a, b) => b.rating - a.rating); break;
     }
     return results;
-  }, [category, condition, priceRange, sortBy]);
+  }, [category, condition, priceRange, sortBy, searchQuery]);
 
   const activeFilterCount = [category !== "All", condition !== "All", priceRange.label !== "All"].filter(Boolean).length;
 
@@ -142,8 +148,20 @@ const Shop = () => {
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="font-display text-3xl font-bold text-foreground">Shop Gear</h1>
-            <p className="mt-1 text-sm text-muted-foreground">{filtered.length} items found</p>
+            <h1 className="font-display text-3xl font-bold text-foreground">
+              {searchQuery ? `Results for "${searchQuery}"` : "Shop Gear"}
+            </h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {filtered.length} items found
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchParams({})}
+                  className="ml-2 text-primary hover:text-primary/80"
+                >
+                  Clear search
+                </button>
+              )}
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <Button
