@@ -1,10 +1,12 @@
+import logo from "@/assets/mporiums-logo.png";
+
 const Footer = () => {
   return (
     <footer className="border-t border-border bg-card py-16">
       <div className="container mx-auto px-4">
         <div className="grid gap-8 md:grid-cols-4">
           <div>
-            <h3 className="mb-4 font-display text-lg font-bold text-primary">M.Poriums</h3>
+            <img src={logo} alt="M.Poriums" className="mb-4 h-8" />
             <p className="text-sm text-muted-foreground">
               The trusted marketplace for buying and selling audio hardware and musical instruments.
             </p>
