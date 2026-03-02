@@ -2,11 +2,22 @@ import { Search, ShoppingCart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const { totalItems } = useCart();
+  const navigate = useNavigate();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/shop?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+      setMobileOpen(false);
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
@@ -33,16 +44,18 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="hidden flex-1 max-w-md mx-8 md:block">
+        <form onSubmit={handleSearch} className="hidden flex-1 max-w-md mx-8 md:block">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search gear, instruments, brands..."
               className="w-full rounded-lg border border-border bg-secondary px-10 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
             />
           </div>
-        </div>
+        </form>
 
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground" asChild>
@@ -74,14 +87,16 @@ const Navbar = () => {
 
       {mobileOpen && (
         <div className="border-t border-border bg-background px-4 py-4 md:hidden">
-          <div className="relative mb-4">
+          <form onSubmit={handleSearch} className="relative mb-4">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search gear..."
               className="w-full rounded-lg border border-border bg-secondary px-10 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
             />
-          </div>
+          </form>
           {[
             { label: "Shop", to: "/shop" },
             { label: "Sell", to: "/sell" },

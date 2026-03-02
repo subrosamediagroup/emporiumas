@@ -1,9 +1,19 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (query.trim()) navigate(`/shop?q=${encodeURIComponent(query.trim())}`);
+  };
+
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden">
       {/* Background image */}
@@ -56,14 +66,15 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             className="flex flex-col gap-4 sm:flex-row">
             
-            <div className="relative flex-1 max-w-md">
+            <form onSubmit={handleSearch} className="relative flex-1 max-w-md">
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
                 placeholder="What gear are you looking for?"
                 className="w-full rounded-xl border border-border bg-card/80 px-12 py-4 text-foreground backdrop-blur-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" />
-              
-            </div>
+            </form>
             <a href="/shop">
               <Button size="lg" className="gap-2 rounded-xl px-8 py-4 font-display font-semibold">
                 Browse Gear <ArrowRight className="h-4 w-4" />
