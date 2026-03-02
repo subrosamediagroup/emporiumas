@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
+import { createClient } from "npm:@supabase/supabase-js@2.57.2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -23,6 +24,20 @@ serve(async (req) => {
   try {
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) throw new Error("STRIPE_SECRET_KEY is not set");
+
+    const supabaseClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_ANON_KEY") ?? ""
+    );
+
+    // Get authenticated user if available
+    let userId: string | null = null;
+    const authHeader = req.headers.get("Authorization");
+    if (authHeader) {
+      const token = authHeader.replace("Bearer ", "");
+      const { data } = await supabaseClient.auth.getUser(token);
+      userId = data.user?.id ?? null;
+    }
 
     const { items, shippingInfo } = (await req.json()) as {
       items: CartItem[];
@@ -56,8 +71,11 @@ serve(async (req) => {
       quantity: item.quantity,
     }));
 
-    // Add shipping if subtotal <= 500
     const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+    const shippingCost = subtotal > 500 ? 0 : 14.99;
+    const tax = subtotal * 0.08;
+    const total = subtotal + shippingCost + tax;
+
     if (subtotal <= 500) {
       lineItems.push({
         price_data: {
@@ -67,6 +85,31 @@ serve(async (req) => {
         },
         quantity: 1,
       });
+    }
+
+    // Save order to database if user is authenticated
+    let orderId: string | null = null;
+    if (userId) {
+      const { data: order, error: orderError } = await supabaseClient
+        .from("orders")
+        .insert({
+          user_id: userId,
+          items: items.map((i) => ({ id: i.id, title: i.title, price: i.price, quantity: i.quantity, image: i.image })),
+          subtotal: Math.round(subtotal * 100),
+          shipping: Math.round(shippingCost * 100),
+          tax: Math.round(tax * 100),
+          total: Math.round(total * 100),
+          status: "pending",
+          shipping_name: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
+          shipping_address: `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state} ${shippingInfo.zip}`,
+          shipping_email: shippingInfo.email,
+        })
+        .select("id")
+        .single();
+
+      if (!orderError && order) {
+        orderId = order.id;
+      }
     }
 
     const origin = req.headers.get("origin") || "http://localhost:5173";
@@ -82,8 +125,17 @@ serve(async (req) => {
         customer_name: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
         shipping_address: `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state} ${shippingInfo.zip}`,
         phone: shippingInfo.phone,
+        order_id: orderId || "",
       },
     });
+
+    // Update order with stripe session id
+    if (orderId && session.id) {
+      await supabaseClient
+        .from("orders")
+        .update({ stripe_session_id: session.id, status: "completed" })
+        .eq("id", orderId);
+    }
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
