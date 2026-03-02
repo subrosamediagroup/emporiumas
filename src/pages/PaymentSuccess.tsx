@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,9 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
 const PaymentSuccess = () => {
+  useEffect(() => {
+    window.history.replaceState(null, "", "/payment-success");
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
