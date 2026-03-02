@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { Upload, X, ImagePlus, DollarSign, Tag, Info, Package, User, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const categories = ["Guitars & Basses", "Synthesizers", "Headphones", "Speakers & Monitors", "Microphones", "DJ Equipment"];
 const conditions = ["Like New", "Excellent", "Good", "Fair"];
@@ -22,7 +25,10 @@ const Sell = () => {
   const [category, setCategory] = useState("");
   const [condition, setCondition] = useState("");
   const [dragActive, setDragActive] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleFiles = useCallback((files: FileList | null) => {
     if (!files) return;
@@ -57,12 +63,59 @@ const Sell = () => {
     handleFiles(e.dataTransfer.files);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!user) {
+      toast.error("Please sign in to list an item.");
+      navigate("/auth");
+      return;
+    }
+
     if (!title || !price || !category || !condition || images.length === 0) {
       toast.error("Please fill in all required fields and add at least one image.");
       return;
     }
-    toast.success("Your listing has been submitted for review!");
+
+    setSubmitting(true);
+
+    try {
+      // Upload images
+      const imageUrls: string[] = [];
+      for (const img of images) {
+        const ext = img.file.name.split(".").pop() || "jpg";
+        const filePath = `${user.id}/${crypto.randomUUID()}.${ext}`;
+        const { error: uploadError } = await supabase.storage
+          .from("listing-images")
+          .upload(filePath, img.file);
+
+        if (uploadError) throw uploadError;
+
+        const { data: urlData } = supabase.storage
+          .from("listing-images")
+          .getPublicUrl(filePath);
+
+        imageUrls.push(urlData.publicUrl);
+      }
+
+      // Insert listing
+      const { error: insertError } = await supabase.from("listings").insert({
+        seller_id: user.id,
+        title: title.trim(),
+        description: description.trim(),
+        price: Math.round(Number(price) * 100), // store in cents
+        category,
+        condition,
+        images: imageUrls,
+      });
+
+      if (insertError) throw insertError;
+
+      toast.success("Your listing has been published!");
+      navigate("/shop");
+    } catch (err: any) {
+      toast.error(err.message || "Failed to publish listing.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -77,17 +130,22 @@ const Sell = () => {
             </p>
           </div>
 
+          {!user && (
+            <div className="mb-8 rounded-xl border border-primary/30 bg-primary/5 p-6 text-center">
+              <p className="mb-3 text-foreground">You need to sign in to list items.</p>
+              <Button onClick={() => navigate("/auth")}>Sign In / Sign Up</Button>
+            </div>
+          )}
+
           <div className="grid gap-10 lg:grid-cols-5">
             {/* Left: Image Upload + Gallery */}
             <div className="lg:col-span-3 space-y-6">
-              {/* Upload Area */}
               <div>
                 <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
                   <ImagePlus className="h-4 w-4 text-primary" />
                   Photos <span className="text-xs text-muted-foreground">({images.length}/8)</span>
                 </label>
 
-                {/* Main Preview */}
                 {images.length > 0 && (
                   <div className="relative mb-3 aspect-square overflow-hidden rounded-xl border border-border bg-card">
                     <AnimatePresence mode="wait">
@@ -111,7 +169,6 @@ const Sell = () => {
                   </div>
                 )}
 
-                {/* Thumbnails + Upload Tile */}
                 <div className="flex flex-wrap gap-3">
                   {images.map((img, i) => (
                     <button
@@ -155,7 +212,6 @@ const Sell = () => {
 
               <Separator />
 
-              {/* Title */}
               <div>
                 <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
                   <Tag className="h-4 w-4 text-primary" />
@@ -169,7 +225,6 @@ const Sell = () => {
                 />
               </div>
 
-              {/* Description */}
               <div>
                 <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
                   <Info className="h-4 w-4 text-primary" />
@@ -187,7 +242,6 @@ const Sell = () => {
 
             {/* Right: Details Sidebar */}
             <div className="lg:col-span-2 space-y-6">
-              {/* Price */}
               <div>
                 <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
                   <DollarSign className="h-4 w-4 text-primary" />
@@ -205,7 +259,6 @@ const Sell = () => {
                 </div>
               </div>
 
-              {/* Category */}
               <div>
                 <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
                   <Package className="h-4 w-4 text-primary" />
@@ -228,7 +281,6 @@ const Sell = () => {
                 </div>
               </div>
 
-              {/* Condition */}
               <div>
                 <label className="mb-2 flex items-center gap-2 text-sm font-semibold text-foreground">
                   <Star className="h-4 w-4 text-primary" />
@@ -253,7 +305,6 @@ const Sell = () => {
 
               <Separator />
 
-              {/* Seller Preview */}
               <div className="rounded-xl border border-border bg-card p-5">
                 <h3 className="mb-3 font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                   Your Seller Profile
@@ -263,13 +314,16 @@ const Sell = () => {
                     <User className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="font-display text-sm font-semibold text-foreground">Guest Seller</p>
-                    <p className="text-xs text-muted-foreground">Sign in to build your reputation</p>
+                    <p className="font-display text-sm font-semibold text-foreground">
+                      {user ? (user.user_metadata?.display_name || "Seller") : "Guest"}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {user ? user.email : "Sign in to build your reputation"}
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Listing Preview */}
               {(title || price) && (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
@@ -288,9 +342,8 @@ const Sell = () => {
                 </motion.div>
               )}
 
-              {/* Submit */}
-              <Button size="lg" className="w-full text-base" onClick={handleSubmit}>
-                Publish Listing
+              <Button size="lg" className="w-full text-base" onClick={handleSubmit} disabled={submitting}>
+                {submitting ? "Publishing..." : "Publish Listing"}
               </Button>
             </div>
           </div>

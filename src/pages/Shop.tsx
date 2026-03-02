@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Heart, Star, Shield, SlidersHorizontal, X, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -6,33 +6,41 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { supabase } from "@/integrations/supabase/client";
 
-const allProducts = [
-  { id: 1, title: "Fender Stratocaster '62 Reissue", price: 1450, condition: "Excellent", category: "Guitars & Basses", seller: "VintageAxes", rating: 4.9, verified: true, image: "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=400&h=400&fit=crop" },
-  { id: 2, title: "Roland Juno-106 Synthesizer", price: 2800, condition: "Good", category: "Synthesizers", seller: "SynthWizard", rating: 5.0, verified: true, image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop" },
-  { id: 3, title: "Sennheiser HD 650 Headphones", price: 280, condition: "Like New", category: "Headphones", seller: "AudioPhile99", rating: 4.8, verified: false, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" },
-  { id: 4, title: "Yamaha HS8 Studio Monitors (Pair)", price: 520, condition: "Excellent", category: "Speakers & Monitors", seller: "StudioGear", rating: 4.7, verified: true, image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop" },
-  { id: 5, title: "Shure SM7B Microphone", price: 340, condition: "Like New", category: "Microphones", seller: "ProAudioDeals", rating: 4.9, verified: true, image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" },
-  { id: 6, title: "Pioneer CDJ-2000NXS2", price: 1600, condition: "Good", category: "DJ Equipment", seller: "DJDepot", rating: 4.6, verified: false, image: "https://images.unsplash.com/photo-1571327073757-71d13c24de30?w=400&h=400&fit=crop" },
-  { id: 7, title: "Gibson Les Paul Standard '50s", price: 2100, condition: "Excellent", category: "Guitars & Basses", seller: "AxeHouse", rating: 4.8, verified: true, image: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=400&fit=crop" },
-  { id: 8, title: "Moog Subsequent 37", price: 1350, condition: "Like New", category: "Synthesizers", seller: "SynthLab", rating: 4.9, verified: true, image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop" },
-  { id: 9, title: "Audio-Technica ATH-M50x", price: 120, condition: "Good", category: "Headphones", seller: "BudgetAudio", rating: 4.5, verified: false, image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&h=400&fit=crop" },
-  { id: 10, title: "KRK Rokit 5 G4 (Pair)", price: 280, condition: "Excellent", category: "Speakers & Monitors", seller: "HomeStudioPro", rating: 4.6, verified: true, image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop" },
-  { id: 11, title: "Neumann U87 Ai", price: 2600, condition: "Excellent", category: "Microphones", seller: "VocalBooth", rating: 5.0, verified: true, image: "https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=400&h=400&fit=crop" },
-  { id: 12, title: "Native Instruments Traktor S4 MK3", price: 650, condition: "Like New", category: "DJ Equipment", seller: "BeatMaster", rating: 4.7, verified: true, image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop" },
+// Sample products shown alongside real DB listings
+const sampleProducts = [
+  { id: "sample-1", title: "Fender Stratocaster '62 Reissue", price: 145000, condition: "Excellent", category: "Guitars & Basses", seller: "VintageAxes", rating: 4.9, verified: true, image: "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=400&h=400&fit=crop" },
+  { id: "sample-2", title: "Roland Juno-106 Synthesizer", price: 280000, condition: "Good", category: "Synthesizers", seller: "SynthWizard", rating: 5.0, verified: true, image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop" },
+  { id: "sample-3", title: "Sennheiser HD 650 Headphones", price: 28000, condition: "Like New", category: "Headphones", seller: "AudioPhile99", rating: 4.8, verified: false, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" },
+  { id: "sample-4", title: "Yamaha HS8 Studio Monitors (Pair)", price: 52000, condition: "Excellent", category: "Speakers & Monitors", seller: "StudioGear", rating: 4.7, verified: true, image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop" },
+  { id: "sample-5", title: "Shure SM7B Microphone", price: 34000, condition: "Like New", category: "Microphones", seller: "ProAudioDeals", rating: 4.9, verified: true, image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" },
+  { id: "sample-6", title: "Pioneer CDJ-2000NXS2", price: 160000, condition: "Good", category: "DJ Equipment", seller: "DJDepot", rating: 4.6, verified: false, image: "https://images.unsplash.com/photo-1571327073757-71d13c24de30?w=400&h=400&fit=crop" },
 ];
+
+interface Product {
+  id: string;
+  title: string;
+  price: number; // in cents
+  condition: string;
+  category: string;
+  seller: string;
+  rating: number;
+  verified: boolean;
+  image: string;
+}
 
 const categories = ["All", "Guitars & Basses", "Synthesizers", "Headphones", "Speakers & Monitors", "Microphones", "DJ Equipment"];
 const conditions = ["All", "Like New", "Excellent", "Good", "Fair"];
 const priceRanges = [
   { label: "All", min: 0, max: Infinity },
-  { label: "Under $250", min: 0, max: 250 },
-  { label: "$250 – $500", min: 250, max: 500 },
-  { label: "$500 – $1,000", min: 500, max: 1000 },
-  { label: "$1,000 – $2,000", min: 1000, max: 2000 },
-  { label: "$2,000+", min: 2000, max: Infinity },
+  { label: "Under $250", min: 0, max: 25000 },
+  { label: "$250 – $500", min: 25000, max: 50000 },
+  { label: "$500 – $1,000", min: 50000, max: 100000 },
+  { label: "$1,000 – $2,000", min: 100000, max: 200000 },
+  { label: "$2,000+", min: 200000, max: Infinity },
 ];
-const sortOptions = ["Newest", "Price: Low to High", "Price: High to Low", "Rating"];
+const sortOptions = ["Newest", "Price: Low to High", "Price: High to Low"];
 
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +51,47 @@ const Shop = () => {
   const [priceRange, setPriceRange] = useState(priceRanges[0]);
   const [sortBy, setSortBy] = useState("Newest");
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [dbListings, setDbListings] = useState<Product[]>([]);
+
+  // Fetch listings from database
+  useEffect(() => {
+    const fetchListings = async () => {
+      const { data, error } = await supabase
+        .from("listings")
+        .select("id, title, price, condition, category, images, seller_id, created_at")
+        .eq("status", "active")
+        .order("created_at", { ascending: false });
+
+      if (!error && data) {
+        // Fetch seller profiles
+        const sellerIds = [...new Set(data.map((l: any) => l.seller_id))];
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("user_id, display_name")
+          .in("user_id", sellerIds);
+
+        const profileMap = new Map(
+          (profiles || []).map((p: any) => [p.user_id, p.display_name])
+        );
+
+        const mapped: Product[] = data.map((l: any) => ({
+          id: l.id,
+          title: l.title,
+          price: l.price,
+          condition: l.condition,
+          category: l.category,
+          seller: profileMap.get(l.seller_id) || "Seller",
+          rating: 0,
+          verified: false,
+          image: l.images?.[0] || "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=400&fit=crop",
+        }));
+        setDbListings(mapped);
+      }
+    };
+    fetchListings();
+  }, []);
+
+  const allProducts = [...dbListings, ...sampleProducts];
 
   const filtered = useMemo(() => {
     let results = allProducts.filter((p) => {
@@ -58,10 +107,9 @@ const Shop = () => {
     switch (sortBy) {
       case "Price: Low to High": results.sort((a, b) => a.price - b.price); break;
       case "Price: High to Low": results.sort((a, b) => b.price - a.price); break;
-      case "Rating": results.sort((a, b) => b.rating - a.rating); break;
     }
     return results;
-  }, [category, condition, priceRange, sortBy, searchQuery]);
+  }, [category, condition, priceRange, sortBy, searchQuery, allProducts]);
 
   const activeFilterCount = [category !== "All", condition !== "All", priceRange.label !== "All"].filter(Boolean).length;
 
@@ -146,7 +194,6 @@ const Shop = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="container mx-auto px-4 pt-24 pb-16">
-        {/* Header */}
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="font-display text-3xl font-bold text-foreground">
@@ -195,12 +242,10 @@ const Shop = () => {
         </div>
 
         <div className="flex gap-8">
-          {/* Desktop sidebar */}
           <aside className="hidden w-56 shrink-0 lg:block">
             {filterContent}
           </aside>
 
-          {/* Mobile filter drawer */}
           <AnimatePresence>
             {mobileFiltersOpen && (
               <>
@@ -230,7 +275,6 @@ const Shop = () => {
             )}
           </AnimatePresence>
 
-          {/* Product grid */}
           <div className="flex-1">
             {filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-20 text-center">
@@ -244,47 +288,49 @@ const Shop = () => {
               <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {filtered.map((item, i) => (
                   <Link to={`/product/${item.id}`} key={item.id}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: i * 0.04 }}
-                    whileHover={{ y: -4 }}
-                    className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/30"
-                  >
-                    <div className="relative aspect-square overflow-hidden bg-secondary">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <button className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-background/70 text-muted-foreground backdrop-blur-sm transition-colors hover:text-primary">
-                        <Heart className="h-4 w-4" />
-                      </button>
-                      <Badge className="absolute left-3 top-3 border-none bg-background/70 text-foreground backdrop-blur-sm">
-                        {item.condition}
-                      </Badge>
-                    </div>
-                    <div className="p-4">
-                      <p className="mb-0.5 text-xs text-muted-foreground">{item.category}</p>
-                      <h3 className="mb-1 font-display text-sm font-semibold text-foreground line-clamp-1">
-                        {item.title}
-                      </h3>
-                      <p className="mb-3 font-display text-xl font-bold text-primary">
-                        ${item.price.toLocaleString()}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                          {item.verified && <Shield className="h-3.5 w-3.5 text-primary" />}
-                          <span>{item.seller}</span>
-                        </div>
-                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <Star className="h-3.5 w-3.5 fill-primary text-primary" />
-                          <span>{item.rating}</span>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: i * 0.04 }}
+                      whileHover={{ y: -4 }}
+                      className="group cursor-pointer overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/30"
+                    >
+                      <div className="relative aspect-square overflow-hidden bg-secondary">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <button className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-background/70 text-muted-foreground backdrop-blur-sm transition-colors hover:text-primary">
+                          <Heart className="h-4 w-4" />
+                        </button>
+                        <Badge className="absolute left-3 top-3 border-none bg-background/70 text-foreground backdrop-blur-sm">
+                          {item.condition}
+                        </Badge>
+                      </div>
+                      <div className="p-4">
+                        <p className="mb-0.5 text-xs text-muted-foreground">{item.category}</p>
+                        <h3 className="mb-1 font-display text-sm font-semibold text-foreground line-clamp-1">
+                          {item.title}
+                        </h3>
+                        <p className="mb-3 font-display text-xl font-bold text-primary">
+                          ${(item.price / 100).toLocaleString()}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                            {item.verified && <Shield className="h-3.5 w-3.5 text-primary" />}
+                            <span>{item.seller}</span>
+                          </div>
+                          {item.rating > 0 && (
+                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                              <Star className="h-3.5 w-3.5 fill-primary text-primary" />
+                              <span>{item.rating}</span>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
                   </Link>
                 ))}
               </div>

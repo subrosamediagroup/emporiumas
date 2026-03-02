@@ -1,13 +1,15 @@
-import { Search, ShoppingCart, User, Menu } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const { totalItems } = useCart();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -68,12 +70,22 @@ const Navbar = () => {
               )}
             </Link>
           </Button>
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
-            <User className="h-5 w-5" />
-          </Button>
-          <Button variant="default" className="hidden text-sm sm:inline-flex" asChild>
-            <Link to="/sell">List an Item</Link>
-          </Button>
+
+          {user ? (
+            <>
+              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={signOut}>
+                <LogOut className="h-5 w-5" />
+              </Button>
+              <Button variant="default" className="hidden text-sm sm:inline-flex" asChild>
+                <Link to="/sell">List an Item</Link>
+              </Button>
+            </>
+          ) : (
+            <Button variant="default" className="hidden text-sm sm:inline-flex" asChild>
+              <Link to="/auth">Sign In</Link>
+            </Button>
+          )}
+
           <Button
             variant="ghost"
             size="icon"
@@ -111,6 +123,11 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
+          {!user && (
+            <Link to="/auth" className="block py-2 text-sm font-medium text-primary">
+              Sign In / Sign Up
+            </Link>
+          )}
         </div>
       )}
     </nav>
