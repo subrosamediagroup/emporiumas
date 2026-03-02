@@ -5,6 +5,7 @@ import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
+import logo from "@/assets/mporiums-logo.png";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -26,8 +27,8 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
-          <Link to="/" className="font-display text-xl font-bold tracking-tight text-primary">
-            M.Poriums
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="M.Poriums" className="h-8" />
           </Link>
           <div className="hidden items-center gap-6 md:flex">
             {[
