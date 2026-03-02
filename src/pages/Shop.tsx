@@ -37,7 +37,8 @@ const sortOptions = ["Newest", "Price: Low to High", "Price: High to Low", "Rati
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
-  const [category, setCategory] = useState("All");
+  const categoryParam = searchParams.get("category") || "All";
+  const [category, setCategory] = useState(categoryParam);
   const [condition, setCondition] = useState("All");
   const [priceRange, setPriceRange] = useState(priceRanges[0]);
   const [sortBy, setSortBy] = useState("Newest");

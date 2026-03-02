@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Guitar, Headphones, Speaker, Music, Mic, Piano } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const categories = [
   { name: "Guitars & Basses", icon: Guitar, count: "8,200+" },
@@ -29,24 +30,28 @@ const Categories = () => {
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {categories.map((cat, i) => (
-            <motion.a
+            <motion.div
               key={cat.name}
-              href="#"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
               whileHover={{ y: -4 }}
-              className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/40 hover:shadow-[var(--shadow-glow)]"
+              className="group"
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
-                <cat.icon className="h-7 w-7" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-foreground">{cat.name}</p>
-                <p className="mt-1 text-xs text-muted-foreground">{cat.count}</p>
-              </div>
-            </motion.a>
+              <Link
+                to={`/shop?category=${encodeURIComponent(cat.name)}`}
+                className="flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/40 hover:shadow-[var(--shadow-glow)]"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                  <cat.icon className="h-7 w-7" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-foreground">{cat.name}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{cat.count}</p>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
