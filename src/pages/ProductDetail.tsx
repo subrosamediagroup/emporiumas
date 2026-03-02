@@ -67,7 +67,7 @@ const ProductDetail = () => {
         .from("listings")
         .select("*")
         .eq("id", id)
-        .single();
+        .maybeSingle();
 
       if (!error && data) {
         setSellerId(data.seller_id);
