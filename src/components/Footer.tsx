@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid gap-8 md:grid-cols-4">
           <div>
-            <img src={logo} alt="M.Poriums" className="mb-4 h-8" />
+            <img src={logo} alt="M.Poriums" className="mb-4 h-8 dark:mix-blend-screen mix-blend-multiply dark:invert-0 invert" />
             <p className="text-sm text-muted-foreground">
               The trusted marketplace for buying and selling audio hardware and musical instruments.
             </p>
