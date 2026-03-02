@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
           <Link to="/" className="font-display text-xl font-bold tracking-tight text-primary">
-            Emporium
+            M.Poriums
           </Link>
           <div className="hidden items-center gap-6 md:flex">
             {[

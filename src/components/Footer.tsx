@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid gap-8 md:grid-cols-4">
           <div>
-            <h3 className="mb-4 font-display text-lg font-bold text-primary">Emporium</h3>
+            <h3 className="mb-4 font-display text-lg font-bold text-primary">M.Poriums</h3>
             <p className="text-sm text-muted-foreground">
               The trusted marketplace for buying and selling audio hardware and musical instruments.
             </p>
@@ -43,7 +43,7 @@ const Footer = () => {
           ))}
         </div>
         <div className="mt-12 border-t border-border pt-8 text-center text-xs text-muted-foreground">
-          © 2026 Emporium. All rights reserved.
+          © 2026 M.Poriums. All rights reserved.
         </div>
       </div>
     </footer>
