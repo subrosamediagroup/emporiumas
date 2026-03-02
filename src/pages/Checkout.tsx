@@ -37,6 +37,39 @@ const emptyForm: ShippingForm = {
   phone: "",
 };
 
+const Field = ({
+  label,
+  field,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  error,
+}: {
+  label: string;
+  field: string;
+  type?: string;
+  placeholder?: string;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+}) => (
+  <div className="space-y-1.5">
+    <Label htmlFor={field} className="text-sm font-medium text-foreground">
+      {label}
+    </Label>
+    <Input
+      id={field}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className={error ? "border-destructive focus-visible:ring-destructive" : ""}
+    />
+    {error && <p className="text-xs text-destructive">{error}</p>}
+  </div>
+);
+
 const Checkout = () => {
   const { items, totalPrice, totalItems, clearCart } = useCart();
   const navigate = useNavigate();
@@ -97,31 +130,16 @@ const Checkout = () => {
     return null;
   }
 
-  const Field = ({
-    label,
-    field,
-    type = "text",
-    placeholder,
-  }: {
-    label: string;
-    field: keyof ShippingForm;
-    type?: string;
-    placeholder?: string;
-  }) => (
-    <div className="space-y-1.5">
-      <Label htmlFor={field} className="text-sm font-medium text-foreground">
-        {label}
-      </Label>
-      <Input
-        id={field}
-        type={type}
-        placeholder={placeholder}
-        value={form[field]}
-        onChange={(e) => handleChange(field, e.target.value)}
-        className={errors[field] ? "border-destructive focus-visible:ring-destructive" : ""}
-      />
-      {errors[field] && <p className="text-xs text-destructive">{errors[field]}</p>}
-    </div>
+  const renderField = (label: string, field: keyof ShippingForm, placeholder: string, type = "text") => (
+    <Field
+      label={label}
+      field={field}
+      type={type}
+      placeholder={placeholder}
+      value={form[field]}
+      onChange={(v) => handleChange(field, v)}
+      error={errors[field]}
+    />
   );
 
   return (
@@ -144,18 +162,18 @@ const Checkout = () => {
               <h2 className="font-display text-lg font-bold text-foreground">Shipping Address</h2>
               <Separator className="my-4" />
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="First Name" field="firstName" placeholder="John" />
-                <Field label="Last Name" field="lastName" placeholder="Doe" />
+                {renderField("First Name", "firstName", "John")}
+                {renderField("Last Name", "lastName", "Doe")}
                 <div className="sm:col-span-2">
-                  <Field label="Email" field="email" type="email" placeholder="john@example.com" />
+                  {renderField("Email", "email", "john@example.com", "email")}
                 </div>
                 <div className="sm:col-span-2">
-                  <Field label="Street Address" field="address" placeholder="123 Main St" />
+                  {renderField("Street Address", "address", "123 Main St")}
                 </div>
-                <Field label="City" field="city" placeholder="Los Angeles" />
-                <Field label="State" field="state" placeholder="California" />
-                <Field label="ZIP Code" field="zip" placeholder="90001" />
-                <Field label="Phone" field="phone" type="tel" placeholder="(555) 123-4567" />
+                {renderField("City", "city", "Los Angeles")}
+                {renderField("State", "state", "California")}
+                {renderField("ZIP Code", "zip", "90001")}
+                {renderField("Phone", "phone", "(555) 123-4567", "tel")}
               </div>
             </div>
 
