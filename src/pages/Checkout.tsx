@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ShieldCheck, CreditCard, CheckCircle2, Package } from "lucide-react";
+import { ArrowLeft, ShieldCheck, CreditCard, CheckCircle2, Package, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { motion } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
 
 const shippingSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(50),
@@ -43,8 +44,6 @@ const Checkout = () => {
 
   const [form, setForm] = useState<ShippingForm>(emptyForm);
   const [errors, setErrors] = useState<Partial<Record<keyof ShippingForm, string>>>({});
-  const [confirmed, setConfirmed] = useState(false);
-  const [orderNumber] = useState(() => Math.random().toString(36).slice(2, 10).toUpperCase());
 
   const shippingEstimate = totalPrice > 500 ? 0 : 14.99;
   const taxEstimate = totalPrice * 0.08;
@@ -55,7 +54,9 @@ const Checkout = () => {
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = shippingSchema.safeParse(form);
     if (!result.success) {
@@ -67,63 +68,33 @@ const Checkout = () => {
       setErrors(fieldErrors);
       return;
     }
-    setConfirmed(true);
-    clearCart();
-    toast({ title: "Order placed!", description: `Order #${orderNumber} has been confirmed.` });
+
+    setIsProcessing(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: { items, shippingInfo: result.data },
+      });
+
+      if (error) throw error;
+      if (data?.url) {
+        clearCart();
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
+    } catch (err: any) {
+      toast({
+        title: "Payment error",
+        description: err.message || "Failed to create checkout session",
+        variant: "destructive",
+      });
+      setIsProcessing(false);
+    }
   };
 
-  if (items.length === 0 && !confirmed) {
+  if (items.length === 0 && !isProcessing) {
     navigate("/cart");
     return null;
-  }
-
-  if (confirmed) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Navbar />
-        <main className="container mx-auto flex flex-col items-center px-4 pt-24 pb-16 text-center">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex flex-col items-center"
-          >
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
-              <CheckCircle2 className="h-10 w-10 text-primary" />
-            </div>
-            <h1 className="mt-6 font-display text-3xl font-bold text-foreground">Order Confirmed!</h1>
-            <p className="mt-3 max-w-md text-muted-foreground">
-              Thank you for your purchase. Your order <span className="font-semibold text-foreground">#{orderNumber}</span> is being processed and you'll receive a confirmation email shortly.
-            </p>
-            <div className="mt-8 rounded-xl border border-border bg-card p-6 text-left">
-              <div className="flex items-center gap-3">
-                <Package className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="text-sm font-medium text-foreground">Shipping to</p>
-                  <p className="text-sm text-muted-foreground">
-                    {form.firstName} {form.lastName}, {form.address}, {form.city}, {form.state} {form.zip}
-                  </p>
-                </div>
-              </div>
-              <Separator className="my-4" />
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Total charged</span>
-                <span className="font-display font-bold text-foreground">${orderTotal.toFixed(2)}</span>
-              </div>
-            </div>
-            <div className="mt-8 flex gap-3">
-              <Button asChild>
-                <Link to="/shop">Continue Shopping</Link>
-              </Button>
-              <Button variant="outline" asChild>
-                <Link to="/">Back to Home</Link>
-              </Button>
-            </div>
-          </motion.div>
-        </main>
-        <Footer />
-      </div>
-    );
   }
 
   const Field = ({
@@ -191,11 +162,14 @@ const Checkout = () => {
             <div className="rounded-xl border border-border bg-card p-6">
               <h2 className="font-display text-lg font-bold text-foreground">Payment</h2>
               <Separator className="my-4" />
-              <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/50 p-4">
-                <CreditCard className="h-5 w-5 text-muted-foreground" />
-                <p className="text-sm text-muted-foreground">
-                  Payment processing will be available soon. Place your order to reserve items.
-                </p>
+              <div className="flex items-center gap-3 rounded-lg border border-primary/20 bg-primary/5 p-4">
+                <CreditCard className="h-5 w-5 text-primary" />
+                <div>
+                  <p className="text-sm font-medium text-foreground">Secure Card Payment via Stripe</p>
+                  <p className="text-xs text-muted-foreground">
+                    You'll be redirected to Stripe's secure checkout to complete payment.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -248,8 +222,15 @@ const Checkout = () => {
                 <span>${orderTotal.toFixed(2)}</span>
               </div>
 
-              <Button type="submit" size="lg" className="mt-6 w-full text-base">
-                Place Order
+              <Button type="submit" size="lg" className="mt-6 w-full text-base" disabled={isProcessing}>
+                {isProcessing ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Redirecting to payment…
+                  </>
+                ) : (
+                  "Proceed to Payment"
+                )}
               </Button>
               <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
                 <ShieldCheck className="h-4 w-4" />
