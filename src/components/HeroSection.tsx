@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -75,11 +75,11 @@ const HeroSection = () => {
                 placeholder="What gear are you looking for?"
                 className="w-full rounded-xl border border-border bg-card/80 px-12 py-4 text-foreground backdrop-blur-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50" />
             </form>
-            <a href="/shop">
+            <Link to="/shop">
               <Button size="lg" className="gap-2 rounded-xl px-8 py-4 font-display font-semibold">
                 Browse Gear <ArrowRight className="h-4 w-4" />
               </Button>
-            </a>
+            </Link>
           </motion.div>
 
           
