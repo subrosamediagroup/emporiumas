@@ -16,6 +16,11 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -37,7 +42,7 @@ const Auth = () => {
         navigate("/");
       }
     } else {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -48,6 +53,16 @@ const Auth = () => {
       if (error) {
         toast.error(error.message);
       } else {
+        // Update profile with additional details
+        if (data.user) {
+          await supabase.from("profiles").update({
+            phone,
+            address,
+            city,
+            state,
+            zip,
+          }).eq("user_id", data.user.id);
+        }
         toast.success("Check your email to confirm your account!");
       }
     }
@@ -68,15 +83,65 @@ const Auth = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {!isLogin && (
-              <div>
-                <Label htmlFor="displayName">Display Name</Label>
-                <Input
-                  id="displayName"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  placeholder="Your seller name"
-                />
-              </div>
+              <>
+                <div>
+                  <Label htmlFor="displayName">Display Name</Label>
+                  <Input
+                    id="displayName"
+                    value={displayName}
+                    onChange={(e) => setDisplayName(e.target.value)}
+                    placeholder="Your seller name"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Phone Number</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="address">Street Address</Label>
+                  <Input
+                    id="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="123 Main St"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <Label htmlFor="city">City</Label>
+                    <Input
+                      id="city"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      placeholder="Los Angeles"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="state">State</Label>
+                    <Input
+                      id="state"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                      placeholder="California"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="zip">ZIP Code</Label>
+                  <Input
+                    id="zip"
+                    value={zip}
+                    onChange={(e) => setZip(e.target.value)}
+                    placeholder="90001"
+                  />
+                </div>
+              </>
             )}
             <div>
               <Label htmlFor="email">Email</Label>
