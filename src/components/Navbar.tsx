@@ -1,4 +1,4 @@
-import { Search, ShoppingCart, Menu, LogOut, UserCircle } from "lucide-react";
+import { Search, ShoppingCart, Menu, LogOut, UserCircle, Settings, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
@@ -6,6 +6,13 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
 import logo from "@/assets/mporiums-logo.png";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -76,14 +83,32 @@ const Navbar = () => {
 
           {user ? (
             <>
-              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" asChild>
-                <Link to="/account">
-                  <UserCircle className="h-5 w-5" />
-                </Link>
-              </Button>
-              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground" onClick={signOut}>
-                <LogOut className="h-5 w-5" />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                    <UserCircle className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <div className="px-2 py-1.5">
+                    <p className="text-sm font-medium text-foreground truncate">{user.email}</p>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate("/account")} className="cursor-pointer">
+                    <Settings className="mr-2 h-4 w-4" />
+                    My Account
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/account#orders")} className="cursor-pointer">
+                    <Package className="mr-2 h-4 w-4" />
+                    Purchase History
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={signOut} className="cursor-pointer text-destructive focus:text-destructive">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button variant="default" className="hidden text-sm sm:inline-flex" asChild>
                 <Link to="/sell">List an Item</Link>
               </Button>
@@ -131,7 +156,19 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          {!user && (
+          {user ? (
+            <>
+              <Link to="/account" className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+                My Account
+              </Link>
+              <Link to="/account#orders" className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground">
+                Purchase History
+              </Link>
+              <button onClick={signOut} className="block py-2 text-sm font-medium text-destructive">
+                Sign Out
+              </button>
+            </>
+          ) : (
             <Link to="/auth" className="block py-2 text-sm font-medium text-primary">
               Sign In / Sign Up
             </Link>
