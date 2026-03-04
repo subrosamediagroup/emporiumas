@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M.Poriums – Buy &amp; Sell Audio Gear</title>
+  <meta name="description" content="The trusted marketplace for buying and selling used audio hardware, synthesizers, guitars, and musical instruments." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;height:64px;">
+      <div style="display:flex;align-items:center;gap:2rem;">
+        <a href="/" class="logo">
+          <img src="assets/mporiums-logo.png" alt="M.Poriums" style="height:32px;" />
+        </a>
+        <div class="nav-links" style="display:flex;gap:1.5rem;">
+          <a href="/shop" class="text-muted" style="font-size:0.875rem;font-weight:500;">Shop</a>
+          <a href="/sell" class="text-muted" style="font-size:0.875rem;font-weight:500;">Sell</a>
+          <a href="#" class="text-muted" style="font-size:0.875rem;font-weight:500;">Deals</a>
+          <a href="#" class="text-muted" style="font-size:0.875rem;font-weight:500;">Community</a>
+        </div>
+      </div>
+
+      <form action="/shop" method="get" style="flex:1;max-width:28rem;margin:0 2rem;">
+        <div style="position:relative;">
+          <!-- Replace with your search icon -->
+          <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted-foreground);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" name="q" placeholder="Search gear, instruments, brands..." style="width:100%;border-radius:0.5rem;border:1px solid var(--border);background:var(--secondary);padding:0.5rem 2.5rem;font-size:0.875rem;color:var(--foreground);" />
+        </div>
+      </form>
+
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <a href="/cart" class="btn btn-ghost" style="position:relative;">
+          <!-- Cart icon -->
+          <svg style="width:20px;height:20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        </a>
+        <a href="/auth" class="btn btn-primary" style="font-size:0.875rem;">Sign In</a>
+      </div>
+    </div>
+  </nav>
+
+  <main style="padding-top:64px;">
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" style="position:relative;min-height:85vh;display:flex;align-items:center;overflow:hidden;">
+      <div style="position:absolute;inset:0;">
+        <img src="assets/hero-bg.jpg" alt="Audio equipment and musical instruments" style="width:100%;height:100%;object-fit:cover;" loading="eager" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to right, var(--background), hsla(0,0%,100%,0.85), hsla(0,0%,100%,0.4));"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, var(--background), transparent, hsla(0,0%,100%,0.3));"></div>
+      </div>
+
+      <div class="container" style="position:relative;padding-top:4rem;">
+        <div style="max-width:42rem;">
+          <span style="display:inline-block;margin-bottom:1rem;border-radius:9999px;border:1px solid hsla(0,78%,50%,0.3);background:hsla(0,78%,50%,0.1);padding:0.375rem 1rem;font-size:0.75rem;font-weight:500;letter-spacing:0.05em;color:var(--primary);">
+            THE #1 MARKETPLACE FOR USED AUDIO GEAR
+          </span>
+
+          <h1 style="margin-bottom:1.5rem;font-family:var(--font-display);font-size:clamp(3rem,6vw,4.5rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--foreground);">
+            Buy &amp; Sell<br />
+            <span class="text-primary">Premium Gear</span>
+          </h1>
+
+          <p style="margin-bottom:2rem;max-width:32rem;font-size:1.125rem;line-height:1.6;color:var(--muted-foreground);">
+            The trusted marketplace for audio hardware, synths, guitars, and studio equipment. Thousands of listings from verified sellers.
+          </p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:1rem;">
+            <form action="/shop" method="get" style="position:relative;flex:1;max-width:28rem;">
+              <svg style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--muted-foreground);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="text" name="q" placeholder="What gear are you looking for?" style="width:100%;border-radius:0.75rem;border:1px solid var(--border);background:hsla(0,0%,98%,0.8);padding:1rem 3rem;font-size:1rem;color:var(--foreground);backdrop-filter:blur(8px);" />
+            </form>
+            <a href="/shop" class="btn btn-primary" style="border-radius:0.75rem;padding:1rem 2rem;font-family:var(--font-display);font-weight:600;font-size:1rem;">
+              Browse Gear →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CATEGORIES ========== -->
+    <section style="padding:5rem 0;">
+      <div class="container" style="text-align:center;">
+        <h2 style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:clamp(1.875rem,3vw,2.25rem);font-weight:700;color:var(--foreground);">Browse by Category</h2>
+        <p class="text-muted" style="margin-bottom:3rem;">Find exactly what you're looking for</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));gap:1rem;">
+          <!-- Category Card – repeat for each category -->
+          <a href="/shop?category=Guitars+%26+Basses" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s,border-color 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎸</div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Guitars &amp; Basses</p>
+              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">8,200+</p>
+            </div>
+          </a>
+
+          <a href="/shop?category=Synthesizers" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎹</div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Synthesizers</p>
+              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">4,100+</p>
+            </div>
+          </a>
+
+          <a href="/shop?category=Headphones" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎧</div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Headphones</p>
+              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">6,500+</p>
+            </div>
+          </a>
+
+          <a href="/shop?category=Speakers+%26+Monitors" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🔊</div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Speakers &amp; Monitors</p>
+              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">3,800+</p>
+            </div>
+          </a>
+
+          <a href="/shop?category=Microphones" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎙️</div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Microphones</p>
+              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">2,900+</p>
+            </div>
+          </a>
+
+          <a href="/shop?category=DJ+Equipment" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎵</div>
+            <div>
+              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">DJ Equipment</p>
+              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">3,400+</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURED LISTINGS ========== -->
+    <section style="padding:5rem 0;border-top:1px solid var(--border);background:var(--muted);">
+      <div class="container">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;">
+          <div>
+            <h2 style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:clamp(1.875rem,3vw,2.25rem);font-weight:700;color:var(--foreground);">Trending Gear</h2>
+            <p class="text-muted">Hot listings picked for you</p>
+          </div>
+          <a href="/shop" style="font-size:0.875rem;font-weight:500;color:var(--primary);">View all →</a>
+        </div>
+
+        <div style="display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));">
+
+          <!-- Listing Card 1 -->
+          <a href="/product/1" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s,border-color 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
+              <img src="https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=400&h=400&fit=crop" alt="Fender Stratocaster" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Excellent</span>
+            </div>
+            <div style="padding:1rem;">
+              <h3 style="margin-bottom:0.25rem;font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Fender Stratocaster '62 Reissue</h3>
+              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$1,450</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
+                <span>🛡️ VintageAxes</span>
+                <span>⭐ 4.9</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Listing Card 2 -->
+          <a href="/product/2" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
+              <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop" alt="Roland Juno-106" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Good</span>
+            </div>
+            <div style="padding:1rem;">
+              <h3 style="margin-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Roland Juno-106 Synthesizer</h3>
+              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$2,800</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
+                <span>🛡️ SynthWizard</span>
+                <span>⭐ 5.0</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Listing Card 3 -->
+          <a href="/product/3" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
+              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Sennheiser HD 650" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Like New</span>
+            </div>
+            <div style="padding:1rem;">
+              <h3 style="font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Sennheiser HD 650 Headphones</h3>
+              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$280</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
+                <span>AudioPhile99</span>
+                <span>⭐ 4.8</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Listing Card 4 -->
+          <a href="/product/4" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
+              <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop" alt="Yamaha HS8" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Excellent</span>
+            </div>
+            <div style="padding:1rem;">
+              <h3 style="font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Yamaha HS8 Studio Monitors (Pair)</h3>
+              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$520</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
+                <span>🛡️ StudioGear</span>
+                <span>⭐ 4.7</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Listing Card 5 -->
+          <a href="/product/5" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
+              <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" alt="Shure SM7B" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Like New</span>
+            </div>
+            <div style="padding:1rem;">
+              <h3 style="font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Shure SM7B Microphone</h3>
+              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$340</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
+                <span>🛡️ ProAudioDeals</span>
+                <span>⭐ 4.9</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Listing Card 6 -->
+          <a href="/product/6" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
+              <img src="https://images.unsplash.com/photo-1571327073757-71d13c24de30?w=400&h=400&fit=crop" alt="Pioneer CDJ-2000NXS2" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Good</span>
+            </div>
+            <div style="padding:1rem;">
+              <h3 style="font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Pioneer CDJ-2000NXS2</h3>
+              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$1,600</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
+                <span>DJDepot</span>
+                <span>⭐ 4.6</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section style="padding:5rem 0;">
+      <div class="container" style="text-align:center;">
+        <h2 style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:clamp(1.875rem,3vw,2.25rem);font-weight:700;color:var(--foreground);">How It Works</h2>
+        <p class="text-muted" style="margin-bottom:4rem;">Sell your gear in 4 simple steps</p>
+
+        <div style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));">
+          <div style="text-align:center;">
+            <div style="position:relative;margin:0 auto 1.25rem;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;border-radius:1rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">
+              📸
+              <span style="position:absolute;right:-4px;top:-4px;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);font-family:var(--font-display);font-size:0.75rem;font-weight:700;color:var(--primary-foreground);">1</span>
+            </div>
+            <h3 style="margin-bottom:0.5rem;font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--foreground);">List Your Gear</h3>
+            <p style="font-size:0.875rem;color:var(--muted-foreground);">Snap photos, set your price, and publish in minutes.</p>
+          </div>
+
+          <div style="text-align:center;">
+            <div style="position:relative;margin:0 auto 1.25rem;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;border-radius:1rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">
+              🏷️
+              <span style="position:absolute;right:-4px;top:-4px;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);font-family:var(--font-display);font-size:0.75rem;font-weight:700;color:var(--primary-foreground);">2</span>
+            </div>
+            <h3 style="margin-bottom:0.5rem;font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--foreground);">Buyers Discover</h3>
+            <p style="font-size:0.875rem;color:var(--muted-foreground);">Your listing reaches thousands of gear enthusiasts instantly.</p>
+          </div>
+
+          <div style="text-align:center;">
+            <div style="position:relative;margin:0 auto 1.25rem;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;border-radius:1rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">
+              🛡️
+              <span style="position:absolute;right:-4px;top:-4px;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);font-family:var(--font-display);font-size:0.75rem;font-weight:700;color:var(--primary-foreground);">3</span>
+            </div>
+            <h3 style="margin-bottom:0.5rem;font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--foreground);">Secure Payment</h3>
+            <p style="font-size:0.875rem;color:var(--muted-foreground);">Buyer pays through our protected checkout system.</p>
+          </div>
+
+          <div style="text-align:center;">
+            <div style="position:relative;margin:0 auto 1.25rem;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;border-radius:1rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">
+              🚚
+              <span style="position:absolute;right:-4px;top:-4px;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);font-family:var(--font-display);font-size:0.75rem;font-weight:700;color:var(--primary-foreground);">4</span>
+            </div>
+            <h3 style="margin-bottom:0.5rem;font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--foreground);">Ship &amp; Done</h3>
+            <p style="font-size:0.875rem;color:var(--muted-foreground);">Ship the item, get paid. We handle the rest.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer style="border-top:1px solid var(--border);background:var(--card);padding:4rem 0;">
+    <div class="container">
+      <div style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));">
+        <div>
+          <img src="assets/mporiums-logo.png" alt="M.Poriums" style="height:32px;margin-bottom:1rem;" />
+          <p style="font-size:0.875rem;color:var(--muted-foreground);">The trusted marketplace for buying and selling audio hardware and musical instruments.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:1rem;font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);">Marketplace</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="/shop" style="font-size:0.875rem;color:var(--muted-foreground);">Shop All</a></li>
+            <li><a href="/sell" style="font-size:0.875rem;color:var(--muted-foreground);">Sell Gear</a></li>
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Price Guide</a></li>
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Deals</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:1rem;font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);">Support</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Help Center</a></li>
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Buyer Protection</a></li>
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Shipping Info</a></li>
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Returns</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin-bottom:1rem;font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);">Company</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">About Us</a></li>
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Careers</a></li>
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Blog</a></li>
+            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center;font-size:0.75rem;color:var(--muted-foreground);">
+        © 2026 M.Poriums. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
