@@ -10,337 +10,696 @@
 <body>
 
   <!-- ========== NAVBAR ========== -->
-  <nav class="navbar">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;height:64px;">
-      <div style="display:flex;align-items:center;gap:2rem;">
-        <a href="/" class="logo">
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <div class="navbar-left">
+        <a href="#" class="logo" onclick="showPage('home')">
           <img src="assets/mporiums-logo.png" alt="M.Poriums" style="height:32px;" />
         </a>
-        <div class="nav-links" style="display:flex;gap:1.5rem;">
-          <a href="/shop" class="text-muted" style="font-size:0.875rem;font-weight:500;">Shop</a>
-          <a href="/sell" class="text-muted" style="font-size:0.875rem;font-weight:500;">Sell</a>
-          <a href="#" class="text-muted" style="font-size:0.875rem;font-weight:500;">Deals</a>
-          <a href="#" class="text-muted" style="font-size:0.875rem;font-weight:500;">Community</a>
+        <div class="nav-links hide-mobile">
+          <a href="#" onclick="showPage('shop')" class="nav-link">Shop</a>
+          <a href="#" onclick="showPage('sell')" class="nav-link">Sell</a>
+          <a href="#" class="nav-link">Deals</a>
+          <a href="#" class="nav-link">Community</a>
         </div>
       </div>
 
-      <form action="/shop" method="get" style="flex:1;max-width:28rem;margin:0 2rem;">
-        <div style="position:relative;">
-          <!-- Replace with your search icon -->
-          <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted-foreground);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" name="q" placeholder="Search gear, instruments, brands..." style="width:100%;border-radius:0.5rem;border:1px solid var(--border);background:var(--secondary);padding:0.5rem 2.5rem;font-size:0.875rem;color:var(--foreground);" />
-        </div>
+      <form class="search-bar hide-mobile" onsubmit="handleNavSearch(event)">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="navSearchInput" placeholder="Search gear, instruments, brands..." />
       </form>
 
-      <div style="display:flex;align-items:center;gap:0.5rem;">
-        <a href="/cart" class="btn btn-ghost" style="position:relative;">
-          <!-- Cart icon -->
-          <svg style="width:20px;height:20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+      <div class="navbar-right">
+        <button class="btn btn-ghost icon-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">
+          <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg id="moonIcon" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="#" onclick="showPage('cart')" class="btn btn-ghost icon-btn cart-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
         </a>
-        <a href="/auth" class="btn btn-primary" style="font-size:0.875rem;">Sign In</a>
+        <a href="#" onclick="showPage('auth')" class="btn btn-primary hide-mobile" id="signInBtn">Sign In</a>
+        <button class="btn btn-ghost icon-btn show-mobile" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" style="display:none;">
+      <form onsubmit="handleNavSearch(event)" class="mobile-search">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" placeholder="Search gear..." />
+      </form>
+      <a href="#" onclick="showPage('shop');toggleMobileMenu()" class="mobile-link">Shop</a>
+      <a href="#" onclick="showPage('sell');toggleMobileMenu()" class="mobile-link">Sell</a>
+      <a href="#" class="mobile-link">Deals</a>
+      <a href="#" class="mobile-link">Community</a>
+      <a href="#" onclick="showPage('auth');toggleMobileMenu()" class="mobile-link" style="color:var(--primary);">Sign In / Sign Up</a>
     </div>
   </nav>
 
-  <main style="padding-top:64px;">
+  <!-- ===================================================================
+       PAGE: HOME
+       =================================================================== -->
+  <div id="page-home" class="page active">
+    <main style="padding-top:64px;">
 
-    <!-- ========== HERO ========== -->
-    <section class="hero" style="position:relative;min-height:85vh;display:flex;align-items:center;overflow:hidden;">
-      <div style="position:absolute;inset:0;">
-        <img src="assets/hero-bg.jpg" alt="Audio equipment and musical instruments" style="width:100%;height:100%;object-fit:cover;" loading="eager" />
-        <div style="position:absolute;inset:0;background:linear-gradient(to right, var(--background), hsla(0,0%,100%,0.85), hsla(0,0%,100%,0.4));"></div>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top, var(--background), transparent, hsla(0,0%,100%,0.3));"></div>
-      </div>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-bg">
+          <img src="assets/hero-bg.jpg" alt="Audio equipment and musical instruments" loading="eager" />
+          <div class="hero-overlay-lr"></div>
+          <div class="hero-overlay-bt"></div>
+        </div>
+        <div class="container hero-content">
+          <div class="hero-text">
+            <span class="hero-badge">THE #1 MARKETPLACE FOR USED AUDIO GEAR</span>
+            <h1 class="hero-title">Buy &amp; Sell<br /><span class="text-primary">Premium Gear</span></h1>
+            <p class="hero-desc">The trusted marketplace for audio hardware, synths, guitars, and studio equipment. Thousands of listings from verified sellers.</p>
+            <div class="hero-actions">
+              <form onsubmit="handleHeroSearch(event)" class="hero-search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="heroSearchInput" placeholder="What gear are you looking for?" />
+              </form>
+              <a href="#" onclick="showPage('shop')" class="btn btn-primary btn-lg">Browse Gear →</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div class="container" style="position:relative;padding-top:4rem;">
-        <div style="max-width:42rem;">
-          <span style="display:inline-block;margin-bottom:1rem;border-radius:9999px;border:1px solid hsla(0,78%,50%,0.3);background:hsla(0,78%,50%,0.1);padding:0.375rem 1rem;font-size:0.75rem;font-weight:500;letter-spacing:0.05em;color:var(--primary);">
-            THE #1 MARKETPLACE FOR USED AUDIO GEAR
-          </span>
-
-          <h1 style="margin-bottom:1.5rem;font-family:var(--font-display);font-size:clamp(3rem,6vw,4.5rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--foreground);">
-            Buy &amp; Sell<br />
-            <span class="text-primary">Premium Gear</span>
-          </h1>
-
-          <p style="margin-bottom:2rem;max-width:32rem;font-size:1.125rem;line-height:1.6;color:var(--muted-foreground);">
-            The trusted marketplace for audio hardware, synths, guitars, and studio equipment. Thousands of listings from verified sellers.
-          </p>
-
-          <div style="display:flex;flex-wrap:wrap;gap:1rem;">
-            <form action="/shop" method="get" style="position:relative;flex:1;max-width:28rem;">
-              <svg style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--muted-foreground);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <input type="text" name="q" placeholder="What gear are you looking for?" style="width:100%;border-radius:0.75rem;border:1px solid var(--border);background:hsla(0,0%,98%,0.8);padding:1rem 3rem;font-size:1rem;color:var(--foreground);backdrop-filter:blur(8px);" />
-            </form>
-            <a href="/shop" class="btn btn-primary" style="border-radius:0.75rem;padding:1rem 2rem;font-family:var(--font-display);font-weight:600;font-size:1rem;">
-              Browse Gear →
+      <!-- Categories -->
+      <section class="section">
+        <div class="container text-center">
+          <h2 class="section-title">Browse by Category</h2>
+          <p class="section-subtitle">Find exactly what you're looking for</p>
+          <div class="category-grid">
+            <a href="#" onclick="filterByCategory('Guitars & Basses')" class="card category-card">
+              <div class="category-icon">🎸</div>
+              <div><p class="category-name">Guitars &amp; Basses</p><p class="category-count">8,200+</p></div>
+            </a>
+            <a href="#" onclick="filterByCategory('Synthesizers')" class="card category-card">
+              <div class="category-icon">🎹</div>
+              <div><p class="category-name">Synthesizers</p><p class="category-count">4,100+</p></div>
+            </a>
+            <a href="#" onclick="filterByCategory('Headphones')" class="card category-card">
+              <div class="category-icon">🎧</div>
+              <div><p class="category-name">Headphones</p><p class="category-count">6,500+</p></div>
+            </a>
+            <a href="#" onclick="filterByCategory('Speakers & Monitors')" class="card category-card">
+              <div class="category-icon">🔊</div>
+              <div><p class="category-name">Speakers &amp; Monitors</p><p class="category-count">3,800+</p></div>
+            </a>
+            <a href="#" onclick="filterByCategory('Microphones')" class="card category-card">
+              <div class="category-icon">🎙️</div>
+              <div><p class="category-name">Microphones</p><p class="category-count">2,900+</p></div>
+            </a>
+            <a href="#" onclick="filterByCategory('DJ Equipment')" class="card category-card">
+              <div class="category-icon">🎵</div>
+              <div><p class="category-name">DJ Equipment</p><p class="category-count">3,400+</p></div>
             </a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ========== CATEGORIES ========== -->
-    <section style="padding:5rem 0;">
-      <div class="container" style="text-align:center;">
-        <h2 style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:clamp(1.875rem,3vw,2.25rem);font-weight:700;color:var(--foreground);">Browse by Category</h2>
-        <p class="text-muted" style="margin-bottom:3rem;">Find exactly what you're looking for</p>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));gap:1rem;">
-          <!-- Category Card – repeat for each category -->
-          <a href="/shop?category=Guitars+%26+Basses" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s,border-color 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎸</div>
+      <!-- Featured Listings -->
+      <section class="section section-muted">
+        <div class="container">
+          <div class="section-header">
             <div>
-              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Guitars &amp; Basses</p>
-              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">8,200+</p>
+              <h2 class="section-title">Trending Gear</h2>
+              <p class="section-subtitle">Hot listings picked for you</p>
             </div>
-          </a>
-
-          <a href="/shop?category=Synthesizers" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎹</div>
-            <div>
-              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Synthesizers</p>
-              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">4,100+</p>
-            </div>
-          </a>
-
-          <a href="/shop?category=Headphones" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎧</div>
-            <div>
-              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Headphones</p>
-              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">6,500+</p>
-            </div>
-          </a>
-
-          <a href="/shop?category=Speakers+%26+Monitors" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🔊</div>
-            <div>
-              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Speakers &amp; Monitors</p>
-              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">3,800+</p>
-            </div>
-          </a>
-
-          <a href="/shop?category=Microphones" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎙️</div>
-            <div>
-              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">Microphones</p>
-              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">2,900+</p>
-            </div>
-          </a>
-
-          <a href="/shop?category=DJ+Equipment" class="card" style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1.5rem;text-align:center;text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="width:3.5rem;height:3.5rem;display:flex;align-items:center;justify-content:center;border-radius:0.75rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">🎵</div>
-            <div>
-              <p style="font-size:0.875rem;font-weight:500;color:var(--foreground);">DJ Equipment</p>
-              <p style="margin-top:0.25rem;font-size:0.75rem;color:var(--muted-foreground);">3,400+</p>
-            </div>
-          </a>
+            <a href="#" onclick="showPage('shop')" class="link-primary">View all →</a>
+          </div>
+          <div class="listing-grid" id="featuredGrid">
+            <!-- Populated by JS -->
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ========== FEATURED LISTINGS ========== -->
-    <section style="padding:5rem 0;border-top:1px solid var(--border);background:var(--muted);">
+      <!-- How It Works -->
+      <section class="section">
+        <div class="container text-center">
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-subtitle">Simple, secure, and built for gear lovers</p>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h3 class="step-title">List or Browse</h3>
+              <p class="step-desc">Snap a photo, set your price, and list in minutes. Or explore thousands of listings from verified sellers.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h3 class="step-title">Connect &amp; Negotiate</h3>
+              <p class="step-desc">Chat with buyers or sellers, make offers, and negotiate the best deal.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h3 class="step-title">Secure Transaction</h3>
+              <p class="step-desc">Pay securely through Stripe. Buyer protection included on every transaction.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       PAGE: SHOP
+       =================================================================== -->
+  <div id="page-shop" class="page">
+    <main class="page-main">
       <div class="container">
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;">
+        <div class="shop-header">
           <div>
-            <h2 style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:clamp(1.875rem,3vw,2.25rem);font-weight:700;color:var(--foreground);">Trending Gear</h2>
-            <p class="text-muted">Hot listings picked for you</p>
+            <h1 class="page-title" id="shopTitle">Shop Gear</h1>
+            <p class="text-muted" id="shopCount">6 items found</p>
           </div>
-          <a href="/shop" style="font-size:0.875rem;font-weight:500;color:var(--primary);">View all →</a>
+          <div class="shop-controls">
+            <select id="sortSelect" onchange="applyFilters()" class="select-control">
+              <option>Newest</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+            </select>
+          </div>
         </div>
 
-        <div style="display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));">
-
-          <!-- Listing Card 1 -->
-          <a href="/product/1" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s,border-color 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
-              <img src="https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=400&h=400&fit=crop" alt="Fender Stratocaster" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Excellent</span>
-            </div>
-            <div style="padding:1rem;">
-              <h3 style="margin-bottom:0.25rem;font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Fender Stratocaster '62 Reissue</h3>
-              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$1,450</p>
-              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
-                <span>🛡️ VintageAxes</span>
-                <span>⭐ 4.9</span>
+        <div class="shop-layout">
+          <!-- Sidebar Filters -->
+          <aside class="shop-sidebar hide-mobile">
+            <div class="filter-section">
+              <h4 class="filter-title">Category</h4>
+              <div class="filter-options" id="categoryFilters">
+                <!-- Populated by JS -->
               </div>
             </div>
-          </a>
-
-          <!-- Listing Card 2 -->
-          <a href="/product/2" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
-              <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop" alt="Roland Juno-106" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Good</span>
-            </div>
-            <div style="padding:1rem;">
-              <h3 style="margin-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Roland Juno-106 Synthesizer</h3>
-              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$2,800</p>
-              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
-                <span>🛡️ SynthWizard</span>
-                <span>⭐ 5.0</span>
+            <div class="filter-section">
+              <h4 class="filter-title">Price Range</h4>
+              <div class="filter-options" id="priceFilters">
+                <!-- Populated by JS -->
               </div>
             </div>
-          </a>
-
-          <!-- Listing Card 3 -->
-          <a href="/product/3" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
-              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Sennheiser HD 650" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Like New</span>
-            </div>
-            <div style="padding:1rem;">
-              <h3 style="font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Sennheiser HD 650 Headphones</h3>
-              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$280</p>
-              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
-                <span>AudioPhile99</span>
-                <span>⭐ 4.8</span>
+            <div class="filter-section">
+              <h4 class="filter-title">Condition</h4>
+              <div class="filter-options" id="conditionFilters">
+                <!-- Populated by JS -->
               </div>
             </div>
-          </a>
+            <button class="btn btn-outline btn-sm btn-full" onclick="clearFilters()">✕ Clear Filters</button>
+          </aside>
 
-          <!-- Listing Card 4 -->
-          <a href="/product/4" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
-              <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop" alt="Yamaha HS8" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Excellent</span>
+          <!-- Product Grid -->
+          <div class="shop-grid-wrapper">
+            <div class="listing-grid" id="shopGrid">
+              <!-- Populated by JS -->
             </div>
-            <div style="padding:1rem;">
-              <h3 style="font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Yamaha HS8 Studio Monitors (Pair)</h3>
-              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$520</p>
-              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
-                <span>🛡️ StudioGear</span>
-                <span>⭐ 4.7</span>
-              </div>
+            <div class="empty-state" id="shopEmpty" style="display:none;">
+              <p class="empty-title">No items match your filters</p>
+              <p class="text-muted">Try adjusting your criteria</p>
+              <button class="btn btn-outline btn-sm" onclick="clearFilters()" style="margin-top:1rem;">Clear Filters</button>
             </div>
-          </a>
-
-          <!-- Listing Card 5 -->
-          <a href="/product/5" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
-              <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" alt="Shure SM7B" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Like New</span>
-            </div>
-            <div style="padding:1rem;">
-              <h3 style="font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Shure SM7B Microphone</h3>
-              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$340</p>
-              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
-                <span>🛡️ ProAudioDeals</span>
-                <span>⭐ 4.9</span>
-              </div>
-            </div>
-          </a>
-
-          <!-- Listing Card 6 -->
-          <a href="/product/6" class="card" style="text-decoration:none;overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
-            <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--secondary);">
-              <img src="https://images.unsplash.com/photo-1571327073757-71d13c24de30?w=400&h=400&fit=crop" alt="Pioneer CDJ-2000NXS2" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-              <span style="position:absolute;left:0.75rem;top:0.75rem;padding:0.25rem 0.625rem;border-radius:var(--radius);background:hsla(0,0%,100%,0.7);backdrop-filter:blur(8px);font-size:0.75rem;font-weight:500;color:var(--foreground);">Good</span>
-            </div>
-            <div style="padding:1rem;">
-              <h3 style="font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Pioneer CDJ-2000NXS2</h3>
-              <p style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--primary);">$1,600</p>
-              <div style="display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--muted-foreground);">
-                <span>DJDepot</span>
-                <span>⭐ 4.6</span>
-              </div>
-            </div>
-          </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== HOW IT WORKS ========== -->
-    <section style="padding:5rem 0;">
-      <div class="container" style="text-align:center;">
-        <h2 style="margin-bottom:0.75rem;font-family:var(--font-display);font-size:clamp(1.875rem,3vw,2.25rem);font-weight:700;color:var(--foreground);">How It Works</h2>
-        <p class="text-muted" style="margin-bottom:4rem;">Sell your gear in 4 simple steps</p>
-
-        <div style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));">
-          <div style="text-align:center;">
-            <div style="position:relative;margin:0 auto 1.25rem;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;border-radius:1rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">
-              📸
-              <span style="position:absolute;right:-4px;top:-4px;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);font-family:var(--font-display);font-size:0.75rem;font-weight:700;color:var(--primary-foreground);">1</span>
-            </div>
-            <h3 style="margin-bottom:0.5rem;font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--foreground);">List Your Gear</h3>
-            <p style="font-size:0.875rem;color:var(--muted-foreground);">Snap photos, set your price, and publish in minutes.</p>
-          </div>
-
-          <div style="text-align:center;">
-            <div style="position:relative;margin:0 auto 1.25rem;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;border-radius:1rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">
-              🏷️
-              <span style="position:absolute;right:-4px;top:-4px;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);font-family:var(--font-display);font-size:0.75rem;font-weight:700;color:var(--primary-foreground);">2</span>
-            </div>
-            <h3 style="margin-bottom:0.5rem;font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--foreground);">Buyers Discover</h3>
-            <p style="font-size:0.875rem;color:var(--muted-foreground);">Your listing reaches thousands of gear enthusiasts instantly.</p>
-          </div>
-
-          <div style="text-align:center;">
-            <div style="position:relative;margin:0 auto 1.25rem;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;border-radius:1rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">
-              🛡️
-              <span style="position:absolute;right:-4px;top:-4px;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);font-family:var(--font-display);font-size:0.75rem;font-weight:700;color:var(--primary-foreground);">3</span>
-            </div>
-            <h3 style="margin-bottom:0.5rem;font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--foreground);">Secure Payment</h3>
-            <p style="font-size:0.875rem;color:var(--muted-foreground);">Buyer pays through our protected checkout system.</p>
-          </div>
-
-          <div style="text-align:center;">
-            <div style="position:relative;margin:0 auto 1.25rem;width:4rem;height:4rem;display:flex;align-items:center;justify-content:center;border-radius:1rem;background:hsla(0,78%,50%,0.1);color:var(--primary);font-size:1.75rem;">
-              🚚
-              <span style="position:absolute;right:-4px;top:-4px;width:1.5rem;height:1.5rem;display:flex;align-items:center;justify-content:center;border-radius:9999px;background:var(--primary);font-family:var(--font-display);font-size:0.75rem;font-weight:700;color:var(--primary-foreground);">4</span>
-            </div>
-            <h3 style="margin-bottom:0.5rem;font-family:var(--font-display);font-size:1.125rem;font-weight:600;color:var(--foreground);">Ship &amp; Done</h3>
-            <p style="font-size:0.875rem;color:var(--muted-foreground);">Ship the item, get paid. We handle the rest.</p>
           </div>
         </div>
       </div>
-    </section>
+    </main>
+  </div>
 
-  </main>
+  <!-- ===================================================================
+       PAGE: PRODUCT DETAIL
+       =================================================================== -->
+  <div id="page-product" class="page">
+    <main class="page-main">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="showPage('shop')" class="link-primary">← Back to Shop</a>
+          <span>/</span>
+          <span id="productCategory">Category</span>
+        </div>
 
-  <!-- ========== FOOTER ========== -->
-  <footer style="border-top:1px solid var(--border);background:var(--card);padding:4rem 0;">
+        <div class="product-layout">
+          <!-- Image Gallery -->
+          <div class="product-gallery">
+            <div class="product-main-image">
+              <img id="productMainImg" src="" alt="Product image" />
+              <button class="gallery-nav gallery-prev" onclick="prevProductImage()">‹</button>
+              <button class="gallery-nav gallery-next" onclick="nextProductImage()">›</button>
+            </div>
+            <div class="product-thumbs" id="productThumbs">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Product Info -->
+          <div class="product-info">
+            <span class="badge badge-secondary" id="productCondition">Condition</span>
+            <h1 class="product-title" id="productTitle">Product Title</h1>
+            <p class="text-muted" id="productCategorySub">Category</p>
+            <p class="product-price" id="productPrice">$0</p>
+            <div class="product-rating" id="productRating"></div>
+
+            <hr class="separator" />
+            <p class="product-description" id="productDescription">Description goes here.</p>
+            <hr class="separator" />
+
+            <!-- Seller Card -->
+            <div class="seller-card">
+              <h3 class="filter-title">Seller</h3>
+              <div class="seller-info">
+                <div class="seller-avatar" id="sellerAvatar">VA</div>
+                <div>
+                  <div class="seller-name">
+                    <span id="sellerName">Seller</span>
+                    <span id="sellerVerified" style="display:none;">🛡️</span>
+                  </div>
+                  <div class="seller-meta">
+                    <span id="sellerRating"></span>
+                    <span id="sellerListings"></span>
+                    <span id="sellerSince"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-actions">
+              <button class="btn btn-primary btn-lg btn-flex" onclick="addToCart()">🛒 Add to Cart</button>
+              <button class="btn btn-outline btn-lg" onclick="openOfferModal()">💬 Make Offer</button>
+              <button class="btn btn-outline btn-lg">♥ Save</button>
+              <button class="btn btn-outline btn-lg">↗ Share</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       PAGE: CART
+       =================================================================== -->
+  <div id="page-cart" class="page">
+    <main class="page-main">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="showPage('shop')" class="link-primary">← Continue Shopping</a>
+        </div>
+        <h1 class="page-title">Shopping Cart <span class="text-muted" id="cartItemCount"></span></h1>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="cartEmpty" style="display:none;">
+          <div class="empty-icon">🛍️</div>
+          <h2 class="empty-title">Your cart is empty</h2>
+          <p class="text-muted">Discover amazing deals on music gear, instruments, and audio equipment.</p>
+          <a href="#" onclick="showPage('shop')" class="btn btn-primary btn-lg" style="margin-top:1.5rem;">Browse the Shop</a>
+        </div>
+
+        <!-- Cart Content -->
+        <div class="cart-layout" id="cartContent" style="display:none;">
+          <div class="cart-items" id="cartItems">
+            <!-- Populated by JS -->
+          </div>
+          <div class="cart-summary">
+            <div class="summary-card">
+              <h2 class="summary-title">Order Summary</h2>
+              <hr class="separator" />
+              <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">$0</span></div>
+              <div class="summary-row"><span>Shipping</span><span id="cartShipping">$0</span></div>
+              <div class="summary-row"><span>Estimated Tax</span><span id="cartTax">$0</span></div>
+              <hr class="separator" />
+              <div class="summary-total"><span>Total</span><span id="cartTotal">$0</span></div>
+              <p class="free-shipping-note" id="freeShippingNote" style="display:none;">🎉 You qualify for free shipping!</p>
+              <a href="#" onclick="showPage('checkout')" class="btn btn-primary btn-lg btn-full" style="margin-top:1.5rem;">Proceed to Checkout</a>
+              <div class="secure-note">🛡️ Secure checkout · Buyer protection included</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       PAGE: CHECKOUT
+       =================================================================== -->
+  <div id="page-checkout" class="page">
+    <main class="page-main">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="#" onclick="showPage('cart')" class="link-primary">← Back to Cart</a>
+        </div>
+        <h1 class="page-title">Checkout</h1>
+
+        <form id="checkoutForm" onsubmit="handleCheckout(event)" class="checkout-layout">
+          <div class="checkout-form">
+            <!-- Shipping -->
+            <div class="form-card">
+              <h2 class="form-card-title">Shipping Address</h2>
+              <hr class="separator" />
+              <div class="form-grid-2">
+                <div class="form-group"><label>First Name</label><input type="text" name="firstName" required placeholder="John" /></div>
+                <div class="form-group"><label>Last Name</label><input type="text" name="lastName" required placeholder="Doe" /></div>
+              </div>
+              <div class="form-group"><label>Email</label><input type="email" name="email" required placeholder="john@example.com" /></div>
+              <div class="form-group"><label>Street Address</label><input type="text" name="address" required placeholder="123 Main St" /></div>
+              <div class="form-grid-2">
+                <div class="form-group"><label>City</label><input type="text" name="city" required placeholder="Los Angeles" /></div>
+                <div class="form-group"><label>State</label><input type="text" name="state" required placeholder="California" /></div>
+              </div>
+              <div class="form-grid-2">
+                <div class="form-group"><label>ZIP Code</label><input type="text" name="zip" required placeholder="90001" /></div>
+                <div class="form-group"><label>Phone</label><input type="tel" name="phone" required placeholder="(555) 123-4567" /></div>
+              </div>
+            </div>
+
+            <!-- Payment Info -->
+            <div class="form-card">
+              <h2 class="form-card-title">Payment</h2>
+              <hr class="separator" />
+              <div class="info-box">
+                <span>💳</span>
+                <div>
+                  <p class="info-box-title">Secure Card Payment via Stripe</p>
+                  <p class="text-muted text-xs">You'll be redirected to Stripe's secure checkout to complete payment.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checkout Summary -->
+          <div class="checkout-summary">
+            <div class="summary-card sticky">
+              <h2 class="summary-title">Order Summary</h2>
+              <hr class="separator" />
+              <div id="checkoutItems" class="checkout-items">
+                <!-- Populated by JS -->
+              </div>
+              <hr class="separator" />
+              <div class="summary-row"><span>Subtotal</span><span id="checkoutSubtotal">$0</span></div>
+              <div class="summary-row"><span>Shipping</span><span id="checkoutShipping">$0</span></div>
+              <div class="summary-row"><span>Estimated Tax</span><span id="checkoutTax">$0</span></div>
+              <hr class="separator" />
+              <div class="summary-total"><span>Total</span><span id="checkoutTotal">$0</span></div>
+              <button type="submit" class="btn btn-primary btn-lg btn-full" style="margin-top:1.5rem;">Proceed to Payment</button>
+              <div class="secure-note">🛡️ Secure checkout · Buyer protection included</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       PAGE: AUTH (Sign In / Sign Up)
+       =================================================================== -->
+  <div id="page-auth" class="page">
+    <main class="page-main center-content">
+      <div class="auth-card">
+        <h1 class="auth-title" id="authTitle">Welcome Back</h1>
+        <p class="text-muted" id="authSubtitle">Sign in to manage your listings</p>
+
+        <form id="authForm" onsubmit="handleAuth(event)">
+          <!-- Signup-only fields -->
+          <div id="signupFields" style="display:none;">
+            <div class="form-group"><label>Display Name</label><input type="text" name="displayName" placeholder="Your seller name" /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(555) 123-4567" /></div>
+            <div class="form-group"><label>Street Address</label><input type="text" name="address" placeholder="123 Main St" /></div>
+            <div class="form-grid-2">
+              <div class="form-group"><label>City</label><input type="text" name="city" placeholder="Los Angeles" /></div>
+              <div class="form-group"><label>State</label><input type="text" name="state" placeholder="California" /></div>
+            </div>
+            <div class="form-group"><label>ZIP Code</label><input type="text" name="zip" placeholder="90001" /></div>
+          </div>
+
+          <div class="form-group"><label>Email</label><input type="email" name="email" required placeholder="you@example.com" /></div>
+          <div class="form-group"><label>Password</label><input type="password" name="password" required minlength="6" placeholder="••••••••" /></div>
+          <button type="submit" class="btn btn-primary btn-full" id="authSubmitBtn">Sign In</button>
+        </form>
+
+        <hr class="separator" />
+        <p class="auth-toggle text-center">
+          <span id="authToggleText">Don't have an account?</span>
+          <button class="link-primary" onclick="toggleAuthMode()" id="authToggleBtn">Sign up</button>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       PAGE: ACCOUNT
+       =================================================================== -->
+  <div id="page-account" class="page">
+    <main class="page-main">
+      <div class="container narrow">
+        <h1 class="page-title">My Account</h1>
+        <p class="text-muted">Manage your profile, payment info, and view purchase history</p>
+
+        <form onsubmit="handleSaveProfile(event)" class="account-form">
+          <!-- Profile -->
+          <div class="form-card">
+            <h2 class="form-card-title">👤 Profile</h2>
+            <hr class="separator" />
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" value="user@example.com" disabled class="input-disabled" />
+              <p class="text-xs text-muted">Email cannot be changed here</p>
+            </div>
+            <div class="form-group"><label>Display Name</label><input type="text" name="display_name" placeholder="Your seller name" /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(555) 123-4567" /></div>
+          </div>
+
+          <!-- Address -->
+          <div class="form-card">
+            <h2 class="form-card-title">📍 Address</h2>
+            <hr class="separator" />
+            <div class="form-group"><label>Street Address</label><input type="text" name="address" placeholder="123 Main St" /></div>
+            <div class="form-grid-2">
+              <div class="form-group"><label>City</label><input type="text" name="city" placeholder="Los Angeles" /></div>
+              <div class="form-group"><label>State</label><input type="text" name="state" placeholder="California" /></div>
+            </div>
+            <div class="form-group half"><label>ZIP Code</label><input type="text" name="zip" placeholder="90001" /></div>
+          </div>
+
+          <!-- Payment Info -->
+          <div class="form-card">
+            <h2 class="form-card-title">💳 Payment Information</h2>
+            <hr class="separator" />
+            <div class="info-box">
+              <span>💳</span>
+              <div>
+                <p class="info-box-title">Payments handled by Stripe</p>
+                <p class="text-xs text-muted">Your card details are securely managed by Stripe during checkout. We never store your payment information.</p>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg">💾 Save Changes</button>
+        </form>
+
+        <!-- Purchase History -->
+        <div class="purchase-history" id="purchaseHistory">
+          <div class="form-card">
+            <h2 class="form-card-title">📦 Purchase History</h2>
+            <hr class="separator" />
+            <div class="empty-state" id="ordersEmpty">
+              <div class="empty-icon">🛍️</div>
+              <p class="empty-title">No purchases yet</p>
+              <p class="text-muted text-xs">Your order history will appear here after your first purchase.</p>
+              <a href="#" onclick="showPage('shop')" class="btn btn-outline btn-sm" style="margin-top:1rem;">Browse Shop</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       PAGE: SELL
+       =================================================================== -->
+  <div id="page-sell" class="page">
+    <main class="page-main">
+      <div class="container">
+        <div class="sell-header">
+          <h1 class="page-title">List Your Gear</h1>
+          <p class="text-muted">Fill out the details below to create your listing.</p>
+        </div>
+
+        <div class="sell-layout">
+          <!-- Left: Images & Details -->
+          <div class="sell-main">
+            <div class="form-group">
+              <label class="label-with-icon">🖼️ Photos <span class="text-muted text-xs">(0/8)</span></label>
+              <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                <span class="upload-icon">📤</span>
+                <span class="upload-text">Click or drag to upload images</span>
+              </div>
+              <input type="file" id="fileInput" accept="image/*" multiple style="display:none;" onchange="handleImageUpload(event)" />
+              <div class="upload-thumbs" id="uploadThumbs"></div>
+            </div>
+
+            <hr class="separator" />
+
+            <div class="form-group">
+              <label class="label-with-icon">🏷️ Title *</label>
+              <input type="text" id="sellTitle" placeholder="e.g. Fender Stratocaster '62 Reissue" />
+            </div>
+            <div class="form-group">
+              <label class="label-with-icon">ℹ️ Description</label>
+              <textarea id="sellDescription" rows="5" placeholder="Describe condition, history, what's included..."></textarea>
+            </div>
+          </div>
+
+          <!-- Right: Price, Category, Condition -->
+          <div class="sell-sidebar">
+            <div class="form-group">
+              <label class="label-with-icon">💲 Price *</label>
+              <div class="price-input-wrap">
+                <span class="price-symbol">$</span>
+                <input type="number" id="sellPrice" placeholder="0" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="label-with-icon">📦 Category *</label>
+              <div class="pill-group" id="sellCategoryPills">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="label-with-icon">⭐ Condition *</label>
+              <div class="pill-group" id="sellConditionPills">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <hr class="separator" />
+
+            <!-- Seller Profile Preview -->
+            <div class="seller-card">
+              <h3 class="filter-title">Your Seller Profile</h3>
+              <div class="seller-info">
+                <div class="seller-avatar">👤</div>
+                <div>
+                  <p class="seller-name">Guest</p>
+                  <p class="text-muted text-xs">Sign in to build your reputation</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="listing-preview" id="listingPreview" style="display:none;">
+              <h3 class="filter-title text-primary">Listing Preview</h3>
+              <p class="listing-preview-title" id="previewTitle"></p>
+              <div class="listing-preview-meta">
+                <span class="listing-preview-price" id="previewPrice"></span>
+                <span class="badge badge-secondary" id="previewCondition" style="display:none;"></span>
+              </div>
+              <p class="text-muted text-xs" id="previewCategory"></p>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-full" onclick="handlePublishListing()">Publish Listing</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       PAGE: PAYMENT SUCCESS
+       =================================================================== -->
+  <div id="page-payment-success" class="page">
+    <main class="page-main center-content">
+      <div class="success-content animate-fade-in">
+        <div class="success-icon">✅</div>
+        <h1 class="page-title">Payment Successful!</h1>
+        <p class="text-muted" style="max-width:28rem;">Thank you for your purchase. You'll receive a confirmation email shortly with your order details.</p>
+        <div class="success-actions">
+          <a href="#" onclick="showPage('shop')" class="btn btn-primary">🛍️ Continue Shopping</a>
+          <a href="#" onclick="showPage('home')" class="btn btn-outline">Back to Home</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       PAGE: 404
+       =================================================================== -->
+  <div id="page-404" class="page">
+    <main class="page-main center-content">
+      <div class="text-center">
+        <h1 style="font-size:4rem;font-weight:700;">404</h1>
+        <p class="text-muted" style="font-size:1.25rem;margin-bottom:1rem;">Oops! Page not found</p>
+        <a href="#" onclick="showPage('home')" class="link-primary">Return to Home</a>
+      </div>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       OFFER MODAL
+       =================================================================== -->
+  <div class="modal-overlay" id="offerModal" style="display:none;" onclick="closeOfferModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <h2 class="form-card-title">Make an Offer</h2>
+      <p class="text-muted">Send an offer for <strong id="offerProductTitle"></strong></p>
+      <p class="text-muted">Listed at <strong class="text-primary" id="offerProductPrice"></strong></p>
+      <div class="form-group" style="margin-top:1.25rem;">
+        <label>Your Offer ($)</label>
+        <input type="number" id="offerAmount" placeholder="0" style="font-size:1.125rem;font-weight:600;" />
+      </div>
+      <div class="form-group">
+        <label>Message (optional)</label>
+        <textarea rows="3" placeholder="Add a message to the seller..."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary btn-lg btn-flex" onclick="closeOfferModal()">Send Offer</button>
+        <button class="btn btn-outline btn-lg" onclick="closeOfferModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       FOOTER
+       =================================================================== -->
+  <footer class="footer" id="footer">
     <div class="container">
-      <div style="display:grid;gap:2rem;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));">
+      <div class="footer-grid">
         <div>
           <img src="assets/mporiums-logo.png" alt="M.Poriums" style="height:32px;margin-bottom:1rem;" />
-          <p style="font-size:0.875rem;color:var(--muted-foreground);">The trusted marketplace for buying and selling audio hardware and musical instruments.</p>
+          <p class="text-muted text-sm">The trusted marketplace for buying and selling audio hardware and musical instruments.</p>
         </div>
         <div>
-          <h4 style="margin-bottom:1rem;font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);">Marketplace</h4>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
-            <li><a href="/shop" style="font-size:0.875rem;color:var(--muted-foreground);">Shop All</a></li>
-            <li><a href="/sell" style="font-size:0.875rem;color:var(--muted-foreground);">Sell Gear</a></li>
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Price Guide</a></li>
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Deals</a></li>
+          <h4 class="footer-heading">Marketplace</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="showPage('shop')">Shop All</a></li>
+            <li><a href="#" onclick="showPage('sell')">Sell Gear</a></li>
+            <li><a href="#">Price Guide</a></li>
+            <li><a href="#">Deals</a></li>
           </ul>
         </div>
         <div>
-          <h4 style="margin-bottom:1rem;font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);">Support</h4>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Help Center</a></li>
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Buyer Protection</a></li>
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Shipping Info</a></li>
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Returns</a></li>
+          <h4 class="footer-heading">Support</h4>
+          <ul class="footer-links">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Buyer Protection</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
           </ul>
         </div>
         <div>
-          <h4 style="margin-bottom:1rem;font-family:var(--font-display);font-size:0.875rem;font-weight:600;color:var(--foreground);">Company</h4>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">About Us</a></li>
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Careers</a></li>
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Blog</a></li>
-            <li><a href="#" style="font-size:0.875rem;color:var(--muted-foreground);">Contact</a></li>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
           </ul>
         </div>
       </div>
-      <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);text-align:center;font-size:0.75rem;color:var(--muted-foreground);">
+      <div class="footer-bottom">
         © 2026 M.Poriums. All rights reserved.
       </div>
     </div>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
