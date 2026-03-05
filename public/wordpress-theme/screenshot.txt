@@ -1,0 +1,2 @@
+NOTE: Replace this file with a screenshot.png (1200x900px recommended)
+showing a preview of the theme for the WordPress admin.
