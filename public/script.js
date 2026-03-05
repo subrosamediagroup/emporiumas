@@ -1,6 +1,6 @@
 /* =============================================
    M.Poriums – Script.js
-   All JavaScript for the standalone HTML template
+   WordPress-compatible jQuery version
    ============================================= */
 
 // =============================================
@@ -48,16 +48,13 @@ var uploadedImages = [];
 // PAGE NAVIGATION
 // =============================================
 function showPage(page) {
-  document.querySelectorAll(".page").forEach(function(p) { p.classList.remove("active"); });
-  var el = document.getElementById("page-" + page);
-  if (el) {
-    el.classList.add("active");
-    currentPage = page;
-  }
-  window.scrollTo(0, 0);
+  jQuery(".page").removeClass("active");
+  jQuery("#page-" + page).addClass("active");
+  currentPage = page;
+  jQuery("html, body").scrollTop(0);
 
   // Show/hide footer on specific pages
-  document.getElementById("footer").style.display = (page === "404") ? "none" : "";
+  jQuery("#footer").toggle(page !== "404");
 
   if (page === "shop") renderShop();
   if (page === "cart") renderCart();
@@ -71,19 +68,19 @@ function showPage(page) {
 // THEME TOGGLE
 // =============================================
 function toggleTheme() {
-  document.body.classList.toggle("dark");
-  var isDark = document.body.classList.contains("dark");
+  jQuery("body").toggleClass("dark");
+  var isDark = jQuery("body").hasClass("dark");
   localStorage.setItem("theme", isDark ? "dark" : "light");
-  document.getElementById("sunIcon").style.display = isDark ? "none" : "";
-  document.getElementById("moonIcon").style.display = isDark ? "" : "none";
+  jQuery("#sunIcon").toggle(!isDark);
+  jQuery("#moonIcon").toggle(isDark);
 }
 
 function initTheme() {
   var saved = localStorage.getItem("theme");
   if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-    document.body.classList.add("dark");
-    document.getElementById("sunIcon").style.display = "none";
-    document.getElementById("moonIcon").style.display = "";
+    jQuery("body").addClass("dark");
+    jQuery("#sunIcon").hide();
+    jQuery("#moonIcon").show();
   }
 }
 
@@ -91,8 +88,7 @@ function initTheme() {
 // MOBILE MENU
 // =============================================
 function toggleMobileMenu() {
-  var menu = document.getElementById("mobileMenu");
-  menu.style.display = menu.style.display === "none" ? "block" : "none";
+  jQuery("#mobileMenu").slideToggle(200);
 }
 
 // =============================================
@@ -100,20 +96,20 @@ function toggleMobileMenu() {
 // =============================================
 function handleNavSearch(e) {
   e.preventDefault();
-  var input = e.target.querySelector("input");
-  searchQuery = (input.value || "").trim();
+  var $input = jQuery(e.target).find("input");
+  searchQuery = jQuery.trim($input.val());
   if (searchQuery) {
     showPage("shop");
-    input.value = "";
+    $input.val("");
     toggleMobileMenu();
   }
 }
 
 function handleHeroSearch(e) {
   e.preventDefault();
-  searchQuery = (document.getElementById("heroSearchInput").value || "").trim();
+  searchQuery = jQuery.trim(jQuery("#heroSearchInput").val());
   if (searchQuery) {
-    document.getElementById("heroSearchInput").value = "";
+    jQuery("#heroSearchInput").val("");
     showPage("shop");
   }
 }
@@ -144,9 +140,8 @@ function renderListingCard(product) {
 // FEATURED GRID (Home Page)
 // =============================================
 function renderFeatured() {
-  var grid = document.getElementById("featuredGrid");
-  if (!grid) return;
-  grid.innerHTML = products.map(renderListingCard).join("");
+  var html = jQuery.map(products, function(p) { return renderListingCard(p); }).join("");
+  jQuery("#featuredGrid").html(html);
 }
 
 // =============================================
@@ -159,33 +154,27 @@ function renderShop() {
 
 function renderFilters() {
   // Category
-  var catEl = document.getElementById("categoryFilters");
-  if (catEl) {
-    catEl.innerHTML = categories.map(function(c) {
-      return '<button class="filter-btn' + (selectedCategory === c ? ' active' : '') + '" onclick="selectedCategory=\'' + c.replace(/'/g, "\\'") + '\';renderShop()">' + c + '</button>';
-    }).join("");
-  }
+  var catHtml = jQuery.map(categories, function(c) {
+    return '<button class="filter-btn' + (selectedCategory === c ? ' active' : '') + '" onclick="selectedCategory=\'' + c.replace(/'/g, "\\'") + '\';renderShop()">' + c + '</button>';
+  }).join("");
+  jQuery("#categoryFilters").html(catHtml);
 
   // Price
-  var priceEl = document.getElementById("priceFilters");
-  if (priceEl) {
-    priceEl.innerHTML = priceRanges.map(function(r, i) {
-      return '<button class="filter-btn' + (selectedPriceRange.label === r.label ? ' active' : '') + '" onclick="selectedPriceRange=priceRanges[' + i + '];renderShop()">' + r.label + '</button>';
-    }).join("");
-  }
+  var priceHtml = jQuery.map(priceRanges, function(r, i) {
+    return '<button class="filter-btn' + (selectedPriceRange.label === r.label ? ' active' : '') + '" onclick="selectedPriceRange=priceRanges[' + i + '];renderShop()">' + r.label + '</button>';
+  }).join("");
+  jQuery("#priceFilters").html(priceHtml);
 
   // Condition
-  var condEl = document.getElementById("conditionFilters");
-  if (condEl) {
-    condEl.innerHTML = conditions.map(function(c) {
-      return '<button class="filter-btn' + (selectedCondition === c ? ' active' : '') + '" onclick="selectedCondition=\'' + c.replace(/'/g, "\\'") + '\';renderShop()">' + c + '</button>';
-    }).join("");
-  }
+  var condHtml = jQuery.map(conditions, function(c) {
+    return '<button class="filter-btn' + (selectedCondition === c ? ' active' : '') + '" onclick="selectedCondition=\'' + c.replace(/'/g, "\\'") + '\';renderShop()">' + c + '</button>';
+  }).join("");
+  jQuery("#conditionFilters").html(condHtml);
 }
 
 function applyFilters() {
-  var sortBy = document.getElementById("sortSelect") ? document.getElementById("sortSelect").value : "Newest";
-  var results = products.filter(function(p) {
+  var sortBy = jQuery("#sortSelect").val() || "Newest";
+  var results = jQuery.grep(products, function(p) {
     if (selectedCategory !== "All" && p.category !== selectedCategory) return false;
     if (selectedCondition !== "All" && p.condition !== selectedCondition) return false;
     if (p.price < selectedPriceRange.min || p.price > selectedPriceRange.max) return false;
@@ -199,20 +188,15 @@ function applyFilters() {
   if (sortBy === "Price: Low to High") results.sort(function(a, b) { return a.price - b.price; });
   if (sortBy === "Price: High to Low") results.sort(function(a, b) { return b.price - a.price; });
 
-  var grid = document.getElementById("shopGrid");
-  var empty = document.getElementById("shopEmpty");
-  var title = document.getElementById("shopTitle");
-  var count = document.getElementById("shopCount");
-
-  if (title) title.textContent = searchQuery ? 'Results for "' + searchQuery + '"' : "Shop Gear";
-  if (count) count.textContent = results.length + " items found";
+  jQuery("#shopTitle").text(searchQuery ? 'Results for "' + searchQuery + '"' : "Shop Gear");
+  jQuery("#shopCount").text(results.length + " items found");
 
   if (results.length === 0) {
-    grid.innerHTML = "";
-    empty.style.display = "";
+    jQuery("#shopGrid").empty();
+    jQuery("#shopEmpty").show();
   } else {
-    empty.style.display = "none";
-    grid.innerHTML = results.map(renderListingCard).join("");
+    jQuery("#shopEmpty").hide();
+    jQuery("#shopGrid").html(jQuery.map(results, function(p) { return renderListingCard(p); }).join(""));
   }
 }
 
@@ -234,36 +218,34 @@ function filterByCategory(cat) {
 // PRODUCT DETAIL
 // =============================================
 function openProduct(id) {
-  currentProduct = products.find(function(p) { return p.id === id; });
+  currentProduct = jQuery.grep(products, function(p) { return p.id === id; })[0];
   if (!currentProduct) return;
   currentImageIndex = 0;
 
-  document.getElementById("productMainImg").src = currentProduct.images[0];
-  document.getElementById("productTitle").textContent = currentProduct.title;
-  document.getElementById("productCondition").textContent = currentProduct.condition;
-  document.getElementById("productCategory").textContent = currentProduct.category;
-  document.getElementById("productCategorySub").textContent = currentProduct.category;
-  document.getElementById("productPrice").textContent = "$" + currentProduct.price.toLocaleString();
-  document.getElementById("productDescription").textContent = currentProduct.description;
-
-  var ratingEl = document.getElementById("productRating");
-  ratingEl.innerHTML = currentProduct.rating > 0 ? "⭐ " + currentProduct.rating : "";
+  jQuery("#productMainImg").attr("src", currentProduct.images[0]);
+  jQuery("#productTitle").text(currentProduct.title);
+  jQuery("#productCondition").text(currentProduct.condition);
+  jQuery("#productCategory").text(currentProduct.category);
+  jQuery("#productCategorySub").text(currentProduct.category);
+  jQuery("#productPrice").text("$" + currentProduct.price.toLocaleString());
+  jQuery("#productDescription").text(currentProduct.description);
+  jQuery("#productRating").html(currentProduct.rating > 0 ? "⭐ " + currentProduct.rating : "");
 
   // Seller
-  document.getElementById("sellerAvatar").textContent = currentProduct.sellerAvatar;
-  document.getElementById("sellerName").textContent = currentProduct.seller;
-  document.getElementById("sellerVerified").style.display = currentProduct.verified ? "" : "none";
-  document.getElementById("sellerRating").textContent = currentProduct.sellerRating > 0 ? "⭐ " + currentProduct.sellerRating : "";
-  document.getElementById("sellerListings").textContent = currentProduct.sellerListings + " listings";
-  document.getElementById("sellerSince").textContent = "Since " + currentProduct.memberSince;
+  jQuery("#sellerAvatar").text(currentProduct.sellerAvatar);
+  jQuery("#sellerName").text(currentProduct.seller);
+  jQuery("#sellerVerified").toggle(currentProduct.verified);
+  jQuery("#sellerRating").text(currentProduct.sellerRating > 0 ? "⭐ " + currentProduct.sellerRating : "");
+  jQuery("#sellerListings").text(currentProduct.sellerListings + " listings");
+  jQuery("#sellerSince").text("Since " + currentProduct.memberSince);
 
   // Thumbs
-  var thumbs = document.getElementById("productThumbs");
-  thumbs.innerHTML = currentProduct.images.map(function(img, i) {
+  var thumbHtml = jQuery.map(currentProduct.images, function(img, i) {
     return '<button class="product-thumb' + (i === 0 ? ' active' : '') + '" onclick="selectProductImage(' + i + ')">' +
       '<img src="' + img + '" alt="Thumbnail ' + (i + 1) + '" />' +
     '</button>';
   }).join("");
+  jQuery("#productThumbs").html(thumbHtml);
 
   showPage("product");
   return false;
@@ -272,10 +254,8 @@ function openProduct(id) {
 function selectProductImage(i) {
   if (!currentProduct) return;
   currentImageIndex = i;
-  document.getElementById("productMainImg").src = currentProduct.images[i];
-  document.querySelectorAll(".product-thumb").forEach(function(t, idx) {
-    t.classList.toggle("active", idx === i);
-  });
+  jQuery("#productMainImg").attr("src", currentProduct.images[i]);
+  jQuery(".product-thumb").removeClass("active").eq(i).addClass("active");
 }
 
 function nextProductImage() {
@@ -293,15 +273,15 @@ function prevProductImage() {
 // =============================================
 function openOfferModal() {
   if (!currentProduct) return;
-  document.getElementById("offerProductTitle").textContent = currentProduct.title;
-  document.getElementById("offerProductPrice").textContent = "$" + currentProduct.price.toLocaleString();
-  document.getElementById("offerAmount").placeholder = Math.round(currentProduct.price * 0.9);
-  document.getElementById("offerModal").style.display = "";
+  jQuery("#offerProductTitle").text(currentProduct.title);
+  jQuery("#offerProductPrice").text("$" + currentProduct.price.toLocaleString());
+  jQuery("#offerAmount").attr("placeholder", Math.round(currentProduct.price * 0.9));
+  jQuery("#offerModal").fadeIn(200);
 }
 
 function closeOfferModal(e) {
   if (e && e.target !== e.currentTarget) return;
-  document.getElementById("offerModal").style.display = "none";
+  jQuery("#offerModal").fadeOut(200);
 }
 
 // =============================================
@@ -309,7 +289,7 @@ function closeOfferModal(e) {
 // =============================================
 function addToCart() {
   if (!currentProduct) return;
-  var existing = cart.find(function(item) { return item.id === currentProduct.id; });
+  var existing = jQuery.grep(cart, function(item) { return item.id === currentProduct.id; })[0];
   if (existing) {
     existing.quantity++;
   } else {
@@ -328,13 +308,13 @@ function addToCart() {
 }
 
 function removeFromCart(id) {
-  cart = cart.filter(function(item) { return item.id !== id; });
+  cart = jQuery.grep(cart, function(item) { return item.id !== id; });
   updateCartBadge();
   renderCart();
 }
 
 function updateQty(id, delta) {
-  var item = cart.find(function(i) { return i.id === id; });
+  var item = jQuery.grep(cart, function(i) { return i.id === id; })[0];
   if (!item) return;
   item.quantity += delta;
   if (item.quantity <= 0) { removeFromCart(id); return; }
@@ -348,41 +328,40 @@ function clearCartAll() {
 }
 
 function updateCartBadge() {
-  var total = cart.reduce(function(s, i) { return s + i.quantity; }, 0);
-  var badge = document.getElementById("cartBadge");
-  badge.textContent = total;
-  badge.style.display = total > 0 ? "" : "none";
+  var total = 0;
+  jQuery.each(cart, function(i, item) { total += item.quantity; });
+  jQuery("#cartBadge").text(total).toggle(total > 0);
 }
 
 function getCartTotals() {
-  var subtotal = cart.reduce(function(s, i) { return s + i.price * i.quantity; }, 0);
+  var subtotal = 0;
+  var items = 0;
+  jQuery.each(cart, function(i, item) {
+    subtotal += item.price * item.quantity;
+    items += item.quantity;
+  });
   var shipping = subtotal > 500 ? 0 : 14.99;
   var tax = subtotal * 0.08;
   var total = subtotal + shipping + tax;
-  return { subtotal: subtotal, shipping: shipping, tax: tax, total: total, items: cart.reduce(function(s, i) { return s + i.quantity; }, 0) };
+  return { subtotal: subtotal, shipping: shipping, tax: tax, total: total, items: items };
 }
 
 function renderCart() {
-  var emptyEl = document.getElementById("cartEmpty");
-  var contentEl = document.getElementById("cartContent");
-  var countEl = document.getElementById("cartItemCount");
-
   if (cart.length === 0) {
-    emptyEl.style.display = "";
-    contentEl.style.display = "none";
-    countEl.textContent = "";
+    jQuery("#cartEmpty").show();
+    jQuery("#cartContent").hide();
+    jQuery("#cartItemCount").text("");
     return;
   }
 
-  emptyEl.style.display = "none";
-  contentEl.style.display = "";
+  jQuery("#cartEmpty").hide();
+  jQuery("#cartContent").show();
 
   var t = getCartTotals();
-  countEl.textContent = "(" + t.items + ")";
+  jQuery("#cartItemCount").text("(" + t.items + ")");
 
   // Items
-  var itemsEl = document.getElementById("cartItems");
-  itemsEl.innerHTML = cart.map(function(item) {
+  var itemsHtml = jQuery.map(cart, function(item) {
     return '<div class="cart-item">' +
       '<a href="#" onclick="openProduct(\'' + item.id + '\')" class="cart-item-image"><img src="' + item.image + '" alt="' + item.title + '" /></a>' +
       '<div class="cart-item-info">' +
@@ -404,13 +383,14 @@ function renderCart() {
       '</div>' +
     '</div>';
   }).join("");
+  jQuery("#cartItems").html(itemsHtml);
 
   // Summary
-  document.getElementById("cartSubtotal").textContent = "$" + t.subtotal.toLocaleString();
-  document.getElementById("cartShipping").textContent = t.shipping === 0 ? "Free" : "$" + t.shipping.toFixed(2);
-  document.getElementById("cartTax").textContent = "$" + t.tax.toFixed(2);
-  document.getElementById("cartTotal").textContent = "$" + t.total.toFixed(2);
-  document.getElementById("freeShippingNote").style.display = t.shipping === 0 ? "" : "none";
+  jQuery("#cartSubtotal").text("$" + t.subtotal.toLocaleString());
+  jQuery("#cartShipping").text(t.shipping === 0 ? "Free" : "$" + t.shipping.toFixed(2));
+  jQuery("#cartTax").text("$" + t.tax.toFixed(2));
+  jQuery("#cartTotal").text("$" + t.total.toFixed(2));
+  jQuery("#freeShippingNote").toggle(t.shipping === 0);
 }
 
 // =============================================
@@ -419,8 +399,7 @@ function renderCart() {
 function renderCheckout() {
   var t = getCartTotals();
 
-  var itemsEl = document.getElementById("checkoutItems");
-  itemsEl.innerHTML = cart.map(function(item) {
+  var itemsHtml = jQuery.map(cart, function(item) {
     return '<div class="checkout-item">' +
       '<img src="' + item.image + '" alt="' + item.title + '" />' +
       '<div class="checkout-item-info">' +
@@ -430,16 +409,16 @@ function renderCheckout() {
       '<span class="checkout-item-price">$' + (item.price * item.quantity).toLocaleString() + '</span>' +
     '</div>';
   }).join("");
+  jQuery("#checkoutItems").html(itemsHtml);
 
-  document.getElementById("checkoutSubtotal").textContent = "$" + t.subtotal.toLocaleString();
-  document.getElementById("checkoutShipping").textContent = t.shipping === 0 ? "Free" : "$" + t.shipping.toFixed(2);
-  document.getElementById("checkoutTax").textContent = "$" + t.tax.toFixed(2);
-  document.getElementById("checkoutTotal").textContent = "$" + t.total.toFixed(2);
+  jQuery("#checkoutSubtotal").text("$" + t.subtotal.toLocaleString());
+  jQuery("#checkoutShipping").text(t.shipping === 0 ? "Free" : "$" + t.shipping.toFixed(2));
+  jQuery("#checkoutTax").text("$" + t.tax.toFixed(2));
+  jQuery("#checkoutTotal").text("$" + t.total.toFixed(2));
 }
 
 function handleCheckout(e) {
   e.preventDefault();
-  // In a real app, this would redirect to Stripe
   alert("In production, you would be redirected to Stripe for secure payment.");
   cart = [];
   updateCartBadge();
@@ -451,12 +430,12 @@ function handleCheckout(e) {
 // =============================================
 function toggleAuthMode() {
   isLoginMode = !isLoginMode;
-  document.getElementById("authTitle").textContent = isLoginMode ? "Welcome Back" : "Create Account";
-  document.getElementById("authSubtitle").textContent = isLoginMode ? "Sign in to manage your listings" : "Join the marketplace and start selling";
-  document.getElementById("authSubmitBtn").textContent = isLoginMode ? "Sign In" : "Sign Up";
-  document.getElementById("authToggleText").textContent = isLoginMode ? "Don't have an account?" : "Already have an account?";
-  document.getElementById("authToggleBtn").textContent = isLoginMode ? "Sign up" : "Sign in";
-  document.getElementById("signupFields").style.display = isLoginMode ? "none" : "";
+  jQuery("#authTitle").text(isLoginMode ? "Welcome Back" : "Create Account");
+  jQuery("#authSubtitle").text(isLoginMode ? "Sign in to manage your listings" : "Join the marketplace and start selling");
+  jQuery("#authSubmitBtn").text(isLoginMode ? "Sign In" : "Sign Up");
+  jQuery("#authToggleText").text(isLoginMode ? "Don't have an account?" : "Already have an account?");
+  jQuery("#authToggleBtn").text(isLoginMode ? "Sign up" : "Sign in");
+  jQuery("#signupFields").toggle(!isLoginMode);
 }
 
 function handleAuth(e) {
@@ -476,23 +455,17 @@ function handleSaveProfile(e) {
 // SELL PAGE
 // =============================================
 function initSellPage() {
-  // Category pills
-  var catPills = document.getElementById("sellCategoryPills");
-  if (catPills) {
-    var sellCategories = ["Guitars & Basses", "Synthesizers", "Headphones", "Speakers & Monitors", "Microphones", "DJ Equipment"];
-    catPills.innerHTML = sellCategories.map(function(c) {
-      return '<button class="pill-btn' + (sellCategory === c ? ' active' : '') + '" onclick="selectSellCategory(\'' + c.replace(/'/g, "\\'") + '\')">' + c + '</button>';
-    }).join("");
-  }
+  var sellCategories = ["Guitars & Basses", "Synthesizers", "Headphones", "Speakers & Monitors", "Microphones", "DJ Equipment"];
+  var catHtml = jQuery.map(sellCategories, function(c) {
+    return '<button class="pill-btn' + (sellCategory === c ? ' active' : '') + '" onclick="selectSellCategory(\'' + c.replace(/'/g, "\\'") + '\')">' + c + '</button>';
+  }).join("");
+  jQuery("#sellCategoryPills").html(catHtml);
 
-  // Condition pills
-  var condPills = document.getElementById("sellConditionPills");
-  if (condPills) {
-    var sellConditions = ["Like New", "Excellent", "Good", "Fair"];
-    condPills.innerHTML = sellConditions.map(function(c) {
-      return '<button class="pill-btn' + (sellCondition === c ? ' active' : '') + '" onclick="selectSellCondition(\'' + c + '\')">' + c + '</button>';
-    }).join("");
-  }
+  var sellConditions = ["Like New", "Excellent", "Good", "Fair"];
+  var condHtml = jQuery.map(sellConditions, function(c) {
+    return '<button class="pill-btn' + (sellCondition === c ? ' active' : '') + '" onclick="selectSellCondition(\'' + c + '\')">' + c + '</button>';
+  }).join("");
+  jQuery("#sellConditionPills").html(condHtml);
 
   updateListingPreview();
 }
@@ -523,35 +496,34 @@ function removeUploadedImage(i) {
 }
 
 function renderUploadThumbs() {
-  var el = document.getElementById("uploadThumbs");
-  el.innerHTML = uploadedImages.map(function(src, i) {
+  var html = jQuery.map(uploadedImages, function(src, i) {
     return '<div class="upload-thumb">' +
       '<img src="' + src + '" alt="Upload ' + (i + 1) + '" />' +
       '<button class="upload-thumb-remove" onclick="removeUploadedImage(' + i + ')">✕</button>' +
     '</div>';
   }).join("");
+  jQuery("#uploadThumbs").html(html);
 }
 
 function updateListingPreview() {
-  var title = document.getElementById("sellTitle") ? document.getElementById("sellTitle").value : "";
-  var price = document.getElementById("sellPrice") ? document.getElementById("sellPrice").value : "";
-  var preview = document.getElementById("listingPreview");
+  var title = jQuery("#sellTitle").val() || "";
+  var price = jQuery("#sellPrice").val() || "";
+  var $preview = jQuery("#listingPreview");
 
   if (title || price) {
-    preview.style.display = "";
-    document.getElementById("previewTitle").textContent = title || "";
-    document.getElementById("previewPrice").textContent = price ? "$" + Number(price).toLocaleString() : "";
-    document.getElementById("previewCondition").textContent = sellCondition;
-    document.getElementById("previewCondition").style.display = sellCondition ? "" : "none";
-    document.getElementById("previewCategory").textContent = sellCategory || "";
+    $preview.slideDown(200);
+    jQuery("#previewTitle").text(title);
+    jQuery("#previewPrice").text(price ? "$" + Number(price).toLocaleString() : "");
+    jQuery("#previewCondition").text(sellCondition).toggle(!!sellCondition);
+    jQuery("#previewCategory").text(sellCategory || "");
   } else {
-    preview.style.display = "none";
+    $preview.slideUp(200);
   }
 }
 
 function handlePublishListing() {
-  var title = document.getElementById("sellTitle").value.trim();
-  var price = document.getElementById("sellPrice").value;
+  var title = jQuery.trim(jQuery("#sellTitle").val());
+  var price = jQuery("#sellPrice").val();
 
   if (!title || !price || !sellCategory || !sellCondition) {
     alert("Please fill in all required fields (title, price, category, condition).");
@@ -563,18 +535,16 @@ function handlePublishListing() {
 }
 
 // =============================================
-// LIVE PREVIEW LISTENERS (Sell Page)
+// EVENT DELEGATION (jQuery .on())
 // =============================================
-document.addEventListener("input", function(e) {
-  if (e.target.id === "sellTitle" || e.target.id === "sellPrice") {
-    updateListingPreview();
-  }
+jQuery(document).on("input", "#sellTitle, #sellPrice", function() {
+  updateListingPreview();
 });
 
 // =============================================
 // INIT
 // =============================================
-document.addEventListener("DOMContentLoaded", function() {
+jQuery(function() {
   initTheme();
   renderFeatured();
   updateCartBadge();
