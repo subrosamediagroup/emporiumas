@@ -1,0 +1,228 @@
+{
+  "title": "MPortiums Categories Section",
+  "type": "section",
+  "version": "0.4",
+  "page_settings": [],
+  "content": [
+    {
+      "id": "categories_section",
+      "elType": "section",
+      "settings": {
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "80", "left": "0" },
+        "content_width": { "unit": "px", "size": 1200 }
+      },
+      "elements": [
+        {
+          "id": "categories_header_col",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "categories_title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Browse by Category",
+                "size": "h2",
+                "header_size": "h2",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_size": { "unit": "px", "size": 36 },
+                "typography_font_weight": "700",
+                "title_color": "#141414"
+              }
+            },
+            {
+              "id": "categories_subtitle",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Find exactly what you're looking for",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Inter",
+                "text_color": "#5C6370",
+                "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "48", "left": "0" }
+              }
+            }
+          ]
+        },
+        {
+          "id": "categories_grid",
+          "elType": "section",
+          "isInner": true,
+          "settings": {
+            "structure": "60",
+            "gap": "default",
+            "layout": "boxed"
+          },
+          "elements": [
+            {
+              "id": "cat_guitars",
+              "elType": "column",
+              "settings": { "_column_size": 16 },
+              "elements": [
+                {
+                  "id": "cat_guitars_box",
+                  "elType": "widget",
+                  "widgetType": "icon-box",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-guitar", "library": "fa-solid" },
+                    "title_text": "Guitars & Basses",
+                    "description_text": "8,200+",
+                    "position": "top",
+                    "title_typography_font_family": "Space Grotesk",
+                    "title_typography_font_size": { "unit": "px", "size": 14 },
+                    "title_typography_font_weight": "500",
+                    "description_typography_font_family": "Inter",
+                    "description_color": "#5C6370",
+                    "primary_color": "#C62828",
+                    "icon_space": { "unit": "px", "size": 12 },
+                    "text_align": "center",
+                    "link": { "url": "/shop/?category=guitars-basses" },
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#E5E7EB",
+                    "border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" },
+                    "box_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cat_synths",
+              "elType": "column",
+              "settings": { "_column_size": 16 },
+              "elements": [
+                {
+                  "id": "cat_synths_box",
+                  "elType": "widget",
+                  "widgetType": "icon-box",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-keyboard", "library": "fa-solid" },
+                    "title_text": "Synthesizers",
+                    "description_text": "4,100+",
+                    "position": "top",
+                    "text_align": "center",
+                    "primary_color": "#C62828",
+                    "link": { "url": "/shop/?category=synthesizers" },
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#E5E7EB",
+                    "border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" },
+                    "box_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cat_headphones",
+              "elType": "column",
+              "settings": { "_column_size": 16 },
+              "elements": [
+                {
+                  "id": "cat_headphones_box",
+                  "elType": "widget",
+                  "widgetType": "icon-box",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-headphones", "library": "fa-solid" },
+                    "title_text": "Headphones",
+                    "description_text": "6,500+",
+                    "position": "top",
+                    "text_align": "center",
+                    "primary_color": "#C62828",
+                    "link": { "url": "/shop/?category=headphones" },
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#E5E7EB",
+                    "border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" },
+                    "box_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cat_speakers",
+              "elType": "column",
+              "settings": { "_column_size": 16 },
+              "elements": [
+                {
+                  "id": "cat_speakers_box",
+                  "elType": "widget",
+                  "widgetType": "icon-box",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-volume-up", "library": "fa-solid" },
+                    "title_text": "Speakers & Monitors",
+                    "description_text": "3,800+",
+                    "position": "top",
+                    "text_align": "center",
+                    "primary_color": "#C62828",
+                    "link": { "url": "/shop/?category=speakers-monitors" },
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#E5E7EB",
+                    "border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" },
+                    "box_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cat_mics",
+              "elType": "column",
+              "settings": { "_column_size": 16 },
+              "elements": [
+                {
+                  "id": "cat_mics_box",
+                  "elType": "widget",
+                  "widgetType": "icon-box",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-microphone", "library": "fa-solid" },
+                    "title_text": "Microphones",
+                    "description_text": "2,900+",
+                    "position": "top",
+                    "text_align": "center",
+                    "primary_color": "#C62828",
+                    "link": { "url": "/shop/?category=microphones" },
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#E5E7EB",
+                    "border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" },
+                    "box_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cat_dj",
+              "elType": "column",
+              "settings": { "_column_size": 16 },
+              "elements": [
+                {
+                  "id": "cat_dj_box",
+                  "elType": "widget",
+                  "widgetType": "icon-box",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-music", "library": "fa-solid" },
+                    "title_text": "DJ Equipment",
+                    "description_text": "3,400+",
+                    "position": "top",
+                    "text_align": "center",
+                    "primary_color": "#C62828",
+                    "link": { "url": "/shop/?category=dj-equipment" },
+                    "border_border": "solid",
+                    "border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "border_color": "#E5E7EB",
+                    "border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" },
+                    "box_padding": { "unit": "px", "top": "24", "right": "24", "bottom": "24", "left": "24" }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

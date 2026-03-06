@@ -1,0 +1,208 @@
+{
+  "title": "MPortiums How It Works Section",
+  "type": "section",
+  "version": "0.4",
+  "page_settings": [],
+  "content": [
+    {
+      "id": "hiw_section",
+      "elType": "section",
+      "settings": {
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "80", "left": "0" },
+        "content_width": { "unit": "px", "size": 1200 }
+      },
+      "elements": [
+        {
+          "id": "hiw_header_col",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "hiw_title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "How It Works",
+                "size": "h2",
+                "align": "center",
+                "typography_typography": "custom",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_size": { "unit": "px", "size": 36 },
+                "typography_font_weight": "700"
+              }
+            },
+            {
+              "id": "hiw_subtitle",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Simple, secure, and built for gear lovers",
+                "align": "center",
+                "text_color": "#5C6370",
+                "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "48", "left": "0" }
+              }
+            }
+          ]
+        },
+        {
+          "id": "hiw_steps",
+          "elType": "section",
+          "isInner": true,
+          "settings": { "structure": "30", "gap": "extended" },
+          "elements": [
+            {
+              "id": "step_1_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "step_1_number",
+                  "elType": "widget",
+                  "widgetType": "counter",
+                  "settings": {
+                    "ending_number": 1,
+                    "prefix": "",
+                    "suffix": "",
+                    "title": "",
+                    "number_color": "#FFFFFF",
+                    "number_typography_font_size": { "unit": "px", "size": 20 },
+                    "number_typography_font_weight": "700",
+                    "align": "center"
+                  }
+                },
+                {
+                  "id": "step_1_icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-camera", "library": "fa-solid" },
+                    "primary_color": "#C62828",
+                    "size": { "unit": "px", "size": 28 },
+                    "align": "center",
+                    "padding": { "unit": "px", "top": "16", "right": "16", "bottom": "16", "left": "16" },
+                    "background_color": "rgba(198,40,40,0.1)",
+                    "border_radius": { "unit": "px", "top": "16", "right": "16", "bottom": "16", "left": "16" }
+                  }
+                },
+                {
+                  "id": "step_1_title",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "List or Browse",
+                    "size": "h3",
+                    "align": "center",
+                    "typography_font_family": "Space Grotesk",
+                    "typography_font_size": { "unit": "px", "size": 18 },
+                    "typography_font_weight": "600"
+                  }
+                },
+                {
+                  "id": "step_1_desc",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "Snap a photo, set your price, and list in minutes. Or explore thousands of listings from verified sellers.",
+                    "align": "center",
+                    "text_color": "#5C6370",
+                    "typography_font_size": { "unit": "px", "size": 14 }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "step_2_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "step_2_icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-comments", "library": "fa-solid" },
+                    "primary_color": "#C62828",
+                    "size": { "unit": "px", "size": 28 },
+                    "align": "center",
+                    "padding": { "unit": "px", "top": "16", "right": "16", "bottom": "16", "left": "16" },
+                    "background_color": "rgba(198,40,40,0.1)",
+                    "border_radius": { "unit": "px", "top": "16", "right": "16", "bottom": "16", "left": "16" }
+                  }
+                },
+                {
+                  "id": "step_2_title",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Connect & Negotiate",
+                    "size": "h3",
+                    "align": "center",
+                    "typography_font_family": "Space Grotesk",
+                    "typography_font_size": { "unit": "px", "size": 18 },
+                    "typography_font_weight": "600"
+                  }
+                },
+                {
+                  "id": "step_2_desc",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "Chat with buyers or sellers, make offers, and negotiate the best deal.",
+                    "align": "center",
+                    "text_color": "#5C6370",
+                    "typography_font_size": { "unit": "px", "size": 14 }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "step_3_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "step_3_icon",
+                  "elType": "widget",
+                  "widgetType": "icon",
+                  "settings": {
+                    "selected_icon": { "value": "fas fa-shield-alt", "library": "fa-solid" },
+                    "primary_color": "#C62828",
+                    "size": { "unit": "px", "size": 28 },
+                    "align": "center",
+                    "padding": { "unit": "px", "top": "16", "right": "16", "bottom": "16", "left": "16" },
+                    "background_color": "rgba(198,40,40,0.1)",
+                    "border_radius": { "unit": "px", "top": "16", "right": "16", "bottom": "16", "left": "16" }
+                  }
+                },
+                {
+                  "id": "step_3_title",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Secure Transaction",
+                    "size": "h3",
+                    "align": "center",
+                    "typography_font_family": "Space Grotesk",
+                    "typography_font_size": { "unit": "px", "size": 18 },
+                    "typography_font_weight": "600"
+                  }
+                },
+                {
+                  "id": "step_3_desc",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "Pay securely through Stripe. Buyer protection included on every transaction.",
+                    "align": "center",
+                    "text_color": "#5C6370",
+                    "typography_font_size": { "unit": "px", "size": 14 }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

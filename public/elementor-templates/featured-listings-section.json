@@ -1,0 +1,240 @@
+{
+  "title": "MPortiums Featured Listings Section",
+  "type": "section",
+  "version": "0.4",
+  "page_settings": [],
+  "content": [
+    {
+      "id": "featured_section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#F9FAFB",
+        "border_border": "solid",
+        "border_width": { "unit": "px", "top": "1", "right": "0", "bottom": "0", "left": "0" },
+        "border_color": "#E5E7EB",
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "80", "left": "0" },
+        "content_width": { "unit": "px", "size": 1200 }
+      },
+      "elements": [
+        {
+          "id": "featured_header_col",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "featured_header_inner",
+              "elType": "section",
+              "isInner": true,
+              "settings": { "structure": "20" },
+              "elements": [
+                {
+                  "id": "featured_title_col",
+                  "elType": "column",
+                  "settings": { "_column_size": 70 },
+                  "elements": [
+                    {
+                      "id": "featured_title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Trending Gear",
+                        "size": "h2",
+                        "typography_typography": "custom",
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_size": { "unit": "px", "size": 36 },
+                        "typography_font_weight": "700"
+                      }
+                    },
+                    {
+                      "id": "featured_subtitle",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "Hot listings picked for you",
+                        "text_color": "#5C6370"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "featured_link_col",
+                  "elType": "column",
+                  "settings": { "_column_size": 30, "align": "flex-end", "content_position": "bottom" },
+                  "elements": [
+                    {
+                      "id": "view_all_link",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "View all →",
+                        "link": { "url": "/shop/" },
+                        "button_type": "link",
+                        "typography_font_family": "Inter",
+                        "button_text_color": "#C62828"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "listings_grid",
+          "elType": "section",
+          "isInner": true,
+          "settings": { "structure": "30", "gap": "default" },
+          "elements": [
+            {
+              "id": "listing_1_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "listing_1",
+                  "elType": "widget",
+                  "widgetType": "image-box",
+                  "settings": {
+                    "image": { "url": "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=400&h=400&fit=crop" },
+                    "title_text": "Fender Stratocaster '62 Reissue",
+                    "description_text": "$1,450 · Excellent · VintageAxes ★ 4.9",
+                    "link": { "url": "/product/sample-1" },
+                    "image_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "0", "left": "0" },
+                    "title_typography_font_family": "Space Grotesk",
+                    "title_typography_font_weight": "600",
+                    "description_typography_font_family": "Inter",
+                    "box_border_border": "solid",
+                    "box_border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "box_border_color": "#E5E7EB",
+                    "box_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "listing_2_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "listing_2",
+                  "elType": "widget",
+                  "widgetType": "image-box",
+                  "settings": {
+                    "image": { "url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop" },
+                    "title_text": "Roland Juno-106 Synthesizer",
+                    "description_text": "$2,800 · Good · SynthWizard ★ 5.0",
+                    "link": { "url": "/product/sample-2" },
+                    "image_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "0", "left": "0" },
+                    "box_border_border": "solid",
+                    "box_border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "box_border_color": "#E5E7EB",
+                    "box_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "listing_3_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "listing_3",
+                  "elType": "widget",
+                  "widgetType": "image-box",
+                  "settings": {
+                    "image": { "url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" },
+                    "title_text": "Sennheiser HD 650 Headphones",
+                    "description_text": "$280 · Like New · AudioPhile99 ★ 4.8",
+                    "link": { "url": "/product/sample-3" },
+                    "image_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "0", "left": "0" },
+                    "box_border_border": "solid",
+                    "box_border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "box_border_color": "#E5E7EB",
+                    "box_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "listings_grid_row2",
+          "elType": "section",
+          "isInner": true,
+          "settings": { "structure": "30", "gap": "default", "margin": { "unit": "px", "top": "20" } },
+          "elements": [
+            {
+              "id": "listing_4_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "listing_4",
+                  "elType": "widget",
+                  "widgetType": "image-box",
+                  "settings": {
+                    "image": { "url": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop" },
+                    "title_text": "Yamaha HS8 Studio Monitors (Pair)",
+                    "description_text": "$520 · Excellent · StudioGear ★ 4.7",
+                    "link": { "url": "/product/sample-4" },
+                    "box_border_border": "solid",
+                    "box_border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "box_border_color": "#E5E7EB",
+                    "box_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "listing_5_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "listing_5",
+                  "elType": "widget",
+                  "widgetType": "image-box",
+                  "settings": {
+                    "image": { "url": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop" },
+                    "title_text": "Shure SM7B Microphone",
+                    "description_text": "$340 · Like New · ProAudioDeals ★ 4.9",
+                    "link": { "url": "/product/sample-5" },
+                    "box_border_border": "solid",
+                    "box_border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "box_border_color": "#E5E7EB",
+                    "box_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "listing_6_col",
+              "elType": "column",
+              "settings": { "_column_size": 33 },
+              "elements": [
+                {
+                  "id": "listing_6",
+                  "elType": "widget",
+                  "widgetType": "image-box",
+                  "settings": {
+                    "image": { "url": "https://images.unsplash.com/photo-1571327073757-71d13c24de30?w=400&h=400&fit=crop" },
+                    "title_text": "Pioneer CDJ-2000NXS2",
+                    "description_text": "$1,600 · Good · DJDepot ★ 4.6",
+                    "link": { "url": "/product/sample-6" },
+                    "box_border_border": "solid",
+                    "box_border_width": { "unit": "px", "top": "1", "right": "1", "bottom": "1", "left": "1" },
+                    "box_border_color": "#E5E7EB",
+                    "box_border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

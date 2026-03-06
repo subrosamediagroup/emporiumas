@@ -1,0 +1,137 @@
+{
+  "title": "MPortiums Hero Section",
+  "type": "section",
+  "version": "0.4",
+  "page_settings": [],
+  "content": [
+    {
+      "id": "hero_section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "height": "min-height",
+        "custom_height": { "unit": "vh", "size": 85 },
+        "background_background": "classic",
+        "background_image": { "url": "", "id": "" },
+        "background_position": "center center",
+        "background_size": "cover",
+        "background_overlay_background": "gradient",
+        "background_overlay_color": "#000000",
+        "background_overlay_color_b": "rgba(0,0,0,0)",
+        "background_overlay_gradient_angle": { "unit": "deg", "size": 90 },
+        "background_overlay_opacity": { "unit": "px", "size": 0.75 },
+        "content_position": "middle",
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "0", "left": "0" }
+      },
+      "elements": [
+        {
+          "id": "hero_column",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100,
+            "content_position": "center"
+          },
+          "elements": [
+            {
+              "id": "hero_badge",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<span style=\"display:inline-block;padding:6px 16px;border:1px solid rgba(198,40,40,0.3);background:rgba(198,40,40,0.1);border-radius:9999px;font-size:12px;font-weight:500;letter-spacing:0.05em;color:#C62828;\">THE #1 MARKETPLACE FOR USED AUDIO GEAR</span>",
+                "align": "left"
+              }
+            },
+            {
+              "id": "hero_title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Buy & Sell<br/><span style=\"color:#C62828;\">Premium Gear</span>",
+                "size": "h1",
+                "header_size": "h1",
+                "typography_typography": "custom",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_size": { "unit": "px", "size": 64 },
+                "typography_font_size_tablet": { "unit": "px", "size": 48 },
+                "typography_font_size_mobile": { "unit": "px", "size": 40 },
+                "typography_font_weight": "700",
+                "typography_line_height": { "unit": "em", "size": 1.1 },
+                "title_color": "#FFFFFF",
+                "align": "left"
+              }
+            },
+            {
+              "id": "hero_description",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "The trusted marketplace for audio hardware, synths, guitars, and studio equipment. Thousands of listings from verified sellers.",
+                "typography_typography": "custom",
+                "typography_font_family": "Inter",
+                "typography_font_size": { "unit": "px", "size": 18 },
+                "typography_color": "rgba(255,255,255,0.7)",
+                "align": "left",
+                "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "32", "left": "0" }
+              }
+            },
+            {
+              "id": "hero_search_row",
+              "elType": "section",
+              "isInner": true,
+              "settings": {
+                "layout": "full_width",
+                "gap": "default",
+                "structure": "20"
+              },
+              "elements": [
+                {
+                  "id": "search_col",
+                  "elType": "column",
+                  "settings": { "_column_size": 60 },
+                  "elements": [
+                    {
+                      "id": "hero_search",
+                      "elType": "widget",
+                      "widgetType": "search-form",
+                      "settings": {
+                        "placeholder": "What gear are you looking for?",
+                        "skin": "classic",
+                        "button_type": "icon",
+                        "input_typography_font_family": "Inter",
+                        "input_size": "md"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "button_col",
+                  "elType": "column",
+                  "settings": { "_column_size": 40 },
+                  "elements": [
+                    {
+                      "id": "hero_button",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Browse Gear →",
+                        "link": { "url": "/shop/", "is_external": false },
+                        "size": "lg",
+                        "typography_typography": "custom",
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "600",
+                        "background_color": "#C62828",
+                        "button_text_color": "#FFFFFF",
+                        "border_radius": { "unit": "px", "top": "12", "right": "12", "bottom": "12", "left": "12" },
+                        "button_padding": { "unit": "px", "top": "16", "right": "32", "bottom": "16", "left": "32" }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
