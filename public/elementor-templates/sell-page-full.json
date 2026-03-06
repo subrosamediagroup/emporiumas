@@ -1,0 +1,181 @@
+{
+  "title": "MPortiums Sell Page (Full)",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {"template": "elementor_canvas"},
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "96", "bottom": "10", "unit": "px"},
+        "content_width": {"size": 900, "unit": "px"},
+        "background_color": "#0A0A0A"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "List Your Gear",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 30, "unit": "px"},
+                "title_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color:rgba(255,255,255,0.5);font-size:14px;'>Fill out the details below to create your listing.</p>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 900, "unit": "px"},
+        "background_color": "#0A0A0A",
+        "padding": {"top": "20", "bottom": "60", "unit": "px"}
+      },
+      "elements": [
+        {
+          "_comment": "Photos + Title + Description",
+          "elType": "column",
+          "settings": {"_column_size": 60},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='font-size:14px;font-weight:600;color:#FFFFFF;margin-bottom:8px;'><i class='fas fa-images' style='color:#C62828;margin-right:8px;'></i>Photos <span style='font-size:12px;color:rgba(255,255,255,0.4);'>(0/8)</span></p><div style='border:2px dashed rgba(255,255,255,0.15);border-radius:12px;padding:40px;text-align:center;cursor:pointer;'><i class='fas fa-cloud-upload-alt' style='font-size:32px;color:rgba(255,255,255,0.3);'></i><p style='color:rgba(255,255,255,0.4);font-size:14px;margin-top:12px;'>Click or drag photos here</p></div>",
+                "_element_note": "Replace with file upload widget or custom JS"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"color": "rgba(255,255,255,0.1)", "gap": {"size": 24, "unit": "px"}}
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<label style='font-size:14px;font-weight:600;color:#FFFFFF;display:flex;align-items:center;gap:8px;margin-bottom:8px;'><i class='fas fa-tag' style='color:#C62828;'></i>Title *</label>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_fields": [
+                  {"field_type": "text", "field_label": "", "placeholder": "e.g. Fender Stratocaster '62 Reissue", "width": "100"}
+                ],
+                "show_submit": "no",
+                "input_background_color": "rgba(255,255,255,0.05)",
+                "input_border_color": "rgba(255,255,255,0.1)",
+                "input_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<label style='font-size:14px;font-weight:600;color:#FFFFFF;display:flex;align-items:center;gap:8px;margin-bottom:8px;margin-top:16px;'><i class='fas fa-info-circle' style='color:#C62828;'></i>Description</label>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_fields": [
+                  {"field_type": "textarea", "field_label": "", "placeholder": "Describe condition, history, what's included...", "rows": 5, "width": "100"}
+                ],
+                "show_submit": "no",
+                "input_background_color": "rgba(255,255,255,0.05)",
+                "input_border_color": "rgba(255,255,255,0.1)",
+                "input_color": "#FFFFFF"
+              }
+            }
+          ]
+        },
+        {
+          "_comment": "Price + Category + Condition + Preview",
+          "elType": "column",
+          "settings": {"_column_size": 40},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<label style='font-size:14px;font-weight:600;color:#FFFFFF;display:flex;align-items:center;gap:8px;margin-bottom:8px;'><i class='fas fa-dollar-sign' style='color:#C62828;'></i>Price *</label>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_fields": [
+                  {"field_type": "number", "field_label": "", "placeholder": "0", "width": "100"}
+                ],
+                "show_submit": "no",
+                "input_background_color": "rgba(255,255,255,0.05)",
+                "input_border_color": "rgba(255,255,255,0.1)",
+                "input_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<label style='font-size:14px;font-weight:600;color:#FFFFFF;display:flex;align-items:center;gap:8px;margin:16px 0 8px;'><i class='fas fa-box' style='color:#C62828;'></i>Category *</label><div style='display:flex;flex-wrap:wrap;gap:8px;'><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Guitars & Basses</span><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Synthesizers</span><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Headphones</span><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Speakers & Monitors</span><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Microphones</span><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>DJ Equipment</span></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<label style='font-size:14px;font-weight:600;color:#FFFFFF;display:flex;align-items:center;gap:8px;margin:16px 0 8px;'><i class='fas fa-star' style='color:#C62828;'></i>Condition *</label><div style='display:flex;flex-wrap:wrap;gap:8px;'><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Like New</span><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Excellent</span><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Good</span><span style='padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:9999px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;'>Fair</span></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"color": "rgba(255,255,255,0.1)", "gap": {"size": 24, "unit": "px"}}
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;background:rgba(255,255,255,0.03);'><p style='font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.5);margin-bottom:12px;font-family:Space Grotesk;'>Your Seller Profile</p><div style='display:flex;align-items:center;gap:12px;'><div style='width:40px;height:40px;border-radius:50%;background:rgba(198,40,40,0.1);display:flex;align-items:center;justify-content:center;'><i class='fas fa-user' style='color:#C62828;'></i></div><div><p style='color:#FFFFFF;font-family:Space Grotesk;font-weight:600;font-size:14px;margin:0;'>Seller</p><p style='color:rgba(255,255,255,0.5);font-size:12px;margin:2px 0 0;'>Sign in to build your reputation</p></div></div></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Publish Listing",
+                "size": "lg",
+                "background_color": "#C62828",
+                "button_text_color": "#FFFFFF",
+                "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "width": {"size": 100, "unit": "%"},
+                "margin": {"top": "24", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

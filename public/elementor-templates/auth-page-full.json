@@ -1,0 +1,68 @@
+{
+  "title": "MPortiums Auth Page (Full)",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {"template": "elementor_canvas"},
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "height": "min-height",
+        "custom_height": {"size": 100, "unit": "vh"},
+        "content_position": "middle",
+        "background_color": "#0A0A0A"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100, "align": "center"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='max-width:400px;margin:0 auto;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:32px;background:rgba(255,255,255,0.03);'><h1 style='font-family:Space Grotesk;font-weight:700;font-size:24px;color:#FFFFFF;margin-bottom:4px;'>Welcome Back</h1><p style='color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:24px;'>Sign in to manage your listings</p></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "Sign In",
+                "form_fields": [
+                  {"field_type": "email", "field_label": "Email", "required": "yes", "placeholder": "you@example.com", "width": "100"},
+                  {"field_type": "password", "field_label": "Password", "required": "yes", "placeholder": "••••••••", "width": "100"}
+                ],
+                "button_text": "Sign In",
+                "button_size": "md",
+                "button_width": "100",
+                "button_background_color": "#C62828",
+                "button_color": "#FFFFFF",
+                "button_border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                "input_background_color": "rgba(255,255,255,0.05)",
+                "input_border_color": "rgba(255,255,255,0.1)",
+                "input_color": "#FFFFFF",
+                "label_color": "#FFFFFF",
+                "form_column_width": {"size": 400, "unit": "px"},
+                "column_gap": {"size": 0, "unit": "px"},
+                "_element_note": "Toggle between Sign In / Sign Up via JS"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"color": "rgba(255,255,255,0.1)", "gap": {"size": 24, "unit": "px"}, "width": {"size": 400, "unit": "px"}}
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='text-align:center;color:rgba(255,255,255,0.5);font-size:14px;'>Don't have an account? <a href='#' style='color:#C62828;font-weight:500;text-decoration:none;'>Sign up</a></p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

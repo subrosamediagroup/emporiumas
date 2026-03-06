@@ -1,0 +1,110 @@
+{
+  "title": "MPortiums Payment Success Page (Full)",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {"template": "elementor_canvas"},
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "height": "min-height",
+        "custom_height": {"size": 80, "unit": "vh"},
+        "content_position": "middle",
+        "background_color": "#0A0A0A",
+        "padding": {"top": "96", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100, "align": "center"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon",
+              "settings": {
+                "icon": {"value": "fas fa-check-circle", "library": "fa-solid"},
+                "primary_color": "#C62828",
+                "size": {"size": 40, "unit": "px"},
+                "icon_padding": {"size": 20, "unit": "px"},
+                "background_color": "rgba(198,40,40,0.1)",
+                "border_radius": "50%",
+                "align": "center"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Payment Successful!",
+                "header_size": "h1",
+                "align": "center",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 30, "unit": "px"},
+                "title_color": "#FFFFFF",
+                "margin": {"top": "24", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='text-align:center;color:rgba(255,255,255,0.5);max-width:28rem;margin:12px auto;'>Thank you for your purchase. You'll receive a confirmation email shortly with your order details.</p>"
+              }
+            },
+            {
+              "elType": "section",
+              "isInner": true,
+              "settings": {"gap": "default", "margin": {"top": "32", "unit": "px"}, "content_position": "middle"},
+              "elements": [
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50, "align": "flex-end"},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Continue Shopping",
+                        "icon": {"value": "fas fa-shopping-bag", "library": "fa-solid"},
+                        "link": {"url": "/shop/"},
+                        "size": "md",
+                        "background_color": "#C62828",
+                        "button_text_color": "#FFFFFF",
+                        "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "600"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Back to Home",
+                        "link": {"url": "/"},
+                        "size": "md",
+                        "background_color": "transparent",
+                        "button_text_color": "#FFFFFF",
+                        "border_border": "solid",
+                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                        "border_color": "rgba(255,255,255,0.2)",
+                        "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                        "typography_font_family": "Space Grotesk"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

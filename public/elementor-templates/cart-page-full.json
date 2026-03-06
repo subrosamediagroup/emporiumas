@@ -1,0 +1,182 @@
+{
+  "title": "MPortiums Cart Page (Full)",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {"template": "elementor_canvas"},
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "96", "bottom": "20", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#0A0A0A"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<a href='/shop/' style='color:#C62828;text-decoration:none;font-size:14px;font-weight:500;'><i class='fas fa-arrow-left' style='margin-right:6px;'></i>Continue Shopping</a>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Shopping Cart",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 30, "unit": "px"},
+                "title_color": "#FFFFFF",
+                "margin": {"top": "10", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_comment": "Empty cart state",
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#0A0A0A",
+        "padding": {"top": "60", "bottom": "60", "unit": "px"},
+        "_element_note": "Hide when cart has items"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100, "align": "center"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon",
+              "settings": {
+                "icon": {"value": "fas fa-shopping-bag", "library": "fa-solid"},
+                "primary_color": "rgba(255,255,255,0.3)",
+                "size": {"size": 40, "unit": "px"},
+                "icon_padding": {"size": 20, "unit": "px"},
+                "background_color": "rgba(255,255,255,0.05)",
+                "border_radius": "50%",
+                "align": "center"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Your cart is empty",
+                "header_size": "h2",
+                "align": "center",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "typography_font_size": {"size": 20, "unit": "px"},
+                "title_color": "#FFFFFF",
+                "margin": {"top": "20", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='text-align:center;color:rgba(255,255,255,0.5);max-width:24rem;margin:8px auto;'>Discover amazing deals on music gear, instruments, and audio equipment.</p>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Browse the Shop",
+                "link": {"url": "/shop/"},
+                "size": "lg",
+                "background_color": "#C62828",
+                "button_text_color": "#FFFFFF",
+                "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "align": "center",
+                "margin": {"top": "24", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_comment": "Cart with items",
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#0A0A0A",
+        "padding": {"bottom": "60", "unit": "px"},
+        "_element_note": "Show when cart has items"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 65},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:16px;'><span style='font-size:14px;color:rgba(255,255,255,0.5);font-weight:500;'>2 items</span><button style='background:none;border:none;color:#EF4444;font-size:14px;cursor:pointer;'><i class='fas fa-trash' style='margin-right:6px;'></i>Clear All</button></div>"
+              }
+            },
+            {
+              "_comment": "Sample cart item 1",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='display:flex;gap:16px;padding:16px;border:1px solid rgba(255,255,255,0.1);border-radius:12px;background:rgba(255,255,255,0.03);margin-bottom:16px;'><a href='/product/sample-1/'><img src='https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=200&h=200&fit=crop' style='width:112px;height:112px;object-fit:cover;border-radius:8px;'/></a><div style='flex:1;display:flex;flex-direction:column;justify-content:space-between;'><div><a href='/product/sample-1/' style='color:#FFFFFF;font-family:Space Grotesk;font-weight:600;text-decoration:none;'>Fender Stratocaster '62 Reissue</a><p style='color:rgba(255,255,255,0.5);font-size:12px;margin-top:4px;'>Excellent · Sold by VintageAxes</p></div><div style='display:flex;justify-content:space-between;align-items:flex-end;'><div style='display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.1);border-radius:8px;'><button style='width:32px;height:32px;background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;'><i class='fas fa-minus'></i></button><span style='color:#FFFFFF;font-size:14px;font-weight:500;min-width:24px;text-align:center;'>1</span><button style='width:32px;height:32px;background:none;border:none;color:rgba(255,255,255,0.5);cursor:pointer;'><i class='fas fa-plus'></i></button></div><div style='display:flex;align-items:center;gap:12px;'><button style='background:none;border:none;color:rgba(255,255,255,0.4);cursor:pointer;'><i class='fas fa-trash'></i></button><span style='font-family:Space Grotesk;font-size:18px;font-weight:700;color:#FFFFFF;'>$1,450</span></div></div></div></div>"
+              }
+            }
+          ]
+        },
+        {
+          "_comment": "Order Summary",
+          "elType": "column",
+          "settings": {"_column_size": 35},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;background:rgba(255,255,255,0.03);position:sticky;top:96px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:18px;color:#FFFFFF;margin-bottom:16px;'>Order Summary</h2><hr style='border-color:rgba(255,255,255,0.1);'/><div style='display:flex;justify-content:space-between;margin:12px 0;font-size:14px;'><span style='color:rgba(255,255,255,0.5);'>Subtotal</span><span style='color:#FFFFFF;font-weight:500;'>$1,450</span></div><div style='display:flex;justify-content:space-between;margin:12px 0;font-size:14px;'><span style='color:rgba(255,255,255,0.5);'>Shipping</span><span style='color:#FFFFFF;font-weight:500;'>Free</span></div><div style='display:flex;justify-content:space-between;margin:12px 0;font-size:14px;'><span style='color:rgba(255,255,255,0.5);'>Estimated Tax</span><span style='color:#FFFFFF;font-weight:500;'>$116.00</span></div><hr style='border-color:rgba(255,255,255,0.1);'/><div style='display:flex;justify-content:space-between;font-family:Space Grotesk;font-weight:700;font-size:18px;color:#FFFFFF;'><span>Total</span><span>$1,566.00</span></div><p style='color:#C62828;font-size:12px;margin-top:8px;'>🎉 You qualify for free shipping!</p></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Proceed to Checkout",
+                "link": {"url": "/checkout/"},
+                "size": "lg",
+                "background_color": "#C62828",
+                "button_text_color": "#FFFFFF",
+                "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "width": {"size": 100, "unit": "%"},
+                "margin": {"top": "20", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='text-align:center;color:rgba(255,255,255,0.4);font-size:12px;margin-top:16px;'><i class='fas fa-shield-alt' style='margin-right:4px;'></i>Secure checkout · Buyer protection included</p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
