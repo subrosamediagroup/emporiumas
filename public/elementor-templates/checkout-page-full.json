@@ -1,0 +1,133 @@
+{
+  "title": "MPortiums Checkout Page (Full)",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {"template": "elementor_canvas"},
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "96", "bottom": "10", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#0A0A0A"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<a href='/cart/' style='color:#C62828;text-decoration:none;font-size:14px;font-weight:500;'><i class='fas fa-arrow-left' style='margin-right:6px;'></i>Back to Cart</a>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Checkout",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 30, "unit": "px"},
+                "title_color": "#FFFFFF"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#0A0A0A",
+        "padding": {"top": "20", "bottom": "60", "unit": "px"}
+      },
+      "elements": [
+        {
+          "_comment": "Shipping + Payment",
+          "elType": "column",
+          "settings": {"_column_size": 60},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;background:rgba(255,255,255,0.03);'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:18px;color:#FFFFFF;'><i class='fas fa-map-marker-alt' style='color:#C62828;margin-right:8px;'></i>Shipping Address</h2><hr style='border-color:rgba(255,255,255,0.1);margin:16px 0;'/></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "Shipping Address",
+                "form_fields": [
+                  {"field_type": "text", "field_label": "First Name", "required": "yes", "placeholder": "John", "width": "50"},
+                  {"field_type": "text", "field_label": "Last Name", "required": "yes", "placeholder": "Doe", "width": "50"},
+                  {"field_type": "email", "field_label": "Email", "required": "yes", "placeholder": "john@example.com", "width": "100"},
+                  {"field_type": "text", "field_label": "Street Address", "required": "yes", "placeholder": "123 Main St", "width": "100"},
+                  {"field_type": "text", "field_label": "City", "required": "yes", "placeholder": "Los Angeles", "width": "50"},
+                  {"field_type": "text", "field_label": "State", "required": "yes", "placeholder": "California", "width": "50"},
+                  {"field_type": "text", "field_label": "ZIP Code", "required": "yes", "placeholder": "90001", "width": "50"},
+                  {"field_type": "tel", "field_label": "Phone", "required": "yes", "placeholder": "(555) 123-4567", "width": "50"}
+                ],
+                "button_text": "",
+                "show_submit": "no",
+                "input_background_color": "rgba(255,255,255,0.05)",
+                "input_border_color": "rgba(255,255,255,0.1)",
+                "input_color": "#FFFFFF",
+                "label_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;background:rgba(255,255,255,0.03);margin-top:20px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:18px;color:#FFFFFF;'><i class='fas fa-credit-card' style='color:#C62828;margin-right:8px;'></i>Payment</h2><hr style='border-color:rgba(255,255,255,0.1);margin:16px 0;'/><div style='display:flex;align-items:center;gap:12px;padding:16px;background:rgba(198,40,40,0.05);border:1px solid rgba(198,40,40,0.2);border-radius:8px;'><i class='fas fa-credit-card' style='font-size:20px;color:#C62828;'></i><div><p style='font-weight:600;color:#FFFFFF;margin:0;font-size:14px;'>Secure Card Payment via Stripe</p><p style='color:rgba(255,255,255,0.5);font-size:12px;margin:4px 0 0;'>You'll be redirected to Stripe's secure checkout to complete payment.</p></div></div></div>"
+              }
+            }
+          ]
+        },
+        {
+          "_comment": "Order Summary",
+          "elType": "column",
+          "settings": {"_column_size": 40},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;background:rgba(255,255,255,0.03);position:sticky;top:96px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:18px;color:#FFFFFF;'>Order Summary</h2><hr style='border-color:rgba(255,255,255,0.1);margin:16px 0;'/><div id='checkoutItems'><!-- Items populated by JS --></div><hr style='border-color:rgba(255,255,255,0.1);margin:16px 0;'/><div style='display:flex;justify-content:space-between;margin:12px 0;font-size:14px;'><span style='color:rgba(255,255,255,0.5);'>Subtotal</span><span style='color:#FFFFFF;font-weight:500;'>$0</span></div><div style='display:flex;justify-content:space-between;margin:12px 0;font-size:14px;'><span style='color:rgba(255,255,255,0.5);'>Shipping</span><span style='color:#FFFFFF;font-weight:500;'>$0</span></div><div style='display:flex;justify-content:space-between;margin:12px 0;font-size:14px;'><span style='color:rgba(255,255,255,0.5);'>Estimated Tax</span><span style='color:#FFFFFF;font-weight:500;'>$0</span></div><hr style='border-color:rgba(255,255,255,0.1);margin:16px 0;'/><div style='display:flex;justify-content:space-between;font-family:Space Grotesk;font-weight:700;font-size:18px;color:#FFFFFF;'><span>Total</span><span>$0</span></div></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Proceed to Payment",
+                "size": "lg",
+                "background_color": "#C62828",
+                "button_text_color": "#FFFFFF",
+                "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "width": {"size": 100, "unit": "%"},
+                "margin": {"top": "20", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='text-align:center;color:rgba(255,255,255,0.4);font-size:12px;margin-top:16px;'><i class='fas fa-shield-alt' style='margin-right:4px;'></i>Secure checkout · Buyer protection included</p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

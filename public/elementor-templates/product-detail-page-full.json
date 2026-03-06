@@ -1,0 +1,261 @@
+{
+  "title": "MPortiums Product Detail Page (Full)",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {"template": "elementor_canvas"},
+  "content": [
+    {
+      "_comment": "=== BREADCRUMB ===",
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "96", "bottom": "10", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#0A0A0A"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<a href='/shop/' style='color:#C62828;text-decoration:none;font-size:14px;font-weight:500;'><i class='fas fa-arrow-left' style='margin-right:6px;'></i>Back to Shop</a> <span style='color:rgba(255,255,255,0.3);margin:0 8px;'>/</span> <span style='color:rgba(255,255,255,0.5);font-size:14px;'>Guitars & Basses</span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_comment": "=== PRODUCT DETAIL ===",
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#0A0A0A",
+        "padding": {"top": "20", "bottom": "60", "unit": "px"}
+      },
+      "elements": [
+        {
+          "_comment": "Image Gallery",
+          "elType": "column",
+          "settings": {"_column_size": 50},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image-carousel",
+              "settings": {
+                "carousel": [
+                  {"url": "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&h=800&fit=crop"},
+                  {"url": "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&h=800&fit=crop"}
+                ],
+                "slides_to_show": "1",
+                "navigation": "both",
+                "image_stretch": "yes",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "_element_note": "Replace with actual product images. Add thumbnail strip below."
+              }
+            },
+            {
+              "_comment": "Thumbnail strip",
+              "elType": "widget",
+              "widgetType": "image-gallery",
+              "settings": {
+                "gallery": [
+                  {"url": "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=200&h=200&fit=crop"},
+                  {"url": "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=200&h=200&fit=crop"}
+                ],
+                "columns": "4",
+                "gallery_display_type": "all",
+                "image_border_radius": {"size": 8, "unit": "px"},
+                "spacing": {"size": 12, "unit": "px"}
+              }
+            }
+          ]
+        },
+        {
+          "_comment": "Product Info",
+          "elType": "column",
+          "settings": {"_column_size": 50},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<span style='display:inline-block;padding:4px 12px;background:rgba(255,255,255,0.08);border-radius:6px;font-size:12px;color:rgba(255,255,255,0.7);font-weight:500;'>Excellent</span>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Fender Stratocaster '62 Reissue",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 30, "unit": "px"},
+                "title_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color:rgba(255,255,255,0.5);font-size:14px;'>Guitars & Basses</p>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "$1,450",
+                "header_size": "h2",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 32, "unit": "px"},
+                "title_color": "#C62828",
+                "margin": {"top": "16", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='display:flex;align-items:center;gap:4px;color:rgba(255,255,255,0.5);font-size:14px;'><i class='fas fa-star' style='color:#C62828;'></i> <strong style='color:#FFFFFF;'>4.9</strong></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"color": "rgba(255,255,255,0.1)", "gap": {"size": 24, "unit": "px"}}
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color:rgba(255,255,255,0.7);line-height:1.7;'>A stunning reissue of the legendary 1962 Fender Stratocaster. This guitar features an alder body, maple neck with rosewood fingerboard, and three vintage-style single-coil pickups.</p>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"color": "rgba(255,255,255,0.1)", "gap": {"size": 24, "unit": "px"}}
+            },
+            {
+              "_comment": "Seller card",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;background:rgba(255,255,255,0.03);'><p style='font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.5);margin-bottom:12px;font-family:Space Grotesk;'>Seller</p><div style='display:flex;align-items:center;gap:16px;'><div style='width:48px;height:48px;border-radius:50%;background:rgba(198,40,40,0.1);display:flex;align-items:center;justify-content:center;color:#C62828;font-weight:700;font-family:Space Grotesk;font-size:14px;'>VA</div><div><div style='display:flex;align-items:center;gap:8px;'><strong style='color:#FFFFFF;font-family:Space Grotesk;'>VintageAxes</strong> <i class='fas fa-shield-alt' style='color:#C62828;font-size:14px;'></i></div><div style='font-size:12px;color:rgba(255,255,255,0.5);display:flex;gap:12px;margin-top:4px;'><span><i class='fas fa-star' style='color:#C62828;'></i> 4.9</span><span>34 listings</span><span>Since 2023</span></div></div></div></div>"
+              }
+            },
+            {
+              "_comment": "Action buttons",
+              "elType": "section",
+              "isInner": true,
+              "settings": {"gap": "default", "margin": {"top": "24", "unit": "px"}},
+              "elements": [
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Add to Cart",
+                        "icon": {"value": "fas fa-shopping-cart", "library": "fa-solid"},
+                        "size": "lg",
+                        "background_color": "#C62828",
+                        "button_text_color": "#FFFFFF",
+                        "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "600",
+                        "width": {"size": 100, "unit": "%"}
+                      }
+                    }
+                  ]
+                },
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Make Offer",
+                        "icon": {"value": "fas fa-comment-dots", "library": "fa-solid"},
+                        "size": "lg",
+                        "background_color": "transparent",
+                        "button_text_color": "#FFFFFF",
+                        "border_border": "solid",
+                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                        "border_color": "rgba(255,255,255,0.2)",
+                        "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                        "typography_font_family": "Space Grotesk",
+                        "width": {"size": 100, "unit": "%"}
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "elType": "section",
+              "isInner": true,
+              "settings": {"gap": "default", "margin": {"top": "12", "unit": "px"}},
+              "elements": [
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Save",
+                        "icon": {"value": "fas fa-heart", "library": "fa-solid"},
+                        "size": "lg",
+                        "background_color": "transparent",
+                        "button_text_color": "#FFFFFF",
+                        "border_border": "solid",
+                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                        "border_color": "rgba(255,255,255,0.2)",
+                        "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                        "width": {"size": 100, "unit": "%"}
+                      }
+                    }
+                  ]
+                },
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Share",
+                        "icon": {"value": "fas fa-share-alt", "library": "fa-solid"},
+                        "size": "lg",
+                        "background_color": "transparent",
+                        "button_text_color": "#FFFFFF",
+                        "border_border": "solid",
+                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                        "border_color": "rgba(255,255,255,0.2)",
+                        "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                        "width": {"size": 100, "unit": "%"}
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

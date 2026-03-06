@@ -1,0 +1,1020 @@
+{
+  "title": "MPortiums Home Page (Full)",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {
+    "template": "elementor_canvas",
+    "padding": {"top": "0", "right": "0", "bottom": "0", "left": "0", "unit": "px"}
+  },
+  "content": [
+    {
+      "_comment": "=== NAVBAR ===",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "background_background": "classic",
+        "background_color": "rgba(0,0,0,0.8)",
+        "padding": {"top": "0", "right": "0", "bottom": "0", "left": "0", "unit": "px"},
+        "z_index": 50,
+        "sticky": "top",
+        "css_classes": "navbar-section"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {"url": "/wp-content/themes/mporiums/assets/mporiums-logo.png"},
+                "image_size": "custom",
+                "image_custom_dimension": {"width": 140, "height": 32},
+                "link": {"url": "/"},
+                "align": "left"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 40},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "nav-menu",
+              "settings": {
+                "menu": "main-menu",
+                "layout": "horizontal",
+                "typography_font_family": "Inter",
+                "typography_font_size": {"size": 14, "unit": "px"},
+                "text_color": "rgba(255,255,255,0.7)",
+                "text_color_hover": "#FFFFFF",
+                "_element_note": "Create WP menu with: Shop (/shop/), Sell (/sell/), Deals (#), Community (#)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 35, "align": "flex-end"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "search-form",
+              "settings": {
+                "skin": "minimal",
+                "placeholder": "Search gear, instruments, brands...",
+                "input_typography_font_family": "Inter",
+                "input_size": "sm",
+                "icon": {"value": "fas fa-search"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "icon",
+              "settings": {
+                "icon": {"value": "fas fa-shopping-cart", "library": "fa-solid"},
+                "link": {"url": "/cart/"},
+                "primary_color": "rgba(255,255,255,0.7)",
+                "hover_primary_color": "#FFFFFF",
+                "size": {"size": 18, "unit": "px"},
+                "_element_note": "Shopping cart icon — badge count via JS"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Sign In",
+                "link": {"url": "/auth/"},
+                "size": "sm",
+                "background_color": "#C62828",
+                "button_text_color": "#FFFFFF",
+                "border_radius": {"top": "8", "right": "8", "bottom": "8", "left": "8", "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "typography_font_size": {"size": 14, "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_comment": "=== HERO SECTION ===",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "height": "min-height",
+        "custom_height": {"unit": "vh", "size": 85},
+        "background_background": "classic",
+        "background_image": {"url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1920&h=1080&fit=crop"},
+        "background_position": "center center",
+        "background_size": "cover",
+        "background_overlay_background": "gradient",
+        "background_overlay_color": "#0A0A0A",
+        "background_overlay_color_b": "rgba(10,10,10,0.4)",
+        "background_overlay_gradient_angle": {"unit": "deg", "size": 90},
+        "background_overlay_opacity": {"unit": "px", "size": 0.85},
+        "content_position": "middle",
+        "padding": {"top": "80", "right": "0", "bottom": "0", "left": "0", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 60, "content_position": "center"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<span style=\"display:inline-block;padding:6px 16px;border:1px solid rgba(198,40,40,0.3);background:rgba(198,40,40,0.1);border-radius:9999px;font-size:12px;font-weight:500;letter-spacing:0.05em;color:#C62828;font-family:'Inter',sans-serif;\">THE #1 MARKETPLACE FOR USED AUDIO GEAR</span>",
+                "align": "left"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Buy & Sell<br/><span style=\"color:#C62828;\">Premium Gear</span>",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_size": {"size": 64, "unit": "px"},
+                "typography_font_size_tablet": {"size": 48, "unit": "px"},
+                "typography_font_size_mobile": {"size": 40, "unit": "px"},
+                "typography_font_weight": "700",
+                "typography_line_height": {"size": 1.1, "unit": "em"},
+                "title_color": "#FFFFFF",
+                "align": "left"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "The trusted marketplace for audio hardware, synths, guitars, and studio equipment. Thousands of listings from verified sellers.",
+                "typography_font_family": "Inter",
+                "typography_font_size": {"size": 18, "unit": "px"},
+                "typography_color": "rgba(255,255,255,0.7)",
+                "align": "left",
+                "padding": {"bottom": "32", "unit": "px"}
+              }
+            },
+            {
+              "elType": "section",
+              "isInner": true,
+              "settings": {"layout": "full_width", "gap": "default"},
+              "elements": [
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 60},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "search-form",
+                      "settings": {
+                        "placeholder": "What gear are you looking for?",
+                        "skin": "classic",
+                        "button_type": "icon",
+                        "icon": {"value": "fas fa-search", "library": "fa-solid"},
+                        "input_typography_font_family": "Inter"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 40},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Browse Gear",
+                        "link": {"url": "/shop/"},
+                        "size": "lg",
+                        "icon": {"value": "fas fa-arrow-right", "library": "fa-solid"},
+                        "icon_align": "right",
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "600",
+                        "background_color": "#C62828",
+                        "button_text_color": "#FFFFFF",
+                        "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                        "button_padding": {"top": "16", "right": "32", "bottom": "16", "left": "32", "unit": "px"}
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 40}
+        }
+      ]
+    },
+    {
+      "_comment": "=== CATEGORIES SECTION ===",
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "80", "bottom": "80", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_background": "classic",
+        "background_color": "#0A0A0A"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Browse by Category",
+                "header_size": "h2",
+                "align": "center",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 36, "unit": "px"},
+                "title_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align:center;color:rgba(255,255,255,0.5);\">Find exactly what you're looking for</p>",
+                "padding": {"bottom": "48", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "structure": "60",
+        "gap": "default",
+        "background_color": "#0A0A0A",
+        "padding": {"bottom": "80", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 16},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-guitar", "library": "fa-solid"},
+                "title_text": "Guitars & Basses",
+                "description_text": "8,200+",
+                "position": "top",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 14, "unit": "px"},
+                "title_typography_font_weight": "500",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "link": {"url": "/shop/?category=Guitars+%26+Basses"},
+                "icon_padding": {"size": 20, "unit": "px"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "box_padding": {"top": "24", "right": "16", "bottom": "24", "left": "16", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 16},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-keyboard", "library": "fa-solid"},
+                "title_text": "Synthesizers",
+                "description_text": "4,100+",
+                "position": "top",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 14, "unit": "px"},
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "link": {"url": "/shop/?category=Synthesizers"},
+                "icon_padding": {"size": 20, "unit": "px"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "box_padding": {"top": "24", "right": "16", "bottom": "24", "left": "16", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 16},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-headphones", "library": "fa-solid"},
+                "title_text": "Headphones",
+                "description_text": "6,500+",
+                "position": "top",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "link": {"url": "/shop/?category=Headphones"},
+                "icon_padding": {"size": 20, "unit": "px"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "box_padding": {"top": "24", "right": "16", "bottom": "24", "left": "16", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 16},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-volume-up", "library": "fa-solid"},
+                "title_text": "Speakers & Monitors",
+                "description_text": "3,800+",
+                "position": "top",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "link": {"url": "/shop/?category=Speakers+%26+Monitors"},
+                "icon_padding": {"size": 20, "unit": "px"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "box_padding": {"top": "24", "right": "16", "bottom": "24", "left": "16", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 16},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-microphone", "library": "fa-solid"},
+                "title_text": "Microphones",
+                "description_text": "2,900+",
+                "position": "top",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "link": {"url": "/shop/?category=Microphones"},
+                "icon_padding": {"size": 20, "unit": "px"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "box_padding": {"top": "24", "right": "16", "bottom": "24", "left": "16", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 16},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-music", "library": "fa-solid"},
+                "title_text": "DJ Equipment",
+                "description_text": "3,400+",
+                "position": "top",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "link": {"url": "/shop/?category=DJ+Equipment"},
+                "icon_padding": {"size": 20, "unit": "px"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "box_padding": {"top": "24", "right": "16", "bottom": "24", "left": "16", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_comment": "=== FEATURED LISTINGS (Trending Gear) ===",
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "80", "bottom": "80", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_background": "classic",
+        "background_color": "#111111",
+        "border_border": "solid",
+        "border_width": {"top": "1", "unit": "px"},
+        "border_color": "rgba(255,255,255,0.1)"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "section",
+              "isInner": true,
+              "elements": [
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 70},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Trending Gear",
+                        "header_size": "h2",
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "700",
+                        "typography_font_size": {"size": 36, "unit": "px"},
+                        "title_color": "#FFFFFF"
+                      }
+                    },
+                    {
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "<p style=\"color:rgba(255,255,255,0.5);\">Hot listings picked for you</p>"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 30, "align": "flex-end"},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "View all →",
+                        "button_type": "info",
+                        "link": {"url": "/shop/"},
+                        "background_color": "transparent",
+                        "button_text_color": "#C62828",
+                        "typography_font_family": "Inter",
+                        "typography_font_size": {"size": 14, "unit": "px"},
+                        "typography_font_weight": "500"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "structure": "30",
+        "gap": "default",
+        "background_color": "#111111",
+        "padding": {"bottom": "80", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 33},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image-box",
+              "settings": {
+                "image": {"url": "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=400&h=400&fit=crop"},
+                "title_text": "Fender Stratocaster '62 Reissue",
+                "description_text": "<span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$1,450</span><br/><small style='color:rgba(255,255,255,0.5);'><i class='fas fa-shield-alt' style='color:#C62828;margin-right:4px;'></i>VintageAxes · <i class='fas fa-star' style='color:#C62828;'></i> 4.9</small>",
+                "image_size": "custom",
+                "image_custom_dimension": {"width": 400, "height": 400},
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 14, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "link": {"url": "/product/sample-1/"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)",
+                "_element_note": "Badge: Excellent condition overlay"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 33},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image-box",
+              "settings": {
+                "image": {"url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop"},
+                "title_text": "Roland Juno-106 Synthesizer",
+                "description_text": "<span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$2,800</span><br/><small style='color:rgba(255,255,255,0.5);'><i class='fas fa-shield-alt' style='color:#C62828;margin-right:4px;'></i>SynthWizard · <i class='fas fa-star' style='color:#C62828;'></i> 5.0</small>",
+                "image_size": "custom",
+                "image_custom_dimension": {"width": 400, "height": 400},
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 14, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "link": {"url": "/product/sample-2/"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 33},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image-box",
+              "settings": {
+                "image": {"url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop"},
+                "title_text": "Sennheiser HD 650 Headphones",
+                "description_text": "<span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$280</span><br/><small style='color:rgba(255,255,255,0.5);'>AudioPhile99 · <i class='fas fa-star' style='color:#C62828;'></i> 4.8</small>",
+                "image_size": "custom",
+                "image_custom_dimension": {"width": 400, "height": 400},
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 14, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "link": {"url": "/product/sample-3/"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "structure": "30",
+        "gap": "default",
+        "background_color": "#111111",
+        "padding": {"bottom": "80", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 33},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image-box",
+              "settings": {
+                "image": {"url": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop"},
+                "title_text": "Yamaha HS8 Studio Monitors (Pair)",
+                "description_text": "<span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$520</span><br/><small style='color:rgba(255,255,255,0.5);'><i class='fas fa-shield-alt' style='color:#C62828;margin-right:4px;'></i>StudioGear · <i class='fas fa-star' style='color:#C62828;'></i> 4.7</small>",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 14, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "link": {"url": "/product/sample-4/"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 33},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image-box",
+              "settings": {
+                "image": {"url": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop"},
+                "title_text": "Shure SM7B Microphone",
+                "description_text": "<span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$340</span><br/><small style='color:rgba(255,255,255,0.5);'><i class='fas fa-shield-alt' style='color:#C62828;margin-right:4px;'></i>ProAudioDeals · <i class='fas fa-star' style='color:#C62828;'></i> 4.9</small>",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 14, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "link": {"url": "/product/sample-5/"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 33},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image-box",
+              "settings": {
+                "image": {"url": "https://images.unsplash.com/photo-1571327073757-71d13c24de30?w=400&h=400&fit=crop"},
+                "title_text": "Pioneer CDJ-2000NXS2",
+                "description_text": "<span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$1,600</span><br/><small style='color:rgba(255,255,255,0.5);'>DJDepot · <i class='fas fa-star' style='color:#C62828;'></i> 4.6</small>",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 14, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "link": {"url": "/product/sample-6/"},
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "rgba(255,255,255,0.1)",
+                "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
+                "background_color": "rgba(255,255,255,0.03)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_comment": "=== HOW IT WORKS ===",
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "80", "bottom": "80", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#0A0A0A"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "How It Works",
+                "header_size": "h2",
+                "align": "center",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 36, "unit": "px"},
+                "title_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align:center;color:rgba(255,255,255,0.5);\">Sell your gear in 4 simple steps</p>",
+                "padding": {"bottom": "64", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "structure": "40",
+        "gap": "wider",
+        "background_color": "#0A0A0A",
+        "padding": {"bottom": "80", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-camera", "library": "fa-solid"},
+                "title_text": "List Your Gear",
+                "description_text": "Snap photos, set your price, and publish in minutes.",
+                "position": "top",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 18, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "icon_padding": {"size": 20, "unit": "px"},
+                "title_bottom_space": {"size": 8, "unit": "px"},
+                "_element_note": "Step 1 — add counter badge '1' via CSS or HTML"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-tag", "library": "fa-solid"},
+                "title_text": "Buyers Discover",
+                "description_text": "Your listing reaches thousands of gear enthusiasts instantly.",
+                "position": "top",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 18, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "icon_padding": {"size": 20, "unit": "px"}
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-shield-alt", "library": "fa-solid"},
+                "title_text": "Secure Payment",
+                "description_text": "Buyer pays through our protected checkout system.",
+                "position": "top",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 18, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "icon_padding": {"size": 20, "unit": "px"}
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "icon": {"value": "fas fa-truck", "library": "fa-solid"},
+                "title_text": "Ship & Done",
+                "description_text": "Ship the item, get paid. We handle the rest.",
+                "position": "top",
+                "title_typography_font_family": "Space Grotesk",
+                "title_typography_font_size": {"size": 18, "unit": "px"},
+                "title_typography_font_weight": "600",
+                "title_color": "#FFFFFF",
+                "description_color": "rgba(255,255,255,0.5)",
+                "icon_color": "#C62828",
+                "icon_size": {"size": 28, "unit": "px"},
+                "primary_color": "rgba(198,40,40,0.1)",
+                "icon_padding": {"size": 20, "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_comment": "=== FOOTER ===",
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "64", "bottom": "64", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#111111",
+        "border_border": "solid",
+        "border_width": {"top": "1", "unit": "px"},
+        "border_color": "rgba(255,255,255,0.1)"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {"url": "/wp-content/themes/mporiums/assets/mporiums-logo.png"},
+                "image_size": "custom",
+                "image_custom_dimension": {"width": 140, "height": 32},
+                "align": "left"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"color:rgba(255,255,255,0.5);font-size:14px;\">The trusted marketplace for buying and selling audio hardware and musical instruments.</p>"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Marketplace",
+                "header_size": "h4",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_size": {"size": 14, "unit": "px"},
+                "typography_font_weight": "600",
+                "title_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "icon-list",
+              "settings": {
+                "icon_list": [
+                  {"text": "Shop All", "link": {"url": "/shop/"}, "icon": ""},
+                  {"text": "Sell Gear", "link": {"url": "/sell/"}, "icon": ""},
+                  {"text": "Price Guide", "link": {"url": "#"}, "icon": ""},
+                  {"text": "Deals", "link": {"url": "#"}, "icon": ""}
+                ],
+                "text_color": "rgba(255,255,255,0.5)",
+                "text_color_hover": "#FFFFFF",
+                "typography_font_size": {"size": 14, "unit": "px"},
+                "icon_self_align": "flex-start"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Support",
+                "header_size": "h4",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_size": {"size": 14, "unit": "px"},
+                "typography_font_weight": "600",
+                "title_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "icon-list",
+              "settings": {
+                "icon_list": [
+                  {"text": "Help Center", "link": {"url": "#"}, "icon": ""},
+                  {"text": "Buyer Protection", "link": {"url": "#"}, "icon": ""},
+                  {"text": "Shipping Info", "link": {"url": "#"}, "icon": ""},
+                  {"text": "Returns", "link": {"url": "#"}, "icon": ""}
+                ],
+                "text_color": "rgba(255,255,255,0.5)",
+                "text_color_hover": "#FFFFFF",
+                "typography_font_size": {"size": 14, "unit": "px"}
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Company",
+                "header_size": "h4",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_size": {"size": 14, "unit": "px"},
+                "typography_font_weight": "600",
+                "title_color": "#FFFFFF"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "icon-list",
+              "settings": {
+                "icon_list": [
+                  {"text": "About Us", "link": {"url": "#"}, "icon": ""},
+                  {"text": "Careers", "link": {"url": "#"}, "icon": ""},
+                  {"text": "Blog", "link": {"url": "#"}, "icon": ""},
+                  {"text": "Contact", "link": {"url": "#"}, "icon": ""}
+                ],
+                "text_color": "rgba(255,255,255,0.5)",
+                "text_color_hover": "#FFFFFF",
+                "typography_font_size": {"size": 14, "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_comment": "=== COPYRIGHT BAR ===",
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "32", "bottom": "32", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"},
+        "background_color": "#111111",
+        "border_border": "solid",
+        "border_width": {"top": "1", "unit": "px"},
+        "border_color": "rgba(255,255,255,0.1)"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align:center;color:rgba(255,255,255,0.4);font-size:12px;\">© 2026 M.Poriums. All rights reserved.</p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

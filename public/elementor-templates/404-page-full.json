@@ -1,0 +1,68 @@
+{
+  "title": "MPortiums 404 Page (Full)",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {"template": "elementor_canvas"},
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "height": "min-height",
+        "custom_height": {"size": 100, "unit": "vh"},
+        "content_position": "middle",
+        "background_color": "#0A0A0A"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100, "align": "center"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "404",
+                "header_size": "h1",
+                "align": "center",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 72, "unit": "px"},
+                "title_color": "#C62828"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Oops! Page not found",
+                "header_size": "h2",
+                "align": "center",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "typography_font_size": {"size": 20, "unit": "px"},
+                "title_color": "rgba(255,255,255,0.5)"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Return to Home",
+                "icon": {"value": "fas fa-home", "library": "fa-solid"},
+                "link": {"url": "/"},
+                "size": "md",
+                "background_color": "#C62828",
+                "button_text_color": "#FFFFFF",
+                "border_radius": {"top": "10", "right": "10", "bottom": "10", "left": "10", "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "align": "center",
+                "margin": {"top": "24", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
