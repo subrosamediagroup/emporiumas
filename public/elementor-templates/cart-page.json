@@ -1,0 +1,136 @@
+{
+  "title": "MPortiums Cart Page",
+  "type": "page",
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "40", "bottom": "40", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<a href='/shop/' style='color:#C62828;text-decoration:none;font-weight:500;'>← Continue Shopping</a>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Shopping Cart",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 36, "unit": "px"},
+                "margin": {"top": "10", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "_element_note": "Empty cart state — hide when cart has items"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100, "align": "center"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='text-align:center;padding:60px 20px;'><div style='font-size:48px;'>🛍️</div><h2 style='font-family:Space Grotesk;font-weight:700;'>Your cart is empty</h2><p style='color:#999;'>Discover amazing deals on music gear, instruments, and audio equipment.</p></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Browse the Shop",
+                "link": {"url": "/shop/"},
+                "size": "lg",
+                "background_color": "#C62828",
+                "text_color": "#FFFFFF",
+                "border_radius": {"size": 8, "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "align": "center"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "_element_note": "Cart content — show when cart has items"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 65},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div id='cartItems'><!-- Cart items populated by JS --></div>",
+                "_element_note": "Cart items container — each item shows image, title, price, quantity, remove button"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 35},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:24px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:20px;'>Order Summary</h2><hr/><div style='display:flex;justify-content:space-between;margin:8px 0;'><span>Subtotal</span><span id='cartSubtotal'>$0</span></div><div style='display:flex;justify-content:space-between;margin:8px 0;'><span>Shipping</span><span id='cartShipping'>$0</span></div><div style='display:flex;justify-content:space-between;margin:8px 0;'><span>Estimated Tax</span><span id='cartTax'>$0</span></div><hr/><div style='display:flex;justify-content:space-between;font-weight:700;font-size:18px;'><span>Total</span><span id='cartTotal'>$0</span></div></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Proceed to Checkout",
+                "link": {"url": "/checkout/"},
+                "size": "lg",
+                "background_color": "#C62828",
+                "text_color": "#FFFFFF",
+                "border_radius": {"size": 8, "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "width": {"size": 100, "unit": "%"},
+                "margin": {"top": "20", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='text-align:center;color:#999;font-size:12px;margin-top:12px;'>🛡️ Secure checkout · Buyer protection included</p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

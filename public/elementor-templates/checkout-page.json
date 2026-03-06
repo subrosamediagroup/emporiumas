@@ -1,0 +1,123 @@
+{
+  "title": "MPortiums Checkout Page",
+  "type": "page",
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "40", "bottom": "10", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<a href='/cart/' style='color:#C62828;text-decoration:none;font-weight:500;'>← Back to Cart</a>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Checkout",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 36, "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "padding": {"bottom": "40", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 60},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:24px;margin-bottom:20px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:20px;'>Shipping Address</h2><hr style='border-color:#eee;'/></div>",
+                "_element_note": "Replace with Elementor Form widget for shipping fields"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "Shipping Address",
+                "form_fields": [
+                  {"field_type": "text", "field_label": "First Name", "required": "yes", "placeholder": "John", "width": "50"},
+                  {"field_type": "text", "field_label": "Last Name", "required": "yes", "placeholder": "Doe", "width": "50"},
+                  {"field_type": "email", "field_label": "Email", "required": "yes", "placeholder": "john@example.com", "width": "100"},
+                  {"field_type": "text", "field_label": "Street Address", "required": "yes", "placeholder": "123 Main St", "width": "100"},
+                  {"field_type": "text", "field_label": "City", "required": "yes", "placeholder": "Los Angeles", "width": "50"},
+                  {"field_type": "text", "field_label": "State", "required": "yes", "placeholder": "California", "width": "50"},
+                  {"field_type": "text", "field_label": "ZIP Code", "required": "yes", "placeholder": "90001", "width": "50"},
+                  {"field_type": "tel", "field_label": "Phone", "required": "yes", "placeholder": "(555) 123-4567", "width": "50"}
+                ],
+                "button_text": "",
+                "show_submit": "no"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:24px;margin-top:20px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:20px;'>Payment</h2><hr style='border-color:#eee;'/><div style='display:flex;align-items:center;gap:12px;padding:16px;background:#fff;border-radius:8px;border:1px solid #eee;'><span style='font-size:24px;'>💳</span><div><p style='font-weight:600;margin:0;'>Secure Card Payment via Stripe</p><p style='color:#999;font-size:12px;margin:0;'>You'll be redirected to Stripe's secure checkout to complete payment.</p></div></div></div>"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 40},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:24px;position:sticky;top:100px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:20px;'>Order Summary</h2><hr style='border-color:#eee;'/><div id='checkoutItems'><!-- Items populated by JS --></div><hr style='border-color:#eee;'/><div style='display:flex;justify-content:space-between;margin:8px 0;'><span>Subtotal</span><span>$0</span></div><div style='display:flex;justify-content:space-between;margin:8px 0;'><span>Shipping</span><span>$0</span></div><div style='display:flex;justify-content:space-between;margin:8px 0;'><span>Estimated Tax</span><span>$0</span></div><hr style='border-color:#eee;'/><div style='display:flex;justify-content:space-between;font-weight:700;font-size:18px;'><span>Total</span><span>$0</span></div></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Proceed to Payment",
+                "size": "lg",
+                "background_color": "#C62828",
+                "text_color": "#FFFFFF",
+                "border_radius": {"size": 8, "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "width": {"size": 100, "unit": "%"},
+                "margin": {"top": "20", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='text-align:center;color:#999;font-size:12px;margin-top:12px;'>🛡️ Secure checkout · Buyer protection included</p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

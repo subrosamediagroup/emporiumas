@@ -1,0 +1,227 @@
+{
+  "title": "MPortiums Product Detail Page",
+  "type": "page",
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "20", "bottom": "10", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<a href='/shop/' style='color:#C62828;text-decoration:none;font-weight:500;'>← Back to Shop</a> <span style='color:#999;'>/</span> <span style='color:#999;'>Category</span>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "padding": {"top": "20", "bottom": "40", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 55},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {"url": "https://placeholder.co/600x400", "alt": "Product image"},
+                "image_size": "full",
+                "border_radius": {"size": 12, "unit": "px"},
+                "_element_note": "Main product image — replace URL with dynamic image"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "image-carousel",
+              "settings": {
+                "carousel": [
+                  {"url": "https://placeholder.co/100x100"},
+                  {"url": "https://placeholder.co/100x100"},
+                  {"url": "https://placeholder.co/100x100"}
+                ],
+                "slides_to_show": "4",
+                "image_stretch": "no",
+                "_element_note": "Thumbnail gallery — replace with dynamic thumbnails"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 45},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<span style='display:inline-block;background:#eee;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;'>Condition</span>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Product Title",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 30, "unit": "px"},
+                "margin": {"top": "10", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "$0",
+                "header_size": "h2",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 28, "unit": "px"},
+                "title_color": "#C62828"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"style": "solid", "color": "#eee"}
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color:#666;line-height:1.6;'>Product description goes here. Describe condition, history, what's included...</p>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"style": "solid", "color": "#eee"}
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:16px;'><h3 style='font-family:Space Grotesk;font-weight:600;font-size:14px;margin-bottom:8px;'>Seller</h3><div style='display:flex;align-items:center;gap:12px;'><div style='width:40px;height:40px;border-radius:50%;background:#C62828;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;'>VA</div><div><span style='font-weight:600;'>Seller Name</span> <span>🛡️</span><br/><span style='color:#999;font-size:12px;'>⭐ 4.9 · 12 listings · Member since 2024</span></div></div></div>"
+              }
+            },
+            {
+              "elType": "section",
+              "isInner": true,
+              "settings": {"gap": "10", "margin": {"top": "20", "unit": "px"}},
+              "elements": [
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "🛒 Add to Cart",
+                        "size": "lg",
+                        "background_color": "#C62828",
+                        "text_color": "#FFFFFF",
+                        "border_radius": {"size": 8, "unit": "px"},
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "600",
+                        "width": {"size": 100, "unit": "%"}
+                      }
+                    }
+                  ]
+                },
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "💬 Make Offer",
+                        "size": "lg",
+                        "background_color": "transparent",
+                        "text_color": "#333",
+                        "border_border": "solid",
+                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                        "border_color": "#ddd",
+                        "border_radius": {"size": 8, "unit": "px"},
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "600",
+                        "width": {"size": 100, "unit": "%"}
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "elType": "section",
+              "isInner": true,
+              "settings": {"gap": "10", "margin": {"top": "10", "unit": "px"}},
+              "elements": [
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "♥ Save",
+                        "size": "lg",
+                        "background_color": "transparent",
+                        "text_color": "#333",
+                        "border_border": "solid",
+                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                        "border_color": "#ddd",
+                        "border_radius": {"size": 8, "unit": "px"},
+                        "width": {"size": 100, "unit": "%"}
+                      }
+                    }
+                  ]
+                },
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "↗ Share",
+                        "size": "lg",
+                        "background_color": "transparent",
+                        "text_color": "#333",
+                        "border_border": "solid",
+                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                        "border_color": "#ddd",
+                        "border_radius": {"size": 8, "unit": "px"},
+                        "width": {"size": 100, "unit": "%"}
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
