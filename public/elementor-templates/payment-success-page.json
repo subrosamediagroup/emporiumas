@@ -1,0 +1,104 @@
+{
+  "title": "MPortiums Payment Success Page",
+  "type": "page",
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "min_height": {"size": 80, "unit": "vh"},
+        "content_width": {"size": 600, "unit": "px"},
+        "flex_align_items": "center",
+        "flex_justify_content": "center"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100, "align": "center"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='font-size:64px;text-align:center;'>✅</div>",
+                "align": "center"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Payment Successful!",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 36, "unit": "px"},
+                "align": "center"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color:#999;text-align:center;max-width:28rem;margin:0 auto;'>Thank you for your purchase. You'll receive a confirmation email shortly with your order details.</p>"
+              }
+            },
+            {
+              "elType": "section",
+              "isInner": true,
+              "settings": {
+                "gap": "10",
+                "margin": {"top": "30", "unit": "px"},
+                "flex_justify_content": "center"
+              },
+              "elements": [
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50, "align": "flex-end"},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "🛍️ Continue Shopping",
+                        "link": {"url": "/shop/"},
+                        "size": "md",
+                        "background_color": "#C62828",
+                        "text_color": "#FFFFFF",
+                        "border_radius": {"size": 8, "unit": "px"},
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "600"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "elType": "column",
+                  "settings": {"_column_size": 50},
+                  "elements": [
+                    {
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "Back to Home",
+                        "link": {"url": "/"},
+                        "size": "md",
+                        "background_color": "transparent",
+                        "text_color": "#333",
+                        "border_border": "solid",
+                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                        "border_color": "#ddd",
+                        "border_radius": {"size": 8, "unit": "px"},
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_weight": "600"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "title": "MPortiums Account Page",
+  "type": "page",
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "40", "bottom": "10", "unit": "px"},
+        "content_width": {"size": 800, "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "My Account",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 36, "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color:#999;'>Manage your profile, payment info, and view purchase history</p>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 800, "unit": "px"},
+        "padding": {"bottom": "20", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:24px;margin-bottom:20px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:20px;'>👤 Profile</h2><hr style='border-color:#eee;'/></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "Profile",
+                "form_fields": [
+                  {"field_type": "email", "field_label": "Email", "placeholder": "user@example.com", "width": "100", "allow_edit": "no"},
+                  {"field_type": "text", "field_label": "Display Name", "placeholder": "Your seller name", "width": "100"},
+                  {"field_type": "tel", "field_label": "Phone Number", "placeholder": "(555) 123-4567", "width": "100"}
+                ],
+                "button_text": "",
+                "show_submit": "no"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 800, "unit": "px"},
+        "padding": {"bottom": "20", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:24px;margin-bottom:20px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:20px;'>📍 Address</h2><hr style='border-color:#eee;'/></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "Address",
+                "form_fields": [
+                  {"field_type": "text", "field_label": "Street Address", "placeholder": "123 Main St", "width": "100"},
+                  {"field_type": "text", "field_label": "City", "placeholder": "Los Angeles", "width": "50"},
+                  {"field_type": "text", "field_label": "State", "placeholder": "California", "width": "50"},
+                  {"field_type": "text", "field_label": "ZIP Code", "placeholder": "90001", "width": "50"}
+                ],
+                "button_text": "",
+                "show_submit": "no"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 800, "unit": "px"},
+        "padding": {"bottom": "20", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:24px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:20px;'>💳 Payment Information</h2><hr style='border-color:#eee;'/><div style='display:flex;align-items:center;gap:12px;padding:16px;background:#fff;border-radius:8px;border:1px solid #eee;'><span style='font-size:24px;'>💳</span><div><p style='font-weight:600;margin:0;'>Payments handled by Stripe</p><p style='color:#999;font-size:12px;margin:0;'>Your card details are securely managed by Stripe during checkout. We never store your payment information.</p></div></div></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "💾 Save Changes",
+                "size": "lg",
+                "background_color": "#C62828",
+                "text_color": "#FFFFFF",
+                "border_radius": {"size": 8, "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "margin": {"top": "20", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 800, "unit": "px"},
+        "padding": {"top": "20", "bottom": "40", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:24px;'><h2 style='font-family:Space Grotesk;font-weight:700;font-size:20px;'>📦 Purchase History</h2><hr style='border-color:#eee;'/><div style='text-align:center;padding:40px 20px;'><div style='font-size:48px;'>🛍️</div><p style='font-weight:600;'>No purchases yet</p><p style='color:#999;font-size:12px;'>Your order history will appear here after your first purchase.</p><a href='/shop/' style='display:inline-block;margin-top:12px;padding:8px 16px;border:1px solid #ddd;border-radius:8px;text-decoration:none;color:#333;font-size:13px;'>Browse Shop</a></div></div>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

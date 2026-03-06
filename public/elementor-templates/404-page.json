@@ -1,0 +1,49 @@
+{
+  "title": "MPortiums 404 Page",
+  "type": "page",
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "min_height": {"size": 80, "unit": "vh"},
+        "content_width": {"size": 600, "unit": "px"},
+        "flex_align_items": "center",
+        "flex_justify_content": "center"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100, "align": "center"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "404",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 96, "unit": "px"},
+                "align": "center"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color:#999;text-align:center;font-size:18px;'>Oops! Page not found</p>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='text-align:center;'><a href='/' style='color:#C62828;text-decoration:none;font-weight:500;'>Return to Home</a></p>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

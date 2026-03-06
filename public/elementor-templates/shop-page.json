@@ -1,0 +1,170 @@
+{
+  "title": "MPortiums Shop Page",
+  "type": "page",
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "40", "bottom": "20", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 70},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Shop Gear",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 36, "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p class='text-muted'>Showing all items</p>"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 30, "align": "flex-end"},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_fields": [
+                  {
+                    "field_type": "select",
+                    "field_label": "Sort By",
+                    "field_options": "Newest\nPrice: Low to High\nPrice: High to Low"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "structure": "20"
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 25},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Category",
+                "header_size": "h4",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "typography_font_size": {"size": 16, "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<ul style='list-style:none;padding:0;'><li>🎸 Guitars</li><li>🎹 Keyboards</li><li>🥁 Drums</li><li>🎤 Microphones</li><li>🔊 Speakers</li><li>🎧 Headphones</li></ul>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Price Range",
+                "header_size": "h4",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "typography_font_size": {"size": 16, "unit": "px"},
+                "margin": {"top": "20", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<ul style='list-style:none;padding:0;'><li>Under $100</li><li>$100 – $500</li><li>$500 – $1000</li><li>$1000+</li></ul>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Condition",
+                "header_size": "h4",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "typography_font_size": {"size": 16, "unit": "px"},
+                "margin": {"top": "20", "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<ul style='list-style:none;padding:0;'><li>New</li><li>Like New</li><li>Good</li><li>Fair</li></ul>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "✕ Clear Filters",
+                "button_type": "default",
+                "size": "sm",
+                "border_border": "solid",
+                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
+                "border_color": "#666",
+                "background_color": "transparent",
+                "text_color": "#666",
+                "width": {"size": 100, "unit": "%"}
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 75},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "posts",
+              "settings": {
+                "columns": "3",
+                "posts_per_page": 9,
+                "thumbnail": "yes",
+                "title": "yes",
+                "meta_data": ["price", "condition"],
+                "_element_note": "Replace with actual product grid or use Loop Grid widget with custom post type 'listing'"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='text-align:center;padding:60px 20px;display:none;' id='shopEmpty'><p style='font-size:18px;font-weight:600;'>No items match your filters</p><p style='color:#999;'>Try adjusting your criteria</p></div>",
+                "_element_note": "Empty state — toggle visibility via JS"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

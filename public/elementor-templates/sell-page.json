@@ -1,0 +1,140 @@
+{
+  "title": "MPortiums Sell / List Your Gear Page",
+  "type": "page",
+  "content": [
+    {
+      "elType": "section",
+      "settings": {
+        "padding": {"top": "40", "bottom": "10", "unit": "px"},
+        "content_width": {"size": 1200, "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 100},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "List Your Gear",
+                "header_size": "h1",
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "700",
+                "typography_font_size": {"size": 36, "unit": "px"}
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color:#999;'>Fill out the details below to create your listing.</p>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "elType": "section",
+      "settings": {
+        "content_width": {"size": 1200, "unit": "px"},
+        "padding": {"bottom": "40", "unit": "px"}
+      },
+      "elements": [
+        {
+          "elType": "column",
+          "settings": {"_column_size": 60},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='border:2px dashed #ddd;border-radius:12px;padding:40px;text-align:center;cursor:pointer;'><span style='font-size:32px;'>📤</span><p style='color:#999;margin-top:8px;'>Click or drag to upload images</p></div>",
+                "_element_note": "Image upload area — wire up with custom JS or WP media uploader"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"style": "solid", "color": "#eee", "margin": {"top": "20", "bottom": "20", "unit": "px"}}
+            },
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "Listing Details",
+                "form_fields": [
+                  {"field_type": "text", "field_label": "🏷️ Title *", "required": "yes", "placeholder": "e.g. Fender Stratocaster '62 Reissue", "width": "100"},
+                  {"field_type": "textarea", "field_label": "ℹ️ Description", "placeholder": "Describe condition, history, what's included...", "rows": 5, "width": "100"}
+                ],
+                "button_text": "",
+                "show_submit": "no"
+              }
+            }
+          ]
+        },
+        {
+          "elType": "column",
+          "settings": {"_column_size": 40},
+          "elements": [
+            {
+              "elType": "widget",
+              "widgetType": "form",
+              "settings": {
+                "form_name": "Listing Pricing",
+                "form_fields": [
+                  {"field_type": "number", "field_label": "💲 Price *", "required": "yes", "placeholder": "0", "width": "100"}
+                ],
+                "button_text": "",
+                "show_submit": "no"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div><label style='font-weight:600;font-size:14px;'>📦 Category *</label><div style='display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;'><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>🎸 Guitars</span><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>🎹 Keyboards</span><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>🥁 Drums</span><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>🎤 Microphones</span><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>🔊 Speakers</span><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>🎧 Headphones</span></div></div>",
+                "_element_note": "Category pills — add click handlers via custom JS"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='margin-top:16px;'><label style='font-weight:600;font-size:14px;'>⭐ Condition *</label><div style='display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;'><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>New</span><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>Like New</span><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>Good</span><span style='padding:6px 14px;border-radius:20px;border:1px solid #ddd;cursor:pointer;font-size:13px;'>Fair</span></div></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": {"style": "solid", "color": "#eee", "margin": {"top": "20", "bottom": "20", "unit": "px"}}
+            },
+            {
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background:#f9f9f9;border-radius:12px;padding:16px;'><h3 style='font-family:Space Grotesk;font-weight:600;font-size:14px;'>Your Seller Profile</h3><div style='display:flex;align-items:center;gap:12px;margin-top:8px;'><div style='width:40px;height:40px;border-radius:50%;background:#C62828;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;'>👤</div><div><p style='font-weight:600;margin:0;'>Guest</p><p style='color:#999;font-size:12px;margin:0;'>Sign in to build your reputation</p></div></div></div>"
+              }
+            },
+            {
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Publish Listing",
+                "size": "lg",
+                "background_color": "#C62828",
+                "text_color": "#FFFFFF",
+                "border_radius": {"size": 8, "unit": "px"},
+                "typography_font_family": "Space Grotesk",
+                "typography_font_weight": "600",
+                "width": {"size": 100, "unit": "%"},
+                "margin": {"top": "20", "unit": "px"}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
