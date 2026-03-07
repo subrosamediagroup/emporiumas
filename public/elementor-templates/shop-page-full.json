@@ -2,70 +2,146 @@
   "title": "MPortiums Shop Page (Full)",
   "type": "page",
   "version": "0.4",
-  "page_settings": {"template": "elementor_canvas"},
+  "page_settings": {
+    "template": "elementor_canvas",
+    "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0" }
+  },
   "content": [
     {
-      "_comment": "=== HEADER / SORT ROW ===",
+      "id": "shop_header_section",
       "elType": "section",
       "settings": {
-        "padding": {"top": "96", "bottom": "20", "unit": "px"},
-        "content_width": {"size": 1200, "unit": "px"},
-        "background_color": "#0A0A0A"
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1200 },
+        "padding": { "unit": "px", "top": "96", "right": "16", "bottom": "0", "left": "16" }
       },
       "elements": [
         {
+          "id": "shop_header_col",
           "elType": "column",
-          "settings": {"_column_size": 70},
+          "settings": { "_column_size": 100 },
           "elements": [
             {
-              "elType": "widget",
-              "widgetType": "heading",
+              "id": "shop_header_inner",
+              "elType": "section",
+              "isInner": true,
               "settings": {
-                "title": "Shop Gear",
-                "header_size": "h1",
-                "typography_font_family": "Space Grotesk",
-                "typography_font_weight": "700",
-                "typography_font_size": {"size": 36, "unit": "px"},
-                "title_color": "#FFFFFF"
+                "structure": "20"
+              },
+              "elements": [
+                {
+                  "id": "shop_title_col",
+                  "elType": "column",
+                  "settings": { "_column_size": 50 },
+                  "elements": [
+                    {
+                      "id": "shop_title",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "Shop Gear",
+                        "header_size": "h1",
+                        "typography_font_family": "Space Grotesk",
+                        "typography_font_size": { "unit": "px", "size": 30 },
+                        "typography_font_weight": "700",
+                        "title_color": "#1A1A2E"
+                      }
+                    },
+                    {
+                      "id": "shop_count",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "<p id='shopCount' style='font-size:14px;color:#5C6370;'>6 items found</p>"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "shop_sort_col",
+                  "elType": "column",
+                  "settings": { "_column_size": 50, "align": "flex-end" },
+                  "elements": [
+                    {
+                      "id": "shop_sort_widget",
+                      "elType": "widget",
+                      "widgetType": "html",
+                      "settings": {
+                        "html": "<div style=\"display:flex;align-items:center;gap:12px;justify-content:flex-end;\"><button class=\"btn btn-outline btn-sm shop-filter-toggle\" onclick=\"document.getElementById('mobileFilters').classList.toggle('open')\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><line x1=\"4\" y1=\"21\" x2=\"4\" y2=\"14\"/><line x1=\"4\" y1=\"10\" x2=\"4\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"12\"/><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"3\"/><line x1=\"20\" y1=\"21\" x2=\"20\" y2=\"16\"/><line x1=\"20\" y1=\"12\" x2=\"20\" y2=\"3\"/></svg> Filters</button><div style=\"position:relative;\"><select id=\"sortSelect\" onchange=\"sortProducts()\" style=\"appearance:none;border:1px solid #E2E8F0;border-radius:8px;padding:8px 32px 8px 12px;font-size:14px;background:#fff;color:#1A1A2E;cursor:pointer;\"><option>Newest</option><option>Price: Low to High</option><option>Price: High to Low</option></select><svg style=\"position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#5C6370\" stroke-width=\"2\"><polyline points=\"6 9 12 15 18 9\"/></svg></div></div>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shop_body_section",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "content_width": { "unit": "px", "size": 1200 },
+        "padding": { "unit": "px", "top": "0", "right": "16", "bottom": "64", "left": "16" },
+        "structure": "22",
+        "gap": "extended"
+      },
+      "elements": [
+        {
+          "id": "shop_sidebar_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 25,
+            "hide_mobile": "hidden-phone"
+          },
+          "elements": [
+            {
+              "id": "filter_category",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div class=\"filter-section\"><h4 class=\"filter-title\">Category</h4><ul class=\"filter-list\"><li><a href=\"/shop/\" class=\"filter-link\">All</a></li><li><a href=\"/shop/?category=Guitars+%26+Basses\" class=\"filter-link\">Guitars &amp; Basses</a></li><li><a href=\"/shop/?category=Synthesizers\" class=\"filter-link\">Synthesizers</a></li><li><a href=\"/shop/?category=Headphones\" class=\"filter-link\">Headphones</a></li><li><a href=\"/shop/?category=Speakers+%26+Monitors\" class=\"filter-link\">Speakers &amp; Monitors</a></li><li><a href=\"/shop/?category=Microphones\" class=\"filter-link\">Microphones</a></li><li><a href=\"/shop/?category=DJ+Equipment\" class=\"filter-link\">DJ Equipment</a></li></ul></div>"
               }
             },
             {
+              "id": "filter_price",
               "elType": "widget",
-              "widgetType": "text-editor",
+              "widgetType": "html",
               "settings": {
-                "editor": "<p style='color:rgba(255,255,255,0.5);font-size:14px;'>Showing all items</p>"
+                "html": "<div class=\"filter-section\"><h4 class=\"filter-title\">Price Range</h4><ul class=\"filter-list\"><li><a href=\"/shop/\" class=\"filter-link\">All</a></li><li><a href=\"/shop/?price_min=0&price_max=25000\" class=\"filter-link\">Under $250</a></li><li><a href=\"/shop/?price_min=25000&price_max=50000\" class=\"filter-link\">$250 – $500</a></li><li><a href=\"/shop/?price_min=50000&price_max=100000\" class=\"filter-link\">$500 – $1,000</a></li><li><a href=\"/shop/?price_min=100000&price_max=200000\" class=\"filter-link\">$1,000 – $2,000</a></li><li><a href=\"/shop/?price_min=200000&price_max=0\" class=\"filter-link\">$2,000+</a></li></ul></div>"
+              }
+            },
+            {
+              "id": "filter_condition",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<div class=\"filter-section\"><h4 class=\"filter-title\">Condition</h4><ul class=\"filter-list\"><li><a href=\"/shop/\" class=\"filter-link\">All</a></li><li><a href=\"/shop/?condition=Like+New\" class=\"filter-link\">Like New</a></li><li><a href=\"/shop/?condition=Excellent\" class=\"filter-link\">Excellent</a></li><li><a href=\"/shop/?condition=Good\" class=\"filter-link\">Good</a></li><li><a href=\"/shop/?condition=Fair\" class=\"filter-link\">Fair</a></li></ul></div>"
+              }
+            },
+            {
+              "id": "filter_clear",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<a href=\"/shop/\" class=\"btn btn-outline btn-sm btn-full\">✕ Clear Filters</a>"
               }
             }
           ]
         },
         {
+          "id": "shop_grid_col",
           "elType": "column",
-          "settings": {"_column_size": 30, "align": "flex-end"},
+          "settings": { "_column_size": 75 },
           "elements": [
             {
+              "id": "shop_grid_widget",
               "elType": "widget",
-              "widgetType": "icon",
+              "widgetType": "html",
               "settings": {
-                "icon": {"value": "fas fa-sliders-h", "library": "fa-solid"},
-                "primary_color": "rgba(255,255,255,0.5)",
-                "size": {"size": 16, "unit": "px"},
-                "_element_note": "Mobile filter toggle — hide on desktop"
-              }
-            },
-            {
-              "elType": "widget",
-              "widgetType": "form",
-              "settings": {
-                "form_fields": [
-                  {
-                    "field_type": "select",
-                    "field_label": "",
-                    "field_options": "Newest\nPrice: Low to High\nPrice: High to Low",
-                    "placeholder": "Sort by"
-                  }
-                ],
-                "button_text": "",
-                "show_submit": "no"
+                "html": "<div class=\"listing-grid\" id=\"shopGrid\"></div><div class=\"empty-state\" id=\"shopEmpty\" style=\"display:none;text-align:center;padding:80px 0;\"><p style=\"font-size:18px;font-weight:600;color:#1A1A2E;\">No items match your filters</p><p style=\"font-size:14px;color:#5C6370;margin-top:4px;\">Try adjusting your criteria</p><a href=\"/shop/\" class=\"btn btn-outline btn-sm\" style=\"margin-top:16px;\">Clear Filters</a></div>"
               }
             }
           ]
@@ -73,272 +149,65 @@
       ]
     },
     {
-      "_comment": "=== SIDEBAR + PRODUCT GRID ===",
+      "id": "shop_mobile_filters_section",
       "elType": "section",
-      "settings": {
-        "content_width": {"size": 1200, "unit": "px"},
-        "background_color": "#0A0A0A",
-        "padding": {"bottom": "60", "unit": "px"}
-      },
+      "settings": {},
       "elements": [
         {
-          "_comment": "Sidebar Filters",
+          "id": "mobile_filters_col",
           "elType": "column",
-          "settings": {"_column_size": 20},
+          "settings": { "_column_size": 100 },
           "elements": [
             {
+              "id": "mobile_filters_widget",
               "elType": "widget",
-              "widgetType": "heading",
+              "widgetType": "html",
               "settings": {
-                "title": "CATEGORY",
-                "header_size": "h4",
-                "typography_font_family": "Space Grotesk",
-                "typography_font_weight": "600",
-                "typography_font_size": {"size": 11, "unit": "px"},
-                "typography_letter_spacing": {"size": 1.5, "unit": "px"},
-                "title_color": "rgba(255,255,255,0.5)",
-                "margin": {"bottom": "12", "unit": "px"}
-              }
-            },
-            {
-              "elType": "widget",
-              "widgetType": "text-editor",
-              "settings": {
-                "editor": "<ul style='list-style:none;padding:0;margin:0;'><li style='padding:8px 12px;border-radius:6px;font-size:14px;color:#C62828;background:rgba(198,40,40,0.1);margin-bottom:4px;cursor:pointer;'>All</li><li style='padding:8px 12px;border-radius:6px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;cursor:pointer;'><i class='fas fa-guitar' style='width:20px;color:#C62828;'></i> Guitars & Basses</li><li style='padding:8px 12px;border-radius:6px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;cursor:pointer;'><i class='fas fa-keyboard' style='width:20px;color:#C62828;'></i> Synthesizers</li><li style='padding:8px 12px;border-radius:6px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;cursor:pointer;'><i class='fas fa-headphones' style='width:20px;color:#C62828;'></i> Headphones</li><li style='padding:8px 12px;border-radius:6px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;cursor:pointer;'><i class='fas fa-volume-up' style='width:20px;color:#C62828;'></i> Speakers & Monitors</li><li style='padding:8px 12px;border-radius:6px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;cursor:pointer;'><i class='fas fa-microphone' style='width:20px;color:#C62828;'></i> Microphones</li><li style='padding:8px 12px;border-radius:6px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;cursor:pointer;'><i class='fas fa-music' style='width:20px;color:#C62828;'></i> DJ Equipment</li></ul>"
-              }
-            },
-            {
-              "elType": "widget",
-              "widgetType": "heading",
-              "settings": {
-                "title": "PRICE RANGE",
-                "header_size": "h4",
-                "typography_font_family": "Space Grotesk",
-                "typography_font_weight": "600",
-                "typography_font_size": {"size": 11, "unit": "px"},
-                "typography_letter_spacing": {"size": 1.5, "unit": "px"},
-                "title_color": "rgba(255,255,255,0.5)",
-                "margin": {"top": "24", "bottom": "12", "unit": "px"}
-              }
-            },
-            {
-              "elType": "widget",
-              "widgetType": "text-editor",
-              "settings": {
-                "editor": "<ul style='list-style:none;padding:0;margin:0;'><li style='padding:8px 12px;border-radius:6px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;cursor:pointer;'>All</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>Under $250</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>$250 – $500</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>$500 – $1,000</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>$1,000 – $2,000</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>$2,000+</li></ul>"
-              }
-            },
-            {
-              "elType": "widget",
-              "widgetType": "heading",
-              "settings": {
-                "title": "CONDITION",
-                "header_size": "h4",
-                "typography_font_family": "Space Grotesk",
-                "typography_font_weight": "600",
-                "typography_font_size": {"size": 11, "unit": "px"},
-                "typography_letter_spacing": {"size": 1.5, "unit": "px"},
-                "title_color": "rgba(255,255,255,0.5)",
-                "margin": {"top": "24", "bottom": "12", "unit": "px"}
-              }
-            },
-            {
-              "elType": "widget",
-              "widgetType": "text-editor",
-              "settings": {
-                "editor": "<ul style='list-style:none;padding:0;margin:0;'><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>All</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>Like New</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>Excellent</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>Good</li><li style='padding:8px 12px;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:4px;'>Fair</li></ul>"
-              }
-            },
-            {
-              "elType": "widget",
-              "widgetType": "button",
-              "settings": {
-                "text": "Clear Filters",
-                "icon": {"value": "fas fa-times", "library": "fa-solid"},
-                "size": "sm",
-                "background_color": "transparent",
-                "button_text_color": "rgba(255,255,255,0.5)",
-                "border_border": "solid",
-                "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
-                "border_color": "rgba(255,255,255,0.2)",
-                "border_radius": {"top": "8", "right": "8", "bottom": "8", "left": "8", "unit": "px"},
-                "width": {"size": 100, "unit": "%"},
-                "margin": {"top": "24", "unit": "px"}
+                "html": "<div id=\"mobileFilters\" class=\"mobile-filters-panel\"><div style=\"display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;\"><h3 style=\"font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#1A1A2E;\">Filters</h3><button onclick=\"document.getElementById('mobileFilters').classList.remove('open')\" style=\"background:none;border:none;cursor:pointer;padding:8px;\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#1A1A2E\" stroke-width=\"2\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"/><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"/></svg></button></div><div class=\"filter-section\"><h4 class=\"filter-title\">Category</h4><ul class=\"filter-list\"><li><a href=\"/shop/\" class=\"filter-link\">All</a></li><li><a href=\"/shop/?category=Guitars+%26+Basses\" class=\"filter-link\">Guitars &amp; Basses</a></li><li><a href=\"/shop/?category=Synthesizers\" class=\"filter-link\">Synthesizers</a></li><li><a href=\"/shop/?category=Headphones\" class=\"filter-link\">Headphones</a></li><li><a href=\"/shop/?category=Speakers+%26+Monitors\" class=\"filter-link\">Speakers &amp; Monitors</a></li><li><a href=\"/shop/?category=Microphones\" class=\"filter-link\">Microphones</a></li><li><a href=\"/shop/?category=DJ+Equipment\" class=\"filter-link\">DJ Equipment</a></li></ul></div><div class=\"filter-section\"><h4 class=\"filter-title\">Price Range</h4><ul class=\"filter-list\"><li><a href=\"/shop/\" class=\"filter-link\">All</a></li><li><a href=\"/shop/?price_min=0&price_max=25000\" class=\"filter-link\">Under $250</a></li><li><a href=\"/shop/?price_min=25000&price_max=50000\" class=\"filter-link\">$250 – $500</a></li><li><a href=\"/shop/?price_min=50000&price_max=100000\" class=\"filter-link\">$500 – $1,000</a></li><li><a href=\"/shop/?price_min=100000&price_max=200000\" class=\"filter-link\">$1,000 – $2,000</a></li><li><a href=\"/shop/?price_min=200000&price_max=0\" class=\"filter-link\">$2,000+</a></li></ul></div><div class=\"filter-section\"><h4 class=\"filter-title\">Condition</h4><ul class=\"filter-list\"><li><a href=\"/shop/\" class=\"filter-link\">All</a></li><li><a href=\"/shop/?condition=Like+New\" class=\"filter-link\">Like New</a></li><li><a href=\"/shop/?condition=Excellent\" class=\"filter-link\">Excellent</a></li><li><a href=\"/shop/?condition=Good\" class=\"filter-link\">Good</a></li><li><a href=\"/shop/?condition=Fair\" class=\"filter-link\">Fair</a></li></ul></div><a href=\"/shop/\" class=\"btn btn-outline btn-sm btn-full\">✕ Clear Filters</a></div>"
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "shop_styles_section",
+      "elType": "section",
+      "settings": {},
+      "elements": [
         {
-          "_comment": "Product Grid",
+          "id": "shop_styles_col",
           "elType": "column",
-          "settings": {"_column_size": 80},
+          "settings": { "_column_size": 100 },
           "elements": [
             {
-              "elType": "section",
-              "isInner": true,
-              "settings": {"structure": "30", "gap": "default"},
-              "elements": [
-                {
-                  "elType": "column",
-                  "settings": {"_column_size": 33},
-                  "elements": [
-                    {
-                      "elType": "widget",
-                      "widgetType": "image-box",
-                      "settings": {
-                        "image": {"url": "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=400&h=400&fit=crop"},
-                        "title_text": "Fender Stratocaster '62 Reissue",
-                        "description_text": "<span style='font-size:12px;color:rgba(255,255,255,0.5);'>Guitars & Basses</span><br/><span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$1,450</span><br/><small style='color:rgba(255,255,255,0.5);'><i class='fas fa-shield-alt' style='color:#C62828;margin-right:4px;'></i>VintageAxes · <i class='fas fa-star' style='color:#C62828;'></i> 4.9</small>",
-                        "title_typography_font_family": "Space Grotesk",
-                        "title_typography_font_size": {"size": 14, "unit": "px"},
-                        "title_typography_font_weight": "600",
-                        "title_color": "#FFFFFF",
-                        "link": {"url": "/product/sample-1/"},
-                        "border_border": "solid",
-                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
-                        "border_color": "rgba(255,255,255,0.1)",
-                        "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
-                        "background_color": "rgba(255,255,255,0.03)",
-                        "_element_note": "Add badge overlay 'Excellent' + heart icon via custom CSS"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "elType": "column",
-                  "settings": {"_column_size": 33},
-                  "elements": [
-                    {
-                      "elType": "widget",
-                      "widgetType": "image-box",
-                      "settings": {
-                        "image": {"url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop"},
-                        "title_text": "Roland Juno-106 Synthesizer",
-                        "description_text": "<span style='font-size:12px;color:rgba(255,255,255,0.5);'>Synthesizers</span><br/><span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$2,800</span><br/><small style='color:rgba(255,255,255,0.5);'><i class='fas fa-shield-alt' style='color:#C62828;margin-right:4px;'></i>SynthWizard · <i class='fas fa-star' style='color:#C62828;'></i> 5.0</small>",
-                        "title_typography_font_family": "Space Grotesk",
-                        "title_typography_font_size": {"size": 14, "unit": "px"},
-                        "title_color": "#FFFFFF",
-                        "link": {"url": "/product/sample-2/"},
-                        "border_border": "solid",
-                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
-                        "border_color": "rgba(255,255,255,0.1)",
-                        "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
-                        "background_color": "rgba(255,255,255,0.03)"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "elType": "column",
-                  "settings": {"_column_size": 33},
-                  "elements": [
-                    {
-                      "elType": "widget",
-                      "widgetType": "image-box",
-                      "settings": {
-                        "image": {"url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop"},
-                        "title_text": "Sennheiser HD 650 Headphones",
-                        "description_text": "<span style='font-size:12px;color:rgba(255,255,255,0.5);'>Headphones</span><br/><span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$280</span><br/><small style='color:rgba(255,255,255,0.5);'>AudioPhile99 · <i class='fas fa-star' style='color:#C62828;'></i> 4.8</small>",
-                        "title_typography_font_family": "Space Grotesk",
-                        "title_typography_font_size": {"size": 14, "unit": "px"},
-                        "title_color": "#FFFFFF",
-                        "link": {"url": "/product/sample-3/"},
-                        "border_border": "solid",
-                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
-                        "border_color": "rgba(255,255,255,0.1)",
-                        "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
-                        "background_color": "rgba(255,255,255,0.03)"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "elType": "section",
-              "isInner": true,
-              "settings": {"structure": "30", "gap": "default", "margin": {"top": "20", "unit": "px"}},
-              "elements": [
-                {
-                  "elType": "column",
-                  "settings": {"_column_size": 33},
-                  "elements": [
-                    {
-                      "elType": "widget",
-                      "widgetType": "image-box",
-                      "settings": {
-                        "image": {"url": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop"},
-                        "title_text": "Yamaha HS8 Studio Monitors",
-                        "description_text": "<span style='font-size:12px;color:rgba(255,255,255,0.5);'>Speakers & Monitors</span><br/><span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$520</span><br/><small style='color:rgba(255,255,255,0.5);'><i class='fas fa-shield-alt' style='color:#C62828;margin-right:4px;'></i>StudioGear · <i class='fas fa-star' style='color:#C62828;'></i> 4.7</small>",
-                        "title_typography_font_family": "Space Grotesk",
-                        "title_typography_font_size": {"size": 14, "unit": "px"},
-                        "title_color": "#FFFFFF",
-                        "link": {"url": "/product/sample-4/"},
-                        "border_border": "solid",
-                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
-                        "border_color": "rgba(255,255,255,0.1)",
-                        "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
-                        "background_color": "rgba(255,255,255,0.03)"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "elType": "column",
-                  "settings": {"_column_size": 33},
-                  "elements": [
-                    {
-                      "elType": "widget",
-                      "widgetType": "image-box",
-                      "settings": {
-                        "image": {"url": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop"},
-                        "title_text": "Shure SM7B Microphone",
-                        "description_text": "<span style='font-size:12px;color:rgba(255,255,255,0.5);'>Microphones</span><br/><span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$340</span><br/><small style='color:rgba(255,255,255,0.5);'><i class='fas fa-shield-alt' style='color:#C62828;margin-right:4px;'></i>ProAudioDeals · <i class='fas fa-star' style='color:#C62828;'></i> 4.9</small>",
-                        "title_typography_font_family": "Space Grotesk",
-                        "title_typography_font_size": {"size": 14, "unit": "px"},
-                        "title_color": "#FFFFFF",
-                        "link": {"url": "/product/sample-5/"},
-                        "border_border": "solid",
-                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
-                        "border_color": "rgba(255,255,255,0.1)",
-                        "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
-                        "background_color": "rgba(255,255,255,0.03)"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "elType": "column",
-                  "settings": {"_column_size": 33},
-                  "elements": [
-                    {
-                      "elType": "widget",
-                      "widgetType": "image-box",
-                      "settings": {
-                        "image": {"url": "https://images.unsplash.com/photo-1571327073757-71d13c24de30?w=400&h=400&fit=crop"},
-                        "title_text": "Pioneer CDJ-2000NXS2",
-                        "description_text": "<span style='font-size:12px;color:rgba(255,255,255,0.5);'>DJ Equipment</span><br/><span style='color:#C62828;font-family:Space Grotesk;font-size:20px;font-weight:700;'>$1,600</span><br/><small style='color:rgba(255,255,255,0.5);'>DJDepot · <i class='fas fa-star' style='color:#C62828;'></i> 4.6</small>",
-                        "title_typography_font_family": "Space Grotesk",
-                        "title_typography_font_size": {"size": 14, "unit": "px"},
-                        "title_color": "#FFFFFF",
-                        "link": {"url": "/product/sample-6/"},
-                        "border_border": "solid",
-                        "border_width": {"top": "1", "right": "1", "bottom": "1", "left": "1", "unit": "px"},
-                        "border_color": "rgba(255,255,255,0.1)",
-                        "border_radius": {"top": "12", "right": "12", "bottom": "12", "left": "12", "unit": "px"},
-                        "background_color": "rgba(255,255,255,0.03)"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "_comment": "Empty state (hidden by default)",
+              "id": "shop_css_widget",
               "elType": "widget",
-              "widgetType": "text-editor",
+              "widgetType": "html",
               "settings": {
-                "editor": "<div style='text-align:center;padding:80px 20px;display:none;' id='shopEmpty'><p style='font-size:18px;font-weight:600;color:#FFFFFF;'>No items match your filters</p><p style='color:rgba(255,255,255,0.5);font-size:14px;'>Try adjusting your criteria</p></div>"
+                "html": "<style>.filter-list{list-style:none;padding:0;margin:0 0 1.5rem}.filter-link{display:block;padding:6px 12px;border-radius:6px;color:#5C6370;text-decoration:none;font-size:14px;transition:background .15s,color .15s}.filter-link:hover{background:rgba(198,40,40,.08);color:#C62828}.filter-link.active{background:rgba(198,40,40,.12);color:#C62828;font-weight:600}.filter-title{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#5C6370;margin-bottom:12px}.filter-section{margin-bottom:24px}.listing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.product-card{overflow:hidden;border-radius:12px;border:1px solid #E2E8F0;background:#fff;transition:border-color .2s,transform .2s;cursor:pointer}.product-card:hover{border-color:rgba(198,40,40,.3);transform:translateY(-4px)}.product-image{position:relative;aspect-ratio:1;overflow:hidden;background:#F8FAFC}.product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.product-card:hover .product-image img{transform:scale(1.05)}.product-badge{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:500;color:#1A1A2E}.product-heart{position:absolute;right:12px;top:12px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);border:none;cursor:pointer;color:#5C6370;transition:color .2s}.product-heart:hover{color:#C62828}.product-info{padding:16px}.product-category{font-size:12px;color:#5C6370;margin-bottom:2px}.product-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:#1A1A2E;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.product-price{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:#C62828;margin-bottom:12px}.product-meta{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#5C6370}.product-seller{display:flex;align-items:center;gap:6px}.product-rating{display:flex;align-items:center;gap:4px}.mobile-filters-panel{position:fixed;inset:0;z-index:50;background:#fff;padding:24px;transform:translateX(-100%);transition:transform .3s ease;overflow-y:auto}.mobile-filters-panel.open{transform:translateX(0)}.shop-filter-toggle{display:none!important}@media(max-width:1024px){.listing-grid{grid-template-columns:repeat(2,1fr)}.shop-filter-toggle{display:flex!important}}@media(max-width:640px){.listing-grid{grid-template-columns:1fr}}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none}.btn-outline{background:transparent;border:1px solid #E2E8F0;color:#1A1A2E}.btn-outline:hover{background:#F8FAFC}.btn-sm{padding:6px 14px;font-size:13px}.btn-full{width:100%}</style>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shop_script_section",
+      "elType": "section",
+      "settings": {},
+      "elements": [
+        {
+          "id": "shop_script_col",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "shop_script_widget",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<script>var sampleProducts=[{id:'sample-1',title:\"Fender Stratocaster '62 Reissue\",price:145000,condition:'Excellent',category:'Guitars & Basses',seller:'VintageAxes',rating:4.9,verified:true,image:'https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=400&h=400&fit=crop'},{id:'sample-2',title:'Roland Juno-106 Synthesizer',price:280000,condition:'Good',category:'Synthesizers',seller:'SynthWizard',rating:5.0,verified:true,image:'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop'},{id:'sample-3',title:'Sennheiser HD 650 Headphones',price:28000,condition:'Like New',category:'Headphones',seller:'AudioPhile99',rating:4.8,verified:false,image:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop'},{id:'sample-4',title:'Yamaha HS8 Studio Monitors (Pair)',price:52000,condition:'Excellent',category:'Speakers & Monitors',seller:'StudioGear',rating:4.7,verified:true,image:'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400&h=400&fit=crop'},{id:'sample-5',title:'Shure SM7B Microphone',price:34000,condition:'Like New',category:'Microphones',seller:'ProAudioDeals',rating:4.9,verified:true,image:'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=400&fit=crop'},{id:'sample-6',title:'Pioneer CDJ-2000NXS2',price:160000,condition:'Good',category:'DJ Equipment',seller:'DJDepot',rating:4.6,verified:false,image:'https://images.unsplash.com/photo-1571327073757-71d13c24de30?w=400&h=400&fit=crop'}];function getParams(){var p=new URLSearchParams(window.location.search);return{category:p.get('category')||'',condition:p.get('condition')||'',price_min:p.get('price_min')?parseInt(p.get('price_min')):null,price_max:p.get('price_max')?parseInt(p.get('price_max')):null}}function renderProducts(){var params=getParams();var filtered=sampleProducts.filter(function(p){if(params.category&&p.category!==params.category)return false;if(params.condition&&p.condition!==params.condition)return false;if(params.price_min!==null&&p.price<params.price_min)return false;if(params.price_max!==null&&params.price_max>0&&p.price>params.price_max)return false;return true});var sort=document.getElementById('sortSelect');if(sort){var v=sort.value;if(v==='Price: Low to High')filtered.sort(function(a,b){return a.price-b.price});if(v==='Price: High to Low')filtered.sort(function(a,b){return b.price-a.price})}var grid=document.getElementById('shopGrid');var empty=document.getElementById('shopEmpty');var count=document.getElementById('shopCount');if(count)count.textContent=filtered.length+' items found';if(filtered.length===0){if(grid)grid.style.display='none';if(empty)empty.style.display='block';return}if(grid)grid.style.display='';if(empty)empty.style.display='none';if(grid)grid.innerHTML=filtered.map(function(item){return'<a href=\"/product/'+item.id+'\" style=\"text-decoration:none;color:inherit;\"><div class=\"product-card\"><div class=\"product-image\"><img src=\"'+item.image+'\" alt=\"'+item.title+'\" loading=\"lazy\"/><span class=\"product-badge\">'+item.condition+'</span><button class=\"product-heart\" onclick=\"event.preventDefault()\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"/></svg></button></div><div class=\"product-info\"><p class=\"product-category\">'+item.category+'</p><h3 class=\"product-title\">'+item.title+'</h3><p class=\"product-price\">$'+(item.price/100).toLocaleString()+'</p><div class=\"product-meta\"><div class=\"product-seller\">'+(item.verified?'<svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#C62828\" stroke-width=\"2\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/></svg>':'')+item.seller+'</div>'+(item.rating>0?'<div class=\"product-rating\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"#C62828\" stroke=\"#C62828\" stroke-width=\"2\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>'+item.rating+'</div>':'')+'</div></div></div></a>'}).join('');highlightActiveFilters(params)}function highlightActiveFilters(params){document.querySelectorAll('.filter-link').forEach(function(link){link.classList.remove('active');var href=link.getAttribute('href');var u=new URL(href,window.location.origin);var lp=new URLSearchParams(u.search);var isAllLink=!lp.get('category')&&!lp.get('condition')&&!lp.get('price_min');if(!params.category&&!params.condition&&params.price_min===null){if(isAllLink)link.classList.add('active')}else{if(params.category&&lp.get('category')===params.category)link.classList.add('active');if(params.condition&&lp.get('condition')===params.condition)link.classList.add('active');if(params.price_min!==null&&lp.get('price_min')&&parseInt(lp.get('price_min'))===params.price_min)link.classList.add('active');if(!params.category&&!params.condition&&params.price_min===null&&isAllLink)link.classList.add('active')}})}function sortProducts(){renderProducts()}document.addEventListener('DOMContentLoaded',renderProducts);</script>"
               }
             }
           ]
